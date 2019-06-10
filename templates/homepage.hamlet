@@ -1,2 +1,2 @@
-<div .container-fluid .justify-content-center>
+<div #main>
     <div #mapid>
