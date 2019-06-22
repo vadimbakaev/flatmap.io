@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoicGF3bnJ1bGUiLCJhIjoiY2p3cGFzbWFhMjJodzQzbzVndTYycmh0YyJ9.0WwP2iV0LHRRXRer3LM4Sw';
+mapboxgl.accessToken = #{mapboxAccessToken};
 var map = new mapboxgl.Map({
     container: 'mapid',
     center: [23.0622, 53.3439],

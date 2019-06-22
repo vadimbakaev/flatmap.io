@@ -3,6 +3,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE RecordWildCards #-}
 module Handler.Home where
 
 import Import
@@ -18,6 +19,7 @@ import Import
 getHomeR :: Handler Html
 getHomeR =
     defaultLayout $ do
+        App{..} <- getYesod
         aDomId <- newIdent
         setTitle "Welcome To Yesod!"
         $(widgetFile "homepage")
@@ -25,6 +27,7 @@ getHomeR =
 postHomeR :: Handler Html
 postHomeR =
     defaultLayout $ do
+        App{..} <- getYesod
         aDomId <- newIdent
         setTitle "Welcome To Yesod!"
         $(widgetFile "homepage")

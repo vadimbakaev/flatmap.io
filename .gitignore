@@ -21,3 +21,4 @@ cabal.sandbox.config
 \#*
 h-map.cabal
 .idea/
+.env
