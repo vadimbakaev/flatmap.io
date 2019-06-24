@@ -66,7 +66,7 @@ data SocialNetwork =
 
 data Coordinate =
   Coordinate
-    { coordinateLan :: !Float
+    { coordinateLat :: !Float
     , coordinateLon :: !Float
     }
   deriving (Eq, Show, Generic)

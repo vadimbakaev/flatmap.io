@@ -26,7 +26,7 @@ companies =
               { officeAddress = "Thurgauerstrasse 408050 Zurich"
               , officeCoordinate =
                   Coordinate
-                    {coordinateLan = 47.4148684, coordinateLon = 8.5529927}
+                    {coordinateLat = 47.4148684, coordinateLon = 8.5529927}
               }
           ]
       , companySocials = []
