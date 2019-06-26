@@ -32,6 +32,16 @@ instance FromJSON Coordinate
 
 instance FromJSON SocialNetwork
 
+instance ToJSON Company
+
+instance ToJSON CompanyType
+
+instance ToJSON Office
+
+instance ToJSON Coordinate
+
+instance ToJSON SocialNetwork
+
 data Company =
   Company
     { companyName :: !Text
@@ -56,7 +66,7 @@ data SocialNetwork =
 
 data Coordinate =
   Coordinate
-    { coordinateLan :: !Float
+    { coordinateLat :: !Float
     , coordinateLon :: !Float
     }
   deriving (Eq, Show, Generic)

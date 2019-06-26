@@ -7,6 +7,9 @@
 
 module Handler.Home where
 
+import Data.Aeson
+import qualified Data.ByteString.Lazy as B
+import Data.Either
 import Import
 
 -- This is a handler function for the GET request method on the HomeR
@@ -16,21 +19,15 @@ import Import
 -- The majority of the code you will write in Yesod lives in these handler
 -- functions. You can spread them across multiple files if you are so
 -- inclined, or create a single monolithic file.
-companies :: [Company]
-companies =
-  [ Company
-      { companyName = ""
-      , companyType = Product
-      , companyOffices = []
-      , companySocials = []
-      , companyStack = []
-      }
-  ]
+-- Let's handle IOException and decodeFail
+loadCompanies :: IO (Either String [Company])
+loadCompanies = eitherDecode <$> B.readFile "config/companies.json"
 
 getHomeR :: Handler Html
 getHomeR =
   defaultLayout $ do
     App {..} <- getYesod
+    companies <- liftIO $ fromRight [] <$> loadCompanies
     aDomId <- newIdent
     setTitle "Welcome To Yesod!"
     $(widgetFile "homepage")
@@ -39,6 +36,7 @@ postHomeR :: Handler Html
 postHomeR =
   defaultLayout $ do
     App {..} <- getYesod
+    companies <- liftIO $ fromRight [] <$> loadCompanies
     aDomId <- newIdent
     setTitle "Welcome To Yesod!"
     $(widgetFile "homepage")

@@ -15,3 +15,7 @@ spec = withApp $ do
         it "gives a 200" $ do
             get FaviconR
             statusIs 200
+    describe "marker.png" $ do
+        it "gives a 200" $ do
+            get MarkerR
+            statusIs 200
