@@ -24,7 +24,7 @@ share
 
 instance FromJSON Company
 
-instance FromJSON CompanyType
+instance FromJSON JobType
 
 instance FromJSON Office
 
@@ -34,7 +34,7 @@ instance FromJSON SocialNetwork
 
 instance ToJSON Company
 
-instance ToJSON CompanyType
+instance ToJSON JobType
 
 instance ToJSON Office
 
@@ -45,14 +45,15 @@ instance ToJSON SocialNetwork
 data Company =
   Company
     { companyName :: !Text
-    , companyType :: !CompanyType
-    , companyOffices :: ![Office]
+    , companyWebsite :: !Text
+    , companyTypes :: ![JobType]
+    , companyOffice :: !Office
     , companySocials :: ![SocialNetwork]
     , companyStack :: ![Text]
     }
   deriving (Eq, Show, Generic)
 
-data CompanyType
+data JobType
   = Product
   | Consulting
   deriving (Eq, Show, Generic)

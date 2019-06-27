@@ -7,24 +7,22 @@ var map = new mapboxgl.Map({
     style: 'mapbox://styles/mapbox/dark-v10'
 });
 
-var markers = #{toJSONList companies}.flatMap(company => {
-        return company.companyOffices.map(office => {
+var markers = #{toJSONList companies}.map(company => {
+
                 return {
                     type: 'Feature',
                     properties: {},
                     geometry: {
                         type: "Point",
                         coordinates: [
-                            office.officeCoordinate.coordinateLon,
-                            office.officeCoordinate.coordinateLat
+                            company.companyOffice.officeCoordinate.coordinateLon,
+                            company.companyOffice.officeCoordinate.coordinateLat
                         ]
                     }
                 }
-            }
 
-        );
-    }
-);
+});
+
 
 
 map.on("load", function() {
