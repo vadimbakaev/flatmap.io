@@ -27,10 +27,14 @@ getHomeR :: Handler Html
 getHomeR =
   defaultLayout $ do
     App {..} <- getYesod
-    companies <- liftIO $ fromRight [] <$> loadCompanies
     aDomId <- newIdent
     setTitle "Welcome To Yesod!"
-    $(widgetFile "homepage")
+    ecompanies <- liftIO loadCompanies
+    case ecompanies :: Either String [Company] of
+      Left err -> do
+        $logError $ pack err
+        sendResponseStatus internalServerError500 err
+      Right companies -> $(widgetFile "homepage")
 
 postHomeR :: Handler Html
 postHomeR =
