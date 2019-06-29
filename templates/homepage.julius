@@ -10,8 +10,13 @@ var map = new mapboxgl.Map({
 var markers = #{toJSONList companies}.map(company => {
 
                 return {
-                    type: 'Feature',
-                    properties: {},
+                    type: "Feature",
+                    properties: {
+                        title: company.companyName,
+                        website: company.companyWebsite,
+                        linkedin:  company.companySocials.linkedin,
+                        github:    company.companySocials.github
+                    },
                     geometry: {
                         type: "Point",
                         coordinates: [
@@ -23,8 +28,6 @@ var markers = #{toJSONList companies}.map(company => {
 
 });
 
-
-
 map.on("load", function() {
     /* Image: An image is loaded and added to the map. */
     map.loadImage('@{MarkerR}', function(error, image) {
@@ -32,7 +35,7 @@ map.on("load", function() {
         map.addImage("custom-marker", image);
         /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
         map.addLayer({
-            id: "markers",
+            id: "locations",
             type: "symbol",
             /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
             source: {
@@ -43,9 +46,51 @@ map.on("load", function() {
                 }
             },
             layout: {
-                "icon-image": "custom-marker",
+               "icon-image": "custom-marker",
             }
         });
 
     });
+});
+
+function flyToPoint(currentFeature) {
+  map.flyTo({
+    center: currentFeature.geometry.coordinates,
+    zoom: 5
+  });
+}
+
+function createPopUp(currentFeature) {
+  var popUps = document.getElementsByClassName('mapboxgl-popup');
+  // Check if there is already a popup on the map and if so, remove it
+  if (popUps[0]) popUps[0].remove();
+
+
+  let prop = currentFeature.properties;
+  let github = prop.github;
+  let linkedin = prop.linkedin;
+
+  var popup = new mapboxgl.Popup({ closeOnClick: false })
+    .setLngLat(currentFeature.geometry.coordinates)
+    .setHTML(
+        '<h4><a href="' + currentFeature.properties.website + '" target="_blank">' + currentFeature.properties.title + '</a> </h4> </br>'
+            + ('null' != github ? '<i class="fab fa-github"></i> <a href="https://github.com/' + github + '" target="_blank">' + github + '</a> </br>' : '')
+            + ('null' != linkedin ? '<i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/company/' + linkedin + '" target="_blank">' + linkedin + '</a> </br>' : '')
+            + 'stack: Haskell'
+            )
+    .addTo(map);
+}
+
+// Add an event listener for when a user clicks on the map
+map.on('click', function(e) {
+  // Query all the rendered points in the view
+  var features = map.queryRenderedFeatures(e.point, { layers: ['locations'] });
+  if (features.length) {
+    var clickedPoint = features[0];
+    // 1. Fly to the point
+    //flyToPoint(clickedPoint);
+    // 2. Close all other popups and display popup for clicked store
+    createPopUp(clickedPoint);
+
+  }
 });

@@ -30,6 +30,8 @@ instance FromJSON Office
 
 instance FromJSON Coordinate
 
+instance FromJSON Socials
+
 instance ToJSON Company
 
 instance ToJSON JobType
@@ -38,13 +40,15 @@ instance ToJSON Office
 
 instance ToJSON Coordinate
 
+instance ToJSON Socials
+
 data Company =
   Company
     { companyName :: !Text
     , companyWebsite :: !Text
     , companyTypes :: ![JobType]
     , companyOffice :: !Office
-    , companySocials :: ![Text]
+    , companySocials :: !Socials
     , companyStack :: ![Text]
     }
   deriving (Eq, Show, Generic)
@@ -65,5 +69,13 @@ data Office =
   Office
     { officeAddress :: !Text
     , officeCoordinate :: !Coordinate
+    }
+  deriving (Eq, Show, Generic)
+
+data Socials =
+  Socials
+    { github :: !(Maybe Text)
+    , linkedin :: !(Maybe Text)
+    , xing :: !(Maybe Text)
     }
   deriving (Eq, Show, Generic)
