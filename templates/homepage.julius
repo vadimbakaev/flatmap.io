@@ -3,7 +3,7 @@ mapboxgl.accessToken = #{appMapboxAccessToken};
 var map = new mapboxgl.Map({
     container: 'mapid',
     center: [23.0622, 53.3439],
-    zoom: 4,
+    zoom: 3,
     style: 'mapbox://styles/mapbox/dark-v10'
 });
 
@@ -14,8 +14,9 @@ var markers = #{toJSONList companies}.map(company => {
                     properties: {
                         title: company.companyName,
                         website: company.companyWebsite,
-                        linkedin:  company.companySocials.linkedin,
-                        github:    company.companySocials.github
+                        linkedin: company.companySocials.linkedin,
+                        github: company.companySocials.github,
+                        industry: company.companyIndustry
                     },
                     geometry: {
                         type: "Point",
@@ -54,10 +55,11 @@ map.on("load", function() {
 });
 
 function flyToPoint(currentFeature) {
+  let nextZoom = Math.max(5, map.getZoom());
   map.flyTo({
     center: currentFeature.geometry.coordinates,
-    zoom: 5
-  });
+      zoom: nextZoom
+  })
 }
 
 function createPopUp(currentFeature) {
@@ -73,10 +75,12 @@ function createPopUp(currentFeature) {
   var popup = new mapboxgl.Popup({ closeOnClick: false })
     .setLngLat(currentFeature.geometry.coordinates)
     .setHTML(
-        '<h4><a href="' + currentFeature.properties.website + '" target="_blank">' + currentFeature.properties.title + '</a> </h4> </br>'
+        '<div style="min-width:240px;"><h4><a href="' + prop.website + '" target="_blank">' + prop.title + '</a> </h4> </br>'
             + ('null' != github ? '<i class="fab fa-github"></i> <a href="https://github.com/' + github + '" target="_blank">' + github + '</a> </br>' : '')
-            + ('null' != linkedin ? '<i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/company/' + linkedin + '" target="_blank">' + linkedin + '</a> </br>' : '')
-            + 'stack: Haskell'
+            + ('null' != linkedin ? '<i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/company/' + linkedin + '/about" target="_blank">' + linkedin + '</a></br>' : '')
+            + '</br>'
+            + '<i class="fas fa-industry"></i> ' + prop.industry
+            + '</div>'
             )
     .addTo(map);
 }
@@ -88,9 +92,8 @@ map.on('click', function(e) {
   if (features.length) {
     var clickedPoint = features[0];
     // 1. Fly to the point
-    //flyToPoint(clickedPoint);
+    flyToPoint(clickedPoint);
     // 2. Close all other popups and display popup for clicked store
     createPopUp(clickedPoint);
-
   }
 });

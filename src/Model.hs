@@ -46,6 +46,7 @@ data Company =
   Company
     { companyName :: !Text
     , companyWebsite :: !Text
+    , companyIndustry :: !Text
     , companyTypes :: ![JobType]
     , companyOffice :: !Office
     , companySocials :: !Socials
