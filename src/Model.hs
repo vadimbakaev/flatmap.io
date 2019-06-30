@@ -24,44 +24,39 @@ share
 
 instance FromJSON Company
 
-instance FromJSON CompanyType
+instance FromJSON JobType
 
 instance FromJSON Office
 
 instance FromJSON Coordinate
 
-instance FromJSON SocialNetwork
+instance FromJSON Socials
 
 instance ToJSON Company
 
-instance ToJSON CompanyType
+instance ToJSON JobType
 
 instance ToJSON Office
 
 instance ToJSON Coordinate
 
-instance ToJSON SocialNetwork
+instance ToJSON Socials
 
 data Company =
   Company
     { companyName :: !Text
-    , companyType :: !CompanyType
-    , companyOffices :: ![Office]
-    , companySocials :: ![SocialNetwork]
+    , companyWebsite :: !Text
+    , companyIndustry :: !Text
+    , companyTypes :: ![JobType]
+    , companyOffice :: !Office
+    , companySocials :: !Socials
     , companyStack :: ![Text]
     }
   deriving (Eq, Show, Generic)
 
-data CompanyType
+data JobType
   = Product
   | Consulting
-  deriving (Eq, Show, Generic)
-
-data SocialNetwork =
-  SocialNetwork
-    { sNname :: !Text
-    , sNurl :: !Text
-    }
   deriving (Eq, Show, Generic)
 
 data Coordinate =
@@ -75,5 +70,13 @@ data Office =
   Office
     { officeAddress :: !Text
     , officeCoordinate :: !Coordinate
+    }
+  deriving (Eq, Show, Generic)
+
+data Socials =
+  Socials
+    { github :: !(Maybe Text)
+    , linkedin :: !(Maybe Text)
+    , xing :: !(Maybe Text)
     }
   deriving (Eq, Show, Generic)
