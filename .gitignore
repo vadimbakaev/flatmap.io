@@ -19,7 +19,8 @@ cabal.sandbox.config
 *.keter
 *~
 \#*
-h-map.cabal
+*.el
+.ghc.*
 .idea/
 .env
 *.json
