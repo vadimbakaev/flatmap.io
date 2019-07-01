@@ -1,0 +1,88 @@
+[
+  {
+    "companyName": "Digital Asset",
+    "companyWebsite": "https://digitalasset.com",
+    "companyIndustry": "Financial Services",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Thurgauerstrasse 408050 Zurich",
+      "officeCoordinate": {
+        "coordinateLat": 47.4148684,
+        "coordinateLon": 8.5529927
+      }
+    },
+    "companySocials": {
+      "linkedin" : "digital-asset-holdings-llc"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Tweag.io",
+    "companyWebsite": "https://www.tweag.io/",
+    "companyIndustry": "Computer Software",
+    "companyTypes": [
+      "Consulting"
+    ],
+    "companyOffice": {
+      "officeAddress": "EURL Tweag 207 Rue de Bercy 75012 Paris, France France",
+      "officeCoordinate": {
+        "coordinateLat": 48.8448914,
+        "coordinateLon": 2.3692687
+      }
+    },
+    "companySocials": {
+        "github" : "tweag",
+        "linkedin" : "tweag-i-o"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Adjoint",
+    "companyWebsite": "https://www.adjoint.io/",
+    "companyIndustry": "Information Technology and Services",
+      "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "120 St James Ave, Boston, Massachusetts 02116, US",
+      "officeCoordinate": {
+        "coordinateLat": 42.34922,
+        "coordinateLon": -71.07513
+      }
+    },
+    "companySocials": {
+        "github":"adjoint-io",
+        "linkedin": "adjoint"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "CentralApp",
+    "companyWebsite": "https://www.centralapp.com/en",
+    "companyIndustry": "Internet",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Rue d'alost 7, Brussels, Brussels 1000, BE",
+      "officeCoordinate": {
+        "coordinateLat": 50.85244,
+        "coordinateLon": 4.34217
+      }
+    },
+    "companySocials": {
+      "linkedin": "centralapp"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  }
+]
