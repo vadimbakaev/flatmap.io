@@ -14,7 +14,7 @@
       }
     },
     "companySocials": {
-      "linkedin" : "digital-asset-holdings-llc"
+      "linkedin": "digital-asset-holdings-llc"
     },
     "companyStack": [
       "Haskell"
@@ -35,8 +35,8 @@
       }
     },
     "companySocials": {
-        "github" : "tweag",
-        "linkedin" : "tweag-i-o"
+      "github": "tweag",
+      "linkedin": "tweag-i-o"
     },
     "companyStack": [
       "Haskell"
@@ -46,7 +46,7 @@
     "companyName": "Adjoint",
     "companyWebsite": "https://www.adjoint.io/",
     "companyIndustry": "Information Technology and Services",
-      "companyTypes": [
+    "companyTypes": [
       "Product"
     ],
     "companyOffice": {
@@ -57,8 +57,8 @@
       }
     },
     "companySocials": {
-        "github":"adjoint-io",
-        "linkedin": "adjoint"
+      "github": "adjoint-io",
+      "linkedin": "adjoint"
     },
     "companyStack": [
       "Haskell"
@@ -80,6 +80,93 @@
     },
     "companySocials": {
       "linkedin": "centralapp"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Ambiata",
+    "companyWebsite": "http://www.ambiata.com",
+    "companyIndustry": "Computer Software",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "L5, 23-33 Mary St, Surry Hills, NSW 2010, AU",
+      "officeCoordinate": {
+        "coordinateLat": -33.88157,
+        "coordinateLon": 151.20989
+      }
+    },
+    "companySocials": {
+      "linkedin": "ambiata",
+      "github": "ambiata"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Beautiful Destinations",
+    "companyWebsite": "https://www.beautifuldestinations.com",
+    "companyIndustry": "Marketing and Advertising",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "419 Park Avenue South, New York, NY 10016, US",
+      "officeCoordinate": {
+        "coordinateLat": 40.74373,
+        "coordinateLon": -73.98356
+      }
+    },
+    "companySocials": {
+      "linkedin": "beautiful-destinations",
+      "github": "BeautifulDestinations"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "BeeWell",
+    "companyWebsite": "http://beewell.health",
+    "companyIndustry": "Hospital & Health Care",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "116 N West St, Raleigh, North Carolina 27603, US",
+      "officeCoordinate": {
+        "coordinateLat": 35.78238,
+        "coordinateLon": -78.64537
+      }
+    },
+    "companySocials": {
+      "linkedin": "beewell"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Bitnomial",
+    "companyWebsite": "https://bitnomial.com",
+    "companyIndustry": "Capital Markets ",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "318 W Adams, Chicago, IL 60606, US",
+      "officeCoordinate": {
+        "coordinateLat": 41.87954,
+        "coordinateLon": -87.6361
+      }
+    },
+    "companySocials": {
+      "linkedin": "bitnomial",
+      "github": "bitnomial"
     },
     "companyStack": [
       "Haskell"
