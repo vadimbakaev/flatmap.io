@@ -47,7 +47,8 @@ map.on("load", function() {
                 }
             },
             layout: {
-               "icon-image": "custom-marker",
+                "icon-image": "custom-marker",
+                "icon-allow-overlap": true
             }
         });
 
@@ -55,7 +56,7 @@ map.on("load", function() {
 });
 
 function flyToPoint(currentFeature) {
-  let nextZoom = Math.max(5, map.getZoom());
+    let nextZoom = Math.max(map.getZoom(), Math.min(10, Math.max(5, map.getZoom() + 1)));
   map.flyTo({
     center: currentFeature.geometry.coordinates,
       zoom: nextZoom

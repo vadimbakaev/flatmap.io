@@ -193,5 +193,181 @@
     "companyStack": [
       "Haskell"
     ]
+  },
+  {
+    "companyName": "CommBank",
+    "companyWebsite": "https://www.commbank.com.au/",
+    "companyIndustry": "Financial Services ",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Sydney, NSW 2000, AU",
+      "officeCoordinate": {
+        "coordinateLat": -33.869755,
+        "coordinateLon": 151.209991
+      }
+    },
+    "companySocials": {
+      "linkedin": "commonwealthbank",
+      "github": "CommBank"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Channable",
+    "companyWebsite": "https://www.channable.com/",
+    "companyIndustry": "Internet",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Drift 17, Utrecht, Utrecht 3512 BR, NL",
+      "officeCoordinate": {
+        "coordinateLat": 52.09386,
+        "coordinateLon": 5.12341
+      }
+    },
+    "companySocials": {
+      "linkedin": "channable",
+      "github": "channable"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "CircuitHub",
+    "companyWebsite": "http://circuithub.com/",
+    "companyIndustry": "Electrical/Electronic Manufacturing",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "41 Corsham Street, London, England N1 6DR, GB",
+      "officeCoordinate": {
+        "coordinateLat": 51.52763,
+        "coordinateLon": -0.086834
+      }
+    },
+    "companySocials": {
+      "linkedin": "circuithub",
+      "github": "circuithub"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "CSIRO's Data61",
+    "companyWebsite": "https://data61.csiro.au/",
+    "companyIndustry": "Research",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Australian Technology Park, Redfern",
+      "officeCoordinate": {
+        "coordinateLat": -33.844270,
+        "coordinateLon": 150.916640
+      }
+    },
+    "companySocials": {
+      "linkedin": "csiro'sdata61",
+      "github": "data61"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Folq",
+    "companyWebsite": "https://folq.no/",
+    "companyIndustry": "Information Technology and Services",
+    "companyTypes": [
+      "Consulting"
+    ],
+    "companyOffice": {
+      "officeAddress": "Youngs gate 7, Oslo, Oslo 0181, NO",
+      "officeCoordinate": {
+        "coordinateLat": 59.914860,
+        "coordinateLon": 10.750710
+      }
+    },
+    "companySocials": {
+      "linkedin": "folq-no",
+      "github": "folq"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Formation",
+    "companyWebsite": "https://formation.ai/",
+    "companyIndustry": "Computer Software",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "35 Stillman Street, San Francisco, CA 94107, US",
+      "officeCoordinate": {
+        "coordinateLat": 37.782640,
+        "coordinateLon": -122.394760
+      }
+    },
+    "companySocials": {
+      "linkedin": "formationai",
+      "github": "FormationAI"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Freckle Education",
+    "companyWebsite": "https://www.freckle.com/",
+    "companyIndustry": "E-Learning",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "100 Bush St, Ste 700, San Francisco, California 94105, US",
+      "officeCoordinate": {
+        "coordinateLat": 37.791570,
+        "coordinateLon": -122.399960
+      }
+    },
+    "companySocials": {
+      "linkedin": "learnfreckle",
+      "github": "freckle"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Freckle Education",
+    "companyWebsite": "https://www.futurice.com/",
+    "companyIndustry": "Information Technology and Services",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Bergmannstraße 5, Berlin, 10961, DE",
+      "officeCoordinate": {
+        "coordinateLat": 52.489690,
+        "coordinateLon": 13.388780
+      }
+    },
+    "companySocials": {
+      "linkedin": "futurice",
+      "github": "futurice"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
   }
 ]
