@@ -71,3 +71,13 @@
 #message {
     margin-bottom: 40px;
 }
+
+.nav-btn {
+  margin-left: 1em;
+  margin-top: 1em;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #8f4e8b !important;
+  border-color: #8f4e8b;
+}
