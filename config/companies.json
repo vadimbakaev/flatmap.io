@@ -153,7 +153,7 @@
   {
     "companyName": "Bitnomial",
     "companyWebsite": "https://bitnomial.com",
-    "companyIndustry": "Capital Markets ",
+    "companyIndustry": "Capital Markets",
     "companyTypes": [
       "Product"
     ],
@@ -167,6 +167,28 @@
     "companySocials": {
       "linkedin": "bitnomial",
       "github": "bitnomial"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "ByteAlly Software Solutions Private Ltd",
+    "companyWebsite": "http://www.byteally.com",
+    "companyIndustry": "Information Technology and Services",
+    "companyTypes": [
+      "Consulting"
+    ],
+    "companyOffice": {
+      "officeAddress": "10 1st Main Road, Chennai, Tamil Nadu 600042, India",
+      "officeCoordinate": {
+        "coordinateLat": 12.98089,
+        "coordinateLon": 80.22297
+      }
+    },
+    "companySocials": {
+      "linkedin": "byteally",
+      "github": "byteally"
     },
     "companyStack": [
       "Haskell"

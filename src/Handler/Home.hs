@@ -28,7 +28,7 @@ getHomeR =
   defaultLayout $ do
     App {..} <- getYesod
     aDomId <- newIdent
-    setTitle "Welcome To Yesod!"
+    setTitle "Welcome To FlatMap.io!"
     ecompanies <- liftIO loadCompanies
     case ecompanies :: Either String [Company] of
       Left err -> do
@@ -42,5 +42,5 @@ postHomeR =
     App {..} <- getYesod
     companies <- liftIO $ fromRight [] <$> loadCompanies
     aDomId <- newIdent
-    setTitle "Welcome To Yesod!"
+    setTitle "Welcome To FlatMap.io!"
     $(widgetFile "homepage")
