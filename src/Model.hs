@@ -75,8 +75,8 @@ data Office =
 
 data Socials =
   Socials
-    { github :: !(Maybe Text)
-    , linkedin :: !(Maybe Text)
+    { github :: !Text
+    , linkedin :: !Text
     , xing :: !(Maybe Text)
     }
   deriving (Eq, Show, Generic)
