@@ -20,7 +20,7 @@
                     <li :Just route == mcurrentRoute:.active>
                         <a href="@{route}">#{label}
                 <div .nav-btn>
-                    <a href="https://forms.gle/uFxxHBHoCW2Z8PbM6" target="_black" .btn.btn-primary.btn-md>
+                    <a href="https://forms.gle/uFxxHBHoCW2Z8PbM6" target="_black" rel="noopener" .btn.btn-primary.btn-md>
                         Leave feedback
 <!-- Page Contents -->
 
