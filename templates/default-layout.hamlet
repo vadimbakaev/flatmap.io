@@ -19,15 +19,9 @@
                 $forall MenuItem label route _ <- navbarRightFilteredMenuItems
                     <li :Just route == mcurrentRoute:.active>
                         <a href="@{route}">#{label}
-                <div .nav-btn>
-                    <a href="https://forms.gle/uFxxHBHoCW2Z8PbM6" target="_black" rel="noopener" .btn.btn-primary.btn-md>
-                        Leave feedback
+            <div .nav.navbar-nav.navbar-right.nav-btn>
+                <a href="https://forms.gle/uFxxHBHoCW2Z8PbM6" target="_black" rel="noopener" .btn.btn-primary.btn-md>
+                    Leave feedback
 <!-- Page Contents -->
 
 ^{widget}
-
-<!-- Footer -->
-<footer .footer>
-    <div .container>
-        <p .text-muted>
-            #{appCopyright $ appSettings master}
