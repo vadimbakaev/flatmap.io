@@ -29,9 +29,13 @@ approot:        "_env:YESOD_APPROOT:http://localhost:3000"
 # See https://github.com/yesodweb/yesod/wiki/Configuration#parsing-numeric-values-as-strings
 
 database:
+  user:        "flatmap"
+  password:    "flatmap"
+  host:        "localhost"
   # See config/test-settings.yml for an override during tests
-  database: "_env:YESOD_SQLITE_DATABASE:h-map.sqlite3"
-  poolsize: "_env:YESOD_SQLITE_POOLSIZE:10"
+  database:    "flatmap"
+  connections: 10
+
 
 copyright: Insert copyright statement here
 analytics: UA-143241779-1
