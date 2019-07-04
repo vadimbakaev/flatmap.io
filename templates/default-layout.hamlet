@@ -4,10 +4,11 @@
     <div .container>
         <div .navbar-header>
             <button type="button" .navbar-toggle.collapsed data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span class="sr-only">
+                    Toggle navigation
+                <span class="icon-bar">
+                <span class="icon-bar">
+                <span class="icon-bar">
 
         <div #navbar .collapse.navbar-collapse>
             <ul .nav.navbar-nav>
@@ -20,7 +21,7 @@
                     <li :Just route == mcurrentRoute:.active>
                         <a href="@{route}">#{label}
             <div .nav.navbar-nav.navbar-right.nav-btn>
-                <a href="https://forms.gle/uFxxHBHoCW2Z8PbM6" target="_black" rel="noopener" .btn.btn-primary.btn-md>
+                <a href="https://forms.gle/uFxxHBHoCW2Z8PbM6" target="_blank" rel="noopener" .btn.btn-primary.btn-md>
                     Leave feedback
 <!-- Page Contents -->
 
