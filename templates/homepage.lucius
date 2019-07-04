@@ -18,3 +18,27 @@ li {
     top: 0;
     bottom: 0;
 }
+
+.in-window {
+    min-width: 240px;
+    padding: 0 0 0 0;
+}
+
+.separator {
+    margin: 1px;
+    border-bottom: 1px solid #ddd;
+}
+
+.mapboxgl-popup-content {
+    border-radius: 4px !important;
+    padding: 10px !important;
+}
+
+.h4{
+   text-align: center;
+}
+
+.company-links {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}

@@ -76,11 +76,15 @@ function createPopUp(currentFeature) {
 
   var popup = new mapboxgl.Popup({ closeOnClick: false })
     .setLngLat(currentFeature.geometry.coordinates)
+    .setMaxWidth(290)
     .setHTML(
-        '<div style="min-width:240px;"><h4><a href="' + prop.website + '" target="_blank">' + prop.title + '</a> </h4> </br>'
+        '<div class="in-window">'
+            +'<h4><a href="' + prop.website + '" target="_blank">' + prop.title + '</a> </h4>'
+            + '<div class="separator"></div>'
+            + '<div class="company-links">'
             + ('null' != github ? '<i class="fab fa-github"></i> <a href="https://github.com/' + github + '" target="_blank">' + github + '</a> </br>' : '')
             + ('null' != linkedin ? '<i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/company/' + linkedin + '/about" target="_blank">' + linkedin + '</a></br>' : '')
-            + '</br>'
+            + '</div>'
             + '<i class="fas fa-industry"></i> ' + prop.industry
             + '</div>'
             )
