@@ -77,6 +77,6 @@ data Socials =
   Socials
     { github :: !Text
     , linkedin :: !Text
-    , xing :: !(Maybe Text)
+    , xing :: Maybe Text
     }
   deriving (Eq, Show, Generic)

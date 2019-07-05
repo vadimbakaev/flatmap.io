@@ -10,6 +10,7 @@ config/client_session_key.aes
 cabal-dev/
 .stack-work/
 .stack-work-devel/
+stack.yaml.lock
 yesod-devel/
 .cabal-sandbox
 cabal.sandbox.config
