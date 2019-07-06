@@ -34,10 +34,6 @@ li {
     padding: 10px !important;
 }
 
-.h4{
-   text-align: center;
-}
-
 .company-links {
     margin-top: 10px;
     margin-bottom: 5px;

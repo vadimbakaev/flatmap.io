@@ -14,8 +14,8 @@
       }
     },
     "companySocials": {
-        "linkedin": "digital-asset-holdings-llc",
-        "github" : "digital-asset"
+      "linkedin": "digital-asset-holdings-llc",
+      "github": "digital-asset"
     },
     "companyStack": [
       "Haskell"
@@ -80,8 +80,8 @@
       }
     },
     "companySocials": {
-        "linkedin": "centralapp",
-        "github": "centralapp"
+      "linkedin": "centralapp",
+      "github": "centralapp"
     },
     "companyStack": [
       "Haskell"
@@ -146,8 +146,8 @@
       }
     },
     "companySocials": {
-        "linkedin": "beewell",
-        "github": "BeeWell"
+      "linkedin": "beewell",
+      "github": "BeeWell"
     },
     "companyStack": [
       "Haskell"
@@ -273,8 +273,8 @@
     "companyOffice": {
       "officeAddress": "Australian Technology Park, Redfern",
       "officeCoordinate": {
-        "coordinateLat": -33.844270,
-        "coordinateLon": 150.916640
+        "coordinateLat": -33.84427,
+        "coordinateLon": 150.91664
       }
     },
     "companySocials": {
@@ -295,8 +295,8 @@
     "companyOffice": {
       "officeAddress": "Youngs gate 7, Oslo, Oslo 0181, NO",
       "officeCoordinate": {
-        "coordinateLat": 59.914860,
-        "coordinateLon": 10.750710
+        "coordinateLat": 59.91486,
+        "coordinateLon": 10.75071
       }
     },
     "companySocials": {
@@ -317,8 +317,8 @@
     "companyOffice": {
       "officeAddress": "35 Stillman Street, San Francisco, CA 94107, US",
       "officeCoordinate": {
-        "coordinateLat": 37.782640,
-        "coordinateLon": -122.394760
+        "coordinateLat": 37.78264,
+        "coordinateLon": -122.39476
       }
     },
     "companySocials": {
@@ -339,8 +339,8 @@
     "companyOffice": {
       "officeAddress": "100 Bush St, Ste 700, San Francisco, California 94105, US",
       "officeCoordinate": {
-        "coordinateLat": 37.791570,
-        "coordinateLon": -122.399960
+        "coordinateLat": 37.79157,
+        "coordinateLon": -122.39996
       }
     },
     "companySocials": {
@@ -352,7 +352,7 @@
     ]
   },
   {
-    "companyName": "Freckle Education",
+    "companyName": "Futurice",
     "companyWebsite": "https://www.futurice.com/",
     "companyIndustry": "Information Technology and Services",
     "companyTypes": [
@@ -361,13 +361,35 @@
     "companyOffice": {
       "officeAddress": "Bergmannstraße 5, Berlin, 10961, DE",
       "officeCoordinate": {
-        "coordinateLat": 52.489690,
-        "coordinateLon": 13.388780
+        "coordinateLat": 52.48969,
+        "coordinateLon": 13.38878
       }
     },
     "companySocials": {
       "linkedin": "futurice",
       "github": "futurice"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Grafted-In",
+    "companyWebsite": "https://www.graftedin.io/",
+    "companyIndustry": "Internet",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "2545 W Silver Lake Rd, Suite 5, Fenton, Michigan 48430, US",
+      "officeCoordinate": {
+        "coordinateLat": 42.80227,
+        "coordinateLon": -83.72374
+      }
+    },
+    "companySocials": {
+      "linkedin": "grafted-in-software-and-design-llc",
+      "github": "grafted-in"
     },
     "companyStack": [
       "Haskell"
