@@ -10,7 +10,7 @@ jobs:
       - restore_cache:
           name: Restore Cached Dependencies
           keys:
-            -h-map-v2-{{ checksum "package.yaml" }}
+            - h-map-v2-{{ checksum "package.yaml" }}
       - run:
           name: Resolve/Update Dependencies
           command: stack setup
