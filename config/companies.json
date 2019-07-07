@@ -394,5 +394,335 @@
     "companyStack": [
       "Haskell"
     ]
+  },
+  {
+    "companyName": "Health eFilings",
+    "companyWebsite": "https://healthefilings.com/",
+    "companyIndustry": "Information Technology and Services",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "7617 Mineral Point Rd, Madison, Wisconsin, US",
+      "officeCoordinate": {
+        "coordinateLat": 43.060050,
+        "coordinateLon": -89.514870
+      }
+    },
+    "companySocials": {
+      "linkedin": "health-efilings",
+      "github": "Health-eFilings"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Holmusk",
+    "companyWebsite": "https://www.holmusk.com/",
+    "companyIndustry": "Health, Wellness and Fitness",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Block 71, Ayer Rajah Crescent, #06-08/09, Singapore, Singapore 139951, SG",
+      "officeCoordinate": {
+        "coordinateLat": 1.296800,
+        "coordinateLon": 103.786750
+      }
+    },
+    "companySocials": {
+      "linkedin": "holmusk",
+      "github": "Holmusk"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Holmusk",
+    "companyWebsite": "https://www.holmusk.com/",
+    "companyIndustry": "Health, Wellness and Fitness",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Block 71, Ayer Rajah Crescent, #06-08/09, Singapore, Singapore 139951, SG",
+      "officeCoordinate": {
+        "coordinateLat": 1.296800,
+        "coordinateLon": 103.786750
+      }
+    },
+    "companySocials": {
+      "linkedin": "holmusk",
+      "github": "Holmusk"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Hornet Security",
+    "companyWebsite": "https://www.hornetsecurity.com/en/",
+    "companyIndustry": "Information Technology and Services",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Am Listholze 78, Hannover, Lower Saxony 30177, DE",
+      "officeCoordinate": {
+        "coordinateLat": 52.403630,
+        "coordinateLon": 9.763580
+      }
+    },
+    "companySocials": {
+      "linkedin": "hornetsecurity",
+      "github": "hornetsecurity"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Hotwirestudios",
+    "companyWebsite": "http://www.hotwirestudios.com/",
+    "companyIndustry": "Information Technology and Services",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "2 Herbert-Wehner-Straße, Kamen, North Rhine-Westphalia 59174, DE",
+      "officeCoordinate": {
+        "coordinateLat": 51.590210,
+        "coordinateLon": 7.649500
+      }
+    },
+    "companySocials": {
+      "linkedin": "hotwirestudios",
+      "github": "hotwirestudios"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "IMVU",
+    "companyWebsite": "http://about.imvu.com",
+    "companyIndustry": "Internet",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "IMVU Inc., 1001 Marshall Street, Redwood City, CA 94063, US",
+      "officeCoordinate": {
+        "coordinateLat": 37.487980,
+        "coordinateLon": -122.224360
+      }
+    },
+    "companySocials": {
+      "linkedin": "imvu",
+      "github": "imvu"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Inchora",
+    "companyWebsite": "https://www.inchora.com",
+    "companyIndustry": "Financial Services",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Inchora House, Building X92, Cody Technology Park, Farnborough, Hants GU14 0LX, GB",
+      "officeCoordinate": {
+        "coordinateLat": 51.289290,
+        "coordinateLon": -0.771580
+      }
+    },
+    "companySocials": {
+      "linkedin": "inchora-ltd",
+      "github": "Inchora"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Indicatrix",
+    "companyWebsite": "https://www.indicatrix.io/",
+    "companyIndustry": "Information Technology and Services",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "200 Mary Street, Brisbane, QLD 4000, AU",
+      "officeCoordinate": {
+        "coordinateLat": -27.470000,
+        "coordinateLon": 153.029530
+      }
+    },
+    "companySocials": {
+      "linkedin": "indicatrix",
+      "github": "indicatrix"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "JP Morgan",
+    "companyWebsite": "https://www.jpmorgan.com/",
+    "companyIndustry": "Financial Services",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "270 Park Avenue, New York, NY 10017, US",
+      "officeCoordinate": {
+        "coordinateLat": 40.755820,
+        "coordinateLon": -73.975690
+      }
+    },
+    "companySocials": {
+      "linkedin": "j-p-morgan",
+      "github": "jpmorganchase"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Kadena",
+    "companyWebsite": "http://kadena.io/",
+    "companyIndustry": "Information Technology and Services",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "68 3rd St, Brooklyn, New York US",
+      "officeCoordinate": {
+        "coordinateLat": 40.677190,
+        "coordinateLon": -73.993190
+      }
+    },
+    "companySocials": {
+      "linkedin": "kadena-llc",
+      "github": "kadena-io"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Kaspersky Lab",
+    "companyWebsite": "https://www.kaspersky.com/",
+    "companyIndustry": "Computer & Network Security",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "39A/3 Leningradskoe Shosse Moscow, Moscow, N/A 125212, RU",
+      "officeCoordinate": {
+        "coordinateLat": 55.833680,
+        "coordinateLon": 37.484420
+      }
+    },
+    "companySocials": {
+      "linkedin": "kaspersky",
+      "github": "KasperskyLab"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Keera Studios",
+    "companyWebsite": "http://keera.co.uk/",
+    "companyIndustry": "Computer Games",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "145-157 St John Street, London, London EC1V 4PW, GB",
+      "officeCoordinate": {
+        "coordinateLat": 51.523860,
+        "coordinateLon": -0.102690
+      }
+    },
+    "companySocials": {
+      "linkedin": "keera-studios",
+      "github": "keera-studios"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Kitty Hawk",
+    "companyWebsite": "https://kittyhawk.aero/",
+    "companyIndustry": "Aviation & Aerospace",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "2700 Broderick Way, Mountain View, California 94043, US",
+      "officeCoordinate": {
+        "coordinateLat": 37.432650,
+        "coordinateLon": -122.097000
+      }
+    },
+    "companySocials": {
+      "linkedin": "kittyhawkaero",
+      "github": "KittyHawkCorp"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "Klarna",
+    "companyWebsite": "https://www.klarna.com/",
+    "companyIndustry": "Financial Services",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Sveavägen 46, Stockholm, 113 43, SE",
+      "officeCoordinate": {
+        "coordinateLat": 59.350440,
+        "coordinateLon": 18.043930
+      }
+    },
+    "companySocials": {
+      "linkedin": "klarna",
+      "github": "klarna"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
+  },
+  {
+    "companyName": "KSF Media Ab",
+    "companyWebsite": "https://www.ksfmedia.fi/",
+    "companyIndustry": "Newspapers",
+    "companyTypes": [
+      "Product"
+    ],
+    "companyOffice": {
+      "officeAddress": "Mannerheimvägen 18, Helsingfors, 00100, FI",
+      "officeCoordinate": {
+        "coordinateLat": 60.168920,
+        "coordinateLon": 24.938830
+      }
+    },
+    "companySocials": {
+      "linkedin": "ksf-media",
+      "github": "KSF-Media"
+    },
+    "companyStack": [
+      "Haskell"
+    ]
   }
 ]
