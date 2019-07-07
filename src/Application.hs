@@ -76,6 +76,7 @@ makeFoundation appSettings
     -- Create the database connection pool
     appConnPool <- createPoolConfig $ appDatabaseConf appSettings
 
+    -- Return the foundation
     return $ App {..}
 
 -- | Convert our foundation to a WAI Application by calling @toWaiAppPlain@ and
