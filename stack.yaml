@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-13.23
+resolver: lts-13.25
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -37,8 +37,9 @@ packages:
 # Dependency packages to be pulled from upstream that are not in the resolver
 # using the same syntax as the packages field.
 # (e.g., acme-missiles-0.3)
-# extra-deps: []
-
+extra-deps:
+  - http-api-data-0.3.10@sha256:13e1ed2514ec7a857454f472604fc6bf9616d908d2de7202c2507e413029c907,3695
+  - persistent-mongoDB-2.8.0@sha256:a0770471893179d3153156bbfbf452883acdd84f95c2e8acc00540f8fa4d5275,1919
 # Override default flag values for local packages and extra-deps
 # flags: {}
 

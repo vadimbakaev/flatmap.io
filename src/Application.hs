@@ -22,13 +22,8 @@ module Application
   ) where
 
 import Control.Applicative ()
-import Control.Monad.Logger (liftLoc, runLoggingT)
-import Database.Persist.Sqlite
-  ( createSqlitePool
-  , runSqlPool
-  , sqlDatabase
-  , sqlPoolSize
-  )
+import Control.Monad.Logger (liftLoc)
+import Database.Persist.MongoDB (MongoContext)
 import Import
 import Language.Haskell.TH.Syntax (qLocation)
 import Network.HTTP.Client.TLS (getGlobalManager)
@@ -81,27 +76,10 @@ makeFoundation appSettings
        else static)
       (appStaticDir appSettings)
   appMapboxAccessToken <- pack <$> getEnv "MAPBOX_ACCESS_TOKEN"
-    -- We need a log function to create a connection pool. We need a connection
-    -- pool to create our foundation. And we need our foundation to get a
-    -- logging function. To get out of this loop, we initially create a
-    -- temporary foundation without a real connection pool, get a log function
-    -- from there, and then create the real foundation.
-  let mkFoundation appConnPool = App {..}
-        -- The App {..} syntax is an example of record wild cards. For more
-        -- information, see:
-        -- https://ocharles.org.uk/blog/posts/2014-12-04-record-wildcards.html
-      tempFoundation = mkFoundation $ error "connPool forced in tempFoundation"
-      logFunc = messageLoggerSource tempFoundation appLogger
     -- Create the database connection pool
-  pool <-
-    flip runLoggingT logFunc $
-    createSqlitePool
-      (sqlDatabase $ appDatabaseConf appSettings)
-      (sqlPoolSize $ appDatabaseConf appSettings)
-    -- Perform database migration using our application's logging settings.
-  runLoggingT (runSqlPool (runMigration migrateAll) pool) logFunc
+  appConnPool <- createPoolConfig $ appDatabaseConf appSettings
     -- Return the foundation
-  return $ mkFoundation pool
+  return $ App {..}
 
 -- | Convert our foundation to a WAI Application by calling @toWaiAppPlain@ and
 -- applying some additional middlewares.
@@ -199,5 +177,5 @@ handler :: Handler a -> IO a
 handler h = getAppSettings >>= makeFoundation >>= flip unsafeHandler h
 
 -- | Run DB queries
-db :: ReaderT SqlBackend Handler a -> IO a
+db :: ReaderT MongoContext Handler a -> IO a
 db = handler . runDB

@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.1.
+-- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0dbe5db2fce2de060cc17a456763d6db5a55d2b91c98416c77e081e2f210dc74
+-- hash: 67ca916db9607b0ebc7fb87a1676dcdd75bdd4414366593f2da4e949304fb1b1
 
 name:           h-map
 version:        0.0.0
@@ -55,8 +55,9 @@ library
     , http-conduit >=2.3 && <2.4
     , monad-control >=0.3 && <1.1
     , monad-logger >=0.3 && <0.4
+    , mongoDB
     , persistent >=2.9 && <2.10
-    , persistent-sqlite >=2.9 && <2.10
+    , persistent-mongoDB >=2.8 && <2.9
     , persistent-template >=2.5 && <2.9
     , safe
     , shakespeare >=2.0 && <2.1
@@ -111,8 +112,9 @@ executable h-map
     , http-conduit >=2.3 && <2.4
     , monad-control >=0.3 && <1.1
     , monad-logger >=0.3 && <0.4
+    , mongoDB
     , persistent >=2.9 && <2.10
-    , persistent-sqlite >=2.9 && <2.10
+    , persistent-mongoDB >=2.8 && <2.9
     , persistent-template >=2.5 && <2.9
     , safe
     , shakespeare >=2.0 && <2.1
@@ -169,8 +171,9 @@ test-suite h-map-test
     , microlens
     , monad-control >=0.3 && <1.1
     , monad-logger >=0.3 && <0.4
+    , mongoDB
     , persistent >=2.9 && <2.10
-    , persistent-sqlite >=2.9 && <2.10
+    , persistent-mongoDB >=2.8 && <2.9
     , persistent-template >=2.5 && <2.9
     , safe
     , shakespeare >=2.0 && <2.1
