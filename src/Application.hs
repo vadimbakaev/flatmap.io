@@ -21,8 +21,9 @@ module Application
   , db
   ) where
 
-import Control.Monad.Logger                 (liftLoc)
-import Database.Persist.MongoDB             (MongoContext)
+import Control.Applicative ()
+import Control.Monad.Logger (liftLoc)
+import Database.Persist.MongoDB (MongoContext)
 import Import
 import Language.Haskell.TH.Syntax (qLocation)
 import Network.HTTP.Client.TLS (getGlobalManager)
@@ -66,18 +67,19 @@ makeFoundation :: AppSettings -> IO App
 makeFoundation appSettings
     -- Some basic initializations: HTTP connection manager, logger, and static
     -- subsite.
-    appHttpManager <- getGlobalManager
-    appLogger <- newStdoutLoggerSet defaultBufSize >>= makeYesodLogger
-    appStatic <-
-        (if appMutableStatic appSettings then staticDevel else static)
-        (appStaticDir appSettings)
-    appMapboxAccessToken <- pack <$> getEnv "MAPBOX_ACCESS_TOKEN"
-
+ = do
+  appHttpManager <- getGlobalManager
+  appLogger <- newStdoutLoggerSet defaultBufSize >>= makeYesodLogger
+  appStatic <-
+    (if appMutableStatic appSettings
+       then staticDevel
+       else static)
+      (appStaticDir appSettings)
+  appMapboxAccessToken <- pack <$> getEnv "MAPBOX_ACCESS_TOKEN"
     -- Create the database connection pool
-    appConnPool <- createPoolConfig $ appDatabaseConf appSettings
-
+  appConnPool <- createPoolConfig $ appDatabaseConf appSettings
     -- Return the foundation
-    return $ App {..}
+  return $ App {..}
 
 -- | Convert our foundation to a WAI Application by calling @toWaiAppPlain@ and
 -- applying some additional middlewares.
