@@ -1,21 +1,24 @@
-module Handler.CommonSpec (spec) where
+module Handler.CommonSpec
+  ( spec
+  ) where
 
 import TestImport
 
 spec :: Spec
-spec = withApp $ do
+spec =
+  withApp $ do
     describe "robots.txt" $ do
-        it "gives a 200" $ do
-            get RobotsR
-            statusIs 200
-        it "has correct User-agent" $ do
-            get RobotsR
-            bodyContains "User-agent: *"
+      it "gives a 200" $ do
+        get RobotsR
+        statusIs 200
+      it "has correct User-agent" $ do
+        get RobotsR
+        bodyContains "User-agent: *"
     describe "favicon.ico" $ do
-        it "gives a 200" $ do
-            get FaviconR
-            statusIs 200
+      it "gives a 200" $ do
+        get FaviconR
+        statusIs 200
     describe "marker.png" $ do
-        it "gives a 200" $ do
-            get MarkerR
-            statusIs 200
+      it "gives a 200" $ do
+        get MarkerR
+        statusIs 200
