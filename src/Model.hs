@@ -12,73 +12,15 @@
 module Model where
 
 import ClassyPrelude.Yesod
-import Database.Persist.Quasi
 import Database.Persist.MongoDB hiding (master)
+import Database.Persist.Quasi
 import Language.Haskell.TH.Syntax
 
 -- You can define all of your database entities in the entities file.
 -- You can find more information on persistent and how to declare entities
 -- at:
 -- http://www.yesodweb.com/book/persistent/
-let mongoSettings = (mkPersistSettings (ConT ''MongoContext))
- in share [mkPersist mongoSettings]
-    $(persistFileWith upperCaseSettings "config/models")
-
-instance FromJSON Company
-
-instance FromJSON JobType
-
-instance FromJSON Office
-
-instance FromJSON Coordinate
-
-instance FromJSON Socials
-
-instance ToJSON Company
-
-instance ToJSON JobType
-
-instance ToJSON Office
-
-instance ToJSON Coordinate
-
-instance ToJSON Socials
-
-data Company =
-  Company
-    { companyName :: !Text
-    , companyWebsite :: !Text
-    , companyIndustry :: !Text
-    , companyTypes :: ![JobType]
-    , companyOffice :: !Office
-    , companySocials :: !Socials
-    , companyStack :: ![Text]
-    }
-  deriving (Eq, Show, Generic)
-
-data JobType
-  = Product
-  | Consulting
-  deriving (Eq, Show, Generic)
-
-data Coordinate =
-  Coordinate
-    { coordinateLat :: !Float
-    , coordinateLon :: !Float
-    }
-  deriving (Eq, Show, Generic)
-
-data Office =
-  Office
-    { officeAddress :: !Text
-    , officeCoordinate :: !Coordinate
-    }
-  deriving (Eq, Show, Generic)
-
-data Socials =
-  Socials
-    { github :: !Text
-    , linkedin :: !Text
-    , xing :: Maybe Text
-    }
-  deriving (Eq, Show, Generic)
+let mongoSettings = mkPersistSettings (ConT ''MongoContext)
+ in share
+      [mkPersist mongoSettings]
+      $(persistFileWith upperCaseSettings "config/models")

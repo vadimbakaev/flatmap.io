@@ -16,3 +16,28 @@ Comment json -- Adding "json" causes ToJSON and FromJSON instances to be derived
     userId UserId Maybe
     deriving Eq
     deriving Show
+
+Company json
+    companyName Text
+    companyWebsite Text
+    companyIndustry Text
+    companyTypes [Text]
+    companyOffice Office
+    companySocials Socials
+    companyStack [Text]
+    deriving Eq Show Read
+
+Coordinate json
+    coordinateLat Double
+    coordinateLon Double
+    deriving Eq Show Read
+
+Office json
+    officeAddress Text
+    officeCoordinate Coordinate
+    deriving Eq Show Read
+
+Socials json
+    github Text
+    linkedin Text
+    deriving Eq Show Read
