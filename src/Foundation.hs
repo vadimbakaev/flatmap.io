@@ -122,6 +122,12 @@ instance Yesod App
               { menuItemLabel = "Haskell"
               , menuItemRoute = HomeR
               , menuItemAccessCallback = True
+              },
+            NavbarLeft $
+            MenuItem
+              { menuItemLabel = "Contacts"
+              , menuItemRoute = ContactsR
+              , menuItemAccessCallback = True
               }
           ]
     let navbarLeftMenuItems = [x | NavbarLeft x <- menuItems]

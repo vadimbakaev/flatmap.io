@@ -24,16 +24,7 @@ getHomeR = do
   defaultLayout $ do
     App {..} <- getYesod
     aDomId <- newIdent
-    setTitle "Welcome To FlatMap.io!"
-    $(widgetFile "homepage")
-
-postHomeR :: Handler Html
-postHomeR = do
-  companies <- runDB getAllCompanies
-  defaultLayout $ do
-    App {..} <- getYesod
-    aDomId <- newIdent
-    setTitle "Welcome To FlatMap.io!"
+    setTitle "Discover new opportunity"
     $(widgetFile "homepage")
 
 getAllCompanies :: DB [Entity Company]

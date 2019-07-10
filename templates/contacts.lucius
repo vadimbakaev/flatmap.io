@@ -1,0 +1,5 @@
+.contacts {
+    color: #ffffff !important;
+    margin: 1em;
+    text-align: center;
+}

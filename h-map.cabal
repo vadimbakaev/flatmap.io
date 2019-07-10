@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 67ca916db9607b0ebc7fb87a1676dcdd75bdd4414366593f2da4e949304fb1b1
+-- hash: 98fbbad87918b5a5cf6f34f57431845cbec8002e0d22c07778df090eefbb0dd4
 
 name:           h-map
 version:        0.0.0
@@ -25,6 +25,7 @@ library
       Application
       Foundation
       Handler.Common
+      Handler.Contacts
       Handler.Home
       Import
       Import.NoFoundation
@@ -142,6 +143,7 @@ test-suite h-map-test
   main-is: Spec.hs
   other-modules:
       Handler.CommonSpec
+      Handler.ContactsSpec
       Handler.HomeSpec
       TestImport
       Paths_h_map

@@ -7,4 +7,5 @@
 /robots.txt RobotsR GET
 /marker.png MarkerR GET
 
-/ HomeR GET POST
+/ HomeR GET
+/contacts ContactsR GET
