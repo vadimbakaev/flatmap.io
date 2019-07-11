@@ -8,12 +8,11 @@ $newline never
   <head>
     <title>#{pageTitle pc}
     <meta charset="UTF-8">
-    <meta name="description" content="The right place to finde right company">
+    <meta name="description" content="The right place to find right IT company">
     <meta name="author" content="flatmap team">
     <!-- Viewport for responsive web design -->
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="google-site-verification" content="rTFaMo8WrsfXAWRJbhm7W4barC4TvpukelQTvIRX2ac">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     ^{pageHead pc}
 
