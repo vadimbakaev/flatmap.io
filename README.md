@@ -2,7 +2,8 @@
 
 The rigth place to find rigth IT company.
 
-[![CircleCI](https://circleci.com/gh/vadimbakaev/flatMap.io/tree/master.svg?style=svg&circle-token=bbb1dac62e12142d3ce4d5d3bec7f3f3ac192768)](https://circleci.com/gh/vadimbakaev/flatMap.io/tree/master)
+[![CircleCI](https://circleci.com/gh/vadimbakaev/flatmap.io/tree/master.svg?style=svg&circle-token=bbb1dac62e12142d3ce4d5d3bec7f3f3ac192768)](https://circleci.com/gh/vadimbakaev/flatmap.io/tree/master)
+[![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/vadimbakaev/flatmap-io)
 
 ## Haskell Setup
 
