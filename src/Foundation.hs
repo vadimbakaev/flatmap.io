@@ -104,7 +104,7 @@ instance Yesod App
   yesodMiddleware handler = do
     addHeader
       "Content-Security-Policy"
-      "default-src *; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google-analytics.com stackpath.bootstrapcdn.com cdnjs.cloudflare.com code.jquery.com api.tiles.mapbox.com kit.fontawesome.com data: blob: ; style-src 'self' 'unsafe-inline' stackpath.bootstrapcdn.com cdnjs.cloudflare.com kit-free.fontawesome.com api.tiles.mapbox.com; font-src 'self' data: kit-free.fontawesome.com; img-src 'self' data: blob: www.google-analytics.com; connect-src 'self' https://*.tiles.mapbox.com https://api.mapbox.com https://events.mapbox.com"
+      "default-src * data: blob: ; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google-analytics.com stackpath.bootstrapcdn.com cdnjs.cloudflare.com code.jquery.com api.tiles.mapbox.com kit.fontawesome.com data: blob: ; style-src 'self' 'unsafe-inline' stackpath.bootstrapcdn.com cdnjs.cloudflare.com kit-free.fontawesome.com api.tiles.mapbox.com; font-src 'self' data: kit-free.fontawesome.com; img-src 'self' data: blob: www.google-analytics.com; connect-src 'self' https://*.tiles.mapbox.com https://api.mapbox.com https://events.mapbox.com https://www.google-analytics.com"
     addHeader "X-Frame-Options" "deny"
     addHeader "X-Content-Type-Options" "nosniff"
     addHeader "Referrer-Policy" "no-referrer"
