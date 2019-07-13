@@ -25,6 +25,7 @@ Company json
     companyOffice Office
     companySocials Socials
     companyStack [Text]
+    companyRemote Bool
     deriving Eq Show Read
 
 Coordinate json

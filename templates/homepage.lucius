@@ -34,7 +34,20 @@ li {
     padding: 10px !important;
 }
 
-.company-links {
+.company-info {
     margin-top: 10px;
     margin-bottom: 5px;
+    display: grid;
+}
+
+.company-links {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.company-type {
+    margin-left: 1em;
+    text-align: right;
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
