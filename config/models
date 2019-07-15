@@ -18,24 +18,24 @@ Comment json -- Adding "json" causes ToJSON and FromJSON instances to be derived
     deriving Show
 
 Company json
-    companyName Text
-    companyWebsite Text
-    companyIndustry Text
-    companyTypes [Text]
-    companyOffice Office
-    companySocials Socials
-    companyStack [Text]
-    companyRemote Bool
+    name Text
+    website Text
+    industry Text
+    types [Text]
+    office Office
+    socials Socials
+    stack [Text]
+    remote Bool
     deriving Eq Show Read
 
 Coordinate json
-    coordinateLat Double
-    coordinateLon Double
+    lat Double
+    lon Double
     deriving Eq Show Read
 
 Office json
-    officeAddress Text
-    officeCoordinate Coordinate
+    address Text
+    coordinate Coordinate
     deriving Eq Show Read
 
 Socials json

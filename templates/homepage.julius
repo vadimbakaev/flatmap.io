@@ -13,18 +13,18 @@ var markers = #{toJSONList companies}.map(company => {
                 return {
                     type: "Feature",
                     properties: {
-                        title: company.companyName,
-                        website: company.companyWebsite,
-                        linkedin: company.companySocials.linkedin,
-                        github: company.companySocials.github,
-                        industry: company.companyIndustry,
-                        isRemote: company.companyRemote
+                        title: company.name,
+                        website: company.website,
+                        linkedin: company.socials.linkedin,
+                        github: company.socials.github,
+                        industry: company.industry,
+                        isRemote: company.remote
                     },
                     geometry: {
                         type: "Point",
                         coordinates: [
-                            company.companyOffice.officeCoordinate.coordinateLon,
-                            company.companyOffice.officeCoordinate.coordinateLat
+                            company.office.coordinate.lon,
+                            company.office.coordinate.lat
                         ]
                     }
                 }
