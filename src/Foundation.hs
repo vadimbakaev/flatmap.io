@@ -110,7 +110,6 @@ instance Yesod App
     addHeader "Referrer-Policy" "no-referrer"
     addHeader "Feature-Policy" "geolocation 'self'"
     defaultYesodMiddleware handler
-
   defaultLayout :: Widget -> Handler Html
   defaultLayout widget = do
     master <- getYesod
@@ -119,11 +118,23 @@ instance Yesod App
     let menuItems =
           [ NavbarLeft $
             MenuItem
-              { menuItemLabel = "Haskell"
+              { menuItemLabel = "All"
               , menuItemRoute = HomeR
               , menuItemAccessCallback = True
-              },
-            NavbarLeft $
+              }
+          , NavbarLeft $
+            MenuItem
+              { menuItemLabel = "Haskell"
+              , menuItemRoute = HaskellR
+              , menuItemAccessCallback = True
+              }
+          , NavbarLeft $
+            MenuItem
+              { menuItemLabel = "PureScript"
+              , menuItemRoute = PureScriptR
+              , menuItemAccessCallback = True
+              }
+          , NavbarLeft $
             MenuItem
               { menuItemLabel = "Contacts"
               , menuItemRoute = ContactsR
