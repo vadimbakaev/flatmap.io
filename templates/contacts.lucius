@@ -1,5 +1,4 @@
 .contacts {
-    color: #ffffff !important;
-    margin: 1em;
+    margin: 6em;
     text-align: center;
 }
