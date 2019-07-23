@@ -137,6 +137,12 @@ instance Yesod App
               , menuItemRoute = ContactsR
               , menuItemAccessCallback = True
               }
+          , NavbarRight $
+            MenuItem
+              { menuItemLabel = "Add Company"
+              , menuItemRoute = AddCompanyR
+              , menuItemAccessCallback = True
+              }
           ]
     let navbarLeftMenuItems = [x | NavbarLeft x <- menuItems]
     let navbarRightMenuItems = [x | NavbarRight x <- menuItems]

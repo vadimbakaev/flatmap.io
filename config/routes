@@ -9,6 +9,7 @@
 
 / HomeR GET
 /contacts ContactsR GET
+/add      AddCompanyR GET
 
 /haskell HaskellR GET
 /purescript PureScriptR GET

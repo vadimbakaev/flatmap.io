@@ -15,9 +15,6 @@
         $forall MenuItem label route _ <- navbarRightFilteredMenuItems
                     <li .nav-item :Just route == mcurrentRoute:.active>
                         <a href="@{route}" .nav-link>#{label}
-        <div .nav-btn>
-                <a href="https://forms.gle/bF6o7BFLAxfbsCpn7" target="_blank" rel="noopener" .btn.btn-primary.btn-md>
-                    Add Company
 <!-- Page Contents -->
 
 ^{widget}
