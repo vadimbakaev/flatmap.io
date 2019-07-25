@@ -1,0 +1,6 @@
+<div .container>
+  <h4>Please, fill following form to add new Company
+  <form method=post action=@{AddCompanyR} enctype=#{enctype}>
+    ^{widget}
+    <p>It also doesn't enclude the submit button.
+    <button>Submit
