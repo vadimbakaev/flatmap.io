@@ -55,6 +55,28 @@ map.on("load", function() {
         });
 
     });
+
+    // Add an event listener for when a user clicks on the map
+    map.on('click', function(e) {
+    // Query all the rendered points in the view
+    var features = map.queryRenderedFeatures(e.point, { layers: ['locations'] });
+    if (features.length) {
+      var clickedPoint = features[0];
+      // 1. Fly to the point
+      flyToPoint(clickedPoint);
+      // 2. Close all other popups and display popup for clicked store
+      createPopUp(clickedPoint);
+     }
+    });
+
+    map.on('mousemove', function (e) {
+      var features = map.queryRenderedFeatures(e.point, {layers: ['locations']});
+      if(features.length) {
+          map.getCanvas().style.cursor = features.length ? 'pointer' : '';
+      } else {
+          map.getCanvas().style.cursor = features.length ? 'grab' : '';
+      }
+    });
 });
 
 function flyToPoint(currentFeature) {
@@ -97,16 +119,3 @@ function createPopUp(currentFeature) {
             )
     .addTo(map);
 }
-
-// Add an event listener for when a user clicks on the map
-map.on('click', function(e) {
-  // Query all the rendered points in the view
-  var features = map.queryRenderedFeatures(e.point, { layers: ['locations'] });
-  if (features.length) {
-    var clickedPoint = features[0];
-    // 1. Fly to the point
-    flyToPoint(clickedPoint);
-    // 2. Close all other popups and display popup for clicked store
-    createPopUp(clickedPoint);
-  }
-});

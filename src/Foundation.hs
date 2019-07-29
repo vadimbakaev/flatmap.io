@@ -193,7 +193,6 @@ instance Yesod App
   makeLogger :: App -> IO Logger
   makeLogger = return . appLogger
 
--- Define breadcrumbs.
 instance YesodBreadcrumbs App
     -- Takes the route that the user is currently on, and returns a tuple
     -- of the 'Text' that you want the label to display, and a previous

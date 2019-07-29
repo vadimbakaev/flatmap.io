@@ -2,3 +2,7 @@
   background-color: #8f4e8b !important;
   border-color: #8f4e8b;
 }
+
+main > .container {
+  padding-top: 6em;
+}
