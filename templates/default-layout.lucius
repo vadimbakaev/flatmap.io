@@ -6,3 +6,7 @@
 main > .container {
   padding-top: 6em;
 }
+
+body {
+  background-color: #f8f9fa !important;
+}
