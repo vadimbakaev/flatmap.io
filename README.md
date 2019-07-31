@@ -5,6 +5,17 @@ The rigth place to find rigth IT company.
 [![CircleCI](https://circleci.com/gh/vadimbakaev/flatmap.io/tree/master.svg?style=svg&circle-token=bbb1dac62e12142d3ce4d5d3bec7f3f3ac192768)](https://circleci.com/gh/vadimbakaev/flatmap.io/tree/master)
 [![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/vadimbakaev/flatmap-io)
 
+
+### Prerequisites
+
+You need to install the following software:
+- [Stack](https://www.haskell.org/downloads/#stack) for Haskell
+  - [yesod](https://www.yesodweb.com/) web framework
+  - [hlint](https://github.com/ndmitchell/hlint) to improve your Haskell
+  - [hindent](https://github.com/chrisdone/hindent) to make your Haskell pretty
+- [Docker](https://www.docker.com/get-started) to run mongo
+  - [MongoDB](https://www.mongodb.com/) to store data
+
 ## Haskell Setup
 
 1. If you haven't already, [install Stack](https://haskell-lang.org/get-started)
@@ -14,7 +25,28 @@ The rigth place to find rigth IT company.
 
 If you have trouble, refer to the [Yesod Quickstart guide](https://www.yesodweb.com/page/quickstart) for additional detail.
 
-## Development
+## Hlint
+```
+stack install hlint
+```
+
+## Hindent
+```
+stack install hindent
+```
+
+## How to run
+
+Run MongoDB first time:
+
+```
+docker run --name mongo -d -p 27017:27017 mongo --noauth --bind_ip=0.0.0.0
+```
+Next time just run:
+
+```
+docker run mongo
+```
 
 Start a development server with:
 
@@ -22,7 +54,7 @@ Start a development server with:
 stack exec -- yesod devel
 ```
 
-As your code changes, your site will be automatically recompiled and redeployed to localhost.
+As your code changes, your site will be automatically recompiled and redeployed to http://localhost:3000.
 
 ## Tests
 
