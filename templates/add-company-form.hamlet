@@ -1,6 +1,34 @@
 <div .container>
-  <h4>Please, fill following form to add new Company
-  <form method=post action=@{AddCompanyR} enctype=#{enctype}>
-    ^{widget}
-    <p>It also doesn't enclude the submit button.
-    <button>Submit
+  <div .py-5.text-center>
+    <h4>Add new Company for FREE
+  <div .row>
+    <div .col-md-12 order-md-l>
+      <form .need-validation method=post action=@{AddCompanyR}>
+        <div .row>
+          <div .col-sm-4>
+            <label for="companyName">Company name
+            <input id="companyName" name="companyName" .form-control type="text" placeholder="myCompany" value="" required="true">
+        <div .row>
+          <div .col-sm-8>
+            <label for="address">Operative office address
+            <input id="address" name="address" .form-control type="text" placeholder="" value="" required="true">
+        <div .row>
+          <div .col-sm-4>
+            <label for="website">Website
+            <input id="website" name="website" .form-control type="text" placeholder="https://www.mycompany.com/" value="" required="true">
+          <div .col-sm-4>
+            <label for="linkedin">LinkedIn
+            <input id="linkedin" name="linkedin" .form-control type="text" placeholder="https://www.linkedin.com/company/myCompany/" value="" required="true">
+          <div .col-sm-4>
+            <label for="github">Github
+            <input id="github" name="github" .form-control type="text" placeholder="https://github.com/myCompany/" value="" required="true">
+        <div .row>
+          <div .col-sm-2>
+            <input id="startup" name="startup" type="checkbox">
+            <label for="startup">Is Startup?
+          <div .col-sm-2>
+            <input id="remote" name="remote" type="checkbox">
+            <label for="remote">Is Remote friendly?
+        <div .row>
+          <div .col-sm-4>
+            <input type=submit name="Submit">
