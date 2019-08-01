@@ -10,3 +10,8 @@ main > .container {
 body {
   background-color: #f8f9fa !important;
 }
+
+.row {
+
+  margin-bottom: 1rem !important;
+}
