@@ -1,17 +1,17 @@
 <div .container>
-  <div .py-5.text-center>
-    <h4>Add new Company for FREE
+  <div .py-4.text-center>
+    <h4>Add company for FREE
   <div .row>
     <div .col-md-12 order-md-l>
       <form .need-validation method=post action=@{AddCompanyR}>
         <div .row>
           <div .col-sm-4>
             <label for="companyName">Company name
-            <input id="companyName" name="companyName" .form-control type="text" placeholder="myCompany" value="" required="true">
+            <input id="companyName" name="companyName" .form-control type="text" placeholder="" value="" required="true">
         <div .row>
           <div .col-sm-8>
             <label for="address">Operative office address
-            <input id="address" name="address" .form-control type="text" placeholder="" value="" required="true">
+            <input id="address" name="address" .form-control type="text" placeholder="E.g. '151 3rd St, San Francisco, CA 94103, USA'" value="" required="true">
         <div .row>
           <div .col-sm-4>
             <label for="website">Website
@@ -22,13 +22,18 @@
           <div .col-sm-4>
             <label for="github">Github
             <input id="github" name="github" .form-control type="text" placeholder="https://github.com/myCompany/" value="" required="true">
+        <div .custom-control.custom-checkbox>
+            <input .custom-control-input id="startup" name="startup" type="checkbox">
+            <label .custom-control-label for="startup">Is Startup?
+        <div .custom-control.custom-checkbox>
+            <input .custom-control-input id="remote" name="remote" type="checkbox">
+            <label .custom-control-label for="remote">Is Remote friendly?
+        <hr .mb-4>
+        $forall lang <- langs
+          <div .custom-control.custom-checkbox>
+             <input .custom-control-input id=#{lang} name=#{lang} type="checkbox">
+             <label .custom-control-label for=#{lang}>#{lang}
         <div .row>
-          <div .col-sm-2>
-            <input id="startup" name="startup" type="checkbox">
-            <label for="startup">Is Startup?
-          <div .col-sm-2>
-            <input id="remote" name="remote" type="checkbox">
-            <label for="remote">Is Remote friendly?
         <div .row>
-          <div .col-sm-4>
-            <input type=submit name="Submit">
+          <div .col-sm-6>
+            <button .btn.btn-primary.btn-lg.btn-block type=submit>Submit
