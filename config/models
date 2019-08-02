@@ -42,3 +42,13 @@ Socials json
     github Text
     linkedin Text
     deriving Eq Show Read
+
+NewCompany
+    name Text
+    website Text
+    socials Socials
+    address Text
+    startup Bool
+    remote Bool
+    stack [Text]
+    deriving Eq Show Read

@@ -36,23 +36,14 @@ postAddCompanyR = do
   newCompany <-
     runInputPost $
     NewCompany <$> ireq textField "companyName" <*> ireq textField "website" <*>
-    ireq textField "linkedin" <*>
-    ireq textField "github" <*>
+    (Socials <$> ireq textField "github" <*> ireq textField "linkedin") <*>
     ireq textField "address" <*>
     ireq checkBoxField "startup" <*>
-    ireq checkBoxField "remote"
+    ireq checkBoxField "remote" <*>
+    ((\ms -> [lang | (Just True, lang) <- ms `zip` langs]) <$>
+     foldr (liftA2 (:) . iopt checkBoxField) (pure []) langs)
+  _ <- runDB $ insert newCompany
   defaultLayout $ do
-    setTitle $ toHtml $ mconcat ["Thank you for added ", name newCompany]
+    setTitle $
+      toHtml $ mconcat ["Thank you for added ", newCompanyName newCompany]
     $(widgetFile "add-company-thank-you")
-
-data NewCompany =
-  NewCompany
-    { name :: Text
-    , webSite :: Text
-    , linkedIn :: Text
-    , gitHub :: Text
-    , address :: Text
-    , isStartup :: Bool
-    , isRemote :: Bool
-    }
-  deriving (Show)

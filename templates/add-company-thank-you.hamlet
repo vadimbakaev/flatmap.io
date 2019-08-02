@@ -1,2 +1,3 @@
 <div .container>
-  <p>#{show newCompany}
+  <div .py-4.text-center>
+    <h4>Thank you for added #{newCompanyName newCompany}!
