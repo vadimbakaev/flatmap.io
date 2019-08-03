@@ -10,21 +10,6 @@ module Handler.AddCompany where
 
 import Import
 
-langs :: [Text]
-langs =
-  [ "Closure"
-  , "Elm"
-  , "Erlang"
-  , "F#"
-  , "Haskell"
-  , "Kotlin"
-  , "OCaml"
-  , "PureScript"
-  , "Racket"
-  , "Rust"
-  , "Scala"
-  ]
-
 getAddCompanyR :: Handler Html
 getAddCompanyR =
   defaultLayout $ do
@@ -35,7 +20,10 @@ postAddCompanyR :: Handler Html
 postAddCompanyR = do
   newCompany <-
     runInputPost $
-    NewCompany <$> ireq textField "companyName" <*> ireq textField "website" <*>
+    NewCompany <$>
+    ireq textField "companyName" <*>
+    ireq textField "website" <*>
+    ireq textField "industry" <*>
     (Socials <$> ireq textField "github" <*> ireq textField "linkedin") <*>
     ireq textField "address" <*>
     ireq checkBoxField "startup" <*>
