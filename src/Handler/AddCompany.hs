@@ -25,8 +25,8 @@ postAddCompanyR = do
     runInputPost $
     NewCompany <$> ireq textField "companyName" <*> ireq textField "website" <*>
     ireq textField "industry" <*>
+    ((\address -> Office address (Coordinate 0 0)) <$> ireq textField "address") <*>
     (Socials <$> ireq textField "github" <*> ireq textField "linkedin") <*>
-    ireq textField "address" <*>
     ireq checkBoxField "startup" <*>
     ireq checkBoxField "remote" <*>
     ((\ms -> [lang | (Just True, lang) <- ms `zip` langs]) <$>

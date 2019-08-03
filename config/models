@@ -47,8 +47,8 @@ NewCompany
     name Text
     website Text
     industry Text
+    office Office
     socials Socials
-    address Text
     startup Bool
     remote Bool
     stack [Text]

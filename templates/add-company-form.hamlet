@@ -7,7 +7,7 @@
         <div .row>
           <div .col-sm-4>
             <label for="companyName">Company name
-            <input id="companyName" name="companyName" .form-control type="text" placeholder="" value="" required="true">
+            <input id="companyName" name="companyName" .form-control type="text" maxlength="50" placeholder="" value="" required="true">
         <div .row>
           <div .col-sm-4>
             <label for="industry">Industry
@@ -18,17 +18,17 @@
         <div .row>
           <div .col-sm-8>
             <label for="address">Operative office address
-            <input id="address" name="address" .form-control type="text" placeholder="E.g. '151 3rd St, San Francisco, CA 94103, USA'" value="" required="true">
+            <input id="address" name="address" .form-control type="text" maxlength="160" placeholder="E.g. '151 3rd St, San Francisco, CA 94103, USA'" value="" required="true">
         <div .row>
           <div .col-sm-4>
             <label for="website">Website
-            <input id="website" name="website" .form-control type="text" placeholder="https://www.mycompany.com/" value="" required="true">
+            <input id="website" name="website" .form-control type="text" maxlength="80" placeholder="https://www.mycompany.com/" value="" required="true">
           <div .col-sm-4>
             <label for="linkedin">LinkedIn
-            <input id="linkedin" name="linkedin" .form-control type="text" placeholder="https://www.linkedin.com/company/myCompany/" value="" required="true">
+            <input id="linkedin" name="linkedin" .form-control type="text" maxlength="80" placeholder="https://www.linkedin.com/company/myCompany/" value="" required="true">
           <div .col-sm-4>
             <label for="github">Github
-            <input id="github" name="github" .form-control type="text" placeholder="https://github.com/myCompany/" value="" required="true">
+            <input id="github" name="github" .form-control type="text" maxlength="80" placeholder="https://github.com/myCompany/" value="" required="true">
         <div .custom-control.custom-checkbox>
             <input .custom-control-input id="startup" name="startup" type="checkbox">
             <label .custom-control-label for="startup">Is Startup?
