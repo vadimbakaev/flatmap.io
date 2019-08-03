@@ -41,7 +41,7 @@ postAddCompanyR = do
     ireq checkBoxField "startup" <*>
     ireq checkBoxField "remote" <*>
     ((\ms -> [lang | (Just True, lang) <- ms `zip` langs]) <$>
-     foldr (liftA2 (:) . iopt checkBoxField) (pure []) langs)
+     traverse (iopt checkBoxField) langs)
   _ <- runDB $ insert newCompany
   defaultLayout $ do
     setTitle $
