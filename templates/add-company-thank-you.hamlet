@@ -1,3 +1,4 @@
 <div .container>
   <div .py-4.text-center>
     <h4>Thank you for added #{newCompanyName newCompany}!
+    We need time to verify data. Usually, it takes less than 48 hours.
