@@ -9,6 +9,13 @@
             <label for="companyName">Company name
             <input id="companyName" name="companyName" .form-control type="text" placeholder="" value="" required="true">
         <div .row>
+          <div .col-sm-4>
+            <label for="industry">Industry
+            <select .custom-select.d-block.w-100 id="industry" name="industry" .form-control type="" required="true">
+              <option value="">Choose...
+              $forall industry <- industries
+                <option value=#{industry}>#{industry}
+        <div .row>
           <div .col-sm-8>
             <label for="address">Operative office address
             <input id="address" name="address" .form-control type="text" placeholder="E.g. '151 3rd St, San Francisco, CA 94103, USA'" value="" required="true">

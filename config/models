@@ -46,6 +46,7 @@ Socials json
 NewCompany
     name Text
     website Text
+    industry Text
     socials Socials
     address Text
     startup Bool
