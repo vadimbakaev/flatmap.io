@@ -28,6 +28,7 @@ let mongoSettings = mkPersistSettings (ConT ''MongoContext)
 langs :: [Text]
 langs =
   [ "Closure"
+  , "Elixir"
   , "Elm"
   , "Erlang"
   , "F#"
