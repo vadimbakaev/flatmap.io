@@ -1,6 +1,6 @@
 <div .container>
   <div .py-4.text-center>
-    <h4>Add company for FREE
+    <h4>Add a new company to flatmap
   <div .row>
     <div .col-md-12 order-md-l>
       <form .need-validation method=post action=@{AddCompanyR}>
@@ -31,10 +31,10 @@
             <input id="github" name="github" .form-control type="text" maxlength="80" placeholder="https://github.com/myCompany/" value="" required="true">
         <div .custom-control.custom-checkbox>
             <input .custom-control-input id="startup" name="startup" type="checkbox">
-            <label .custom-control-label for="startup">Is Startup?
+            <label .custom-control-label for="startup">Startup
         <div .custom-control.custom-checkbox>
             <input .custom-control-input id="remote" name="remote" type="checkbox">
-            <label .custom-control-label for="remote">Is Remote friendly?
+            <label .custom-control-label for="remote">Remote friendly
         <hr .mb-4>
         $forall lang <- langs
           <div .custom-control.custom-checkbox>
@@ -42,5 +42,5 @@
              <label .custom-control-label for=#{lang}>#{lang}
         <div .row>
         <div .row>
-          <div .col-sm-6>
+          <div .col-sm-4>
             <button .btn.btn-primary.btn-lg.btn-block type=submit>Submit
