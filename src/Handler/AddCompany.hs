@@ -4,14 +4,14 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE RecordWildCards #-}
-{-# LANGUAGE QuasiQuotes #-}
 
 module Handler.AddCompany where
 
 import Import
+import Data.Text as T (replace)
 
 spamProtection :: Int
-spamProtection = 50
+spamProtection = 150
 
 getAddCompanyR :: Handler Html
 getAddCompanyR =
@@ -26,7 +26,8 @@ postAddCompanyR = do
     NewCompany <$> ireq textField "companyName" <*> ireq textField "website" <*>
     ireq textField "industry" <*>
     ((\address -> Office address (Coordinate 0 0)) <$> ireq textField "address") <*>
-    (Socials <$> ireq textField "github" <*> ireq textField "linkedin") <*>
+    (Socials <$>
+     (extractGithub <$> ireq textField "github") <*> (extractLinkedin <$> ireq textField "linkedin")) <*>
     ireq checkBoxField "startup" <*>
     ireq checkBoxField "remote" <*>
     ((\ms -> [lang | (Just True, lang) <- ms `zip` langs]) <$>
@@ -37,3 +38,12 @@ postAddCompanyR = do
     setTitle $
       toHtml $ mconcat ["Thank you for added ", newCompanyName newCompany]
     $(widgetFile "add-company-thank-you")
+
+replaceBackslash :: Text -> Text
+replaceBackslash = T.replace "/" ""
+
+extractGithub :: Text -> Text
+extractGithub = replaceBackslash . T.replace "https://github.com/" ""
+
+extractLinkedin :: Text -> Text
+extractLinkedin = replaceBackslash . T.replace "https://www.linkedin.com/company/" ""
