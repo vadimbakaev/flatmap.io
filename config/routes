@@ -11,5 +11,6 @@
 /contacts ContactsR GET
 /add      AddCompanyR GET POST
 
+/search SearchR GET
 /haskell HaskellR GET
 /purescript PureScriptR GET

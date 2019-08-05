@@ -22,14 +22,10 @@ getHomeR = do
     setTitle "Discover new opportunity"
     $(widgetFile "homepage")
 
-getHaskellR :: Handler Html
-getHaskellR = getByLangR "Haskell"
-
-getPureScriptR :: Handler Html
-getPureScriptR = getByLangR "PureScript"
-
-getByLangR :: Text -> Handler Html
-getByLangR lang = do
+getSearchR :: Handler Html
+getSearchR = do
+  langMaybe <- lookupGetParam "lang"
+  let lang = fromMaybe "" langMaybe
   allCompanies <- runDB getAllCompanies
   let companies = filter (elem lang . companyStack . entityVal) allCompanies
   defaultLayout $ do
@@ -37,6 +33,15 @@ getByLangR lang = do
     aDomId <- newIdent
     setTitle $ toHtml $ mconcat ["Discover ", lang, " opportunity"]
     $(widgetFile "homepage")
+
+getHaskellR :: Handler Html
+getHaskellR = searchForR "Haskell"
+
+getPureScriptR :: Handler Html
+getPureScriptR = searchForR "PureScript"
+
+searchForR :: Text -> Handler Html
+searchForR lang = redirect (SearchR, [("lang", lang)])
 
 getAllCompanies :: DB [Entity Company]
 getAllCompanies = selectList [] []
