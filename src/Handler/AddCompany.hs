@@ -9,9 +9,13 @@ module Handler.AddCompany where
 
 import Import
 import Data.Text as T (replace)
+import qualified Data.List.Split as LS (chunksOf)
 
 spamProtection :: Int
 spamProtection = 150
+
+lang6Columns :: [[Text]]
+lang6Columns = LS.chunksOf 3 langs
 
 getAddCompanyR :: Handler Html
 getAddCompanyR =

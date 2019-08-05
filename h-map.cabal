@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 992a61a7bfc9033912a435f2b6a765141bba9f25d918bf5cbeac9d97c8448857
+-- hash: 7ce85ec2eca9271adf20d65774749789b6520a5aabbe94972994a7c1b539bb00
 
 name:           h-map
 version:        0.0.0
@@ -63,6 +63,7 @@ library
     , persistent-template >=2.5 && <2.9
     , safe
     , shakespeare >=2.0 && <2.1
+    , split
     , template-haskell
     , text >=0.11 && <2.0
     , time
@@ -120,6 +121,7 @@ executable h-map
     , persistent-template >=2.5 && <2.9
     , safe
     , shakespeare >=2.0 && <2.1
+    , split
     , template-haskell
     , text >=0.11 && <2.0
     , time
@@ -180,6 +182,7 @@ test-suite h-map-test
     , persistent-template >=2.5 && <2.9
     , safe
     , shakespeare >=2.0 && <2.1
+    , split
     , template-haskell
     , text >=0.11 && <2.0
     , time

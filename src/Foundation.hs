@@ -131,7 +131,7 @@ instance Yesod App
               , menuItemRoute = PureScriptR
               , menuItemAccessCallback = True
               }
-          , NavbarLeft $
+          , NavbarRight $
             MenuItem
               { menuItemLabel = "Contacts"
               , menuItemRoute = ContactsR

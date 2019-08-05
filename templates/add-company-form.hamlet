@@ -1,8 +1,8 @@
 <div .container>
-  <div .py-4.text-center>
+  <div .py-3.text-center>
     <h4>Add a new company to flatmap
   <div .row>
-    <div .col-md-12 order-md-l>
+    <div .col-md-12.order-md-l>
       <form .need-validation method=post action=@{AddCompanyR}>
         <div .row>
           <div .col-sm-4>
@@ -29,6 +29,7 @@
           <div .col-sm-4>
             <label for="github">Github
             <input id="github" name="github" .form-control type="text" maxlength="80" placeholder="https://github.com/myCompany/" value="" required="true">
+        <label for="project">Company type
         <div .custom-control.custom-checkbox>
             <input .custom-control-input id="startup" name="startup" type="checkbox">
             <label .custom-control-label for="startup">Startup
@@ -36,10 +37,15 @@
             <input .custom-control-input id="remote" name="remote" type="checkbox">
             <label .custom-control-label for="remote">Remote friendly
         <hr .mb-4>
-        $forall lang <- langs
-          <div .custom-control.custom-checkbox>
-             <input .custom-control-input id=#{lang} name=#{lang} type="checkbox">
-             <label .custom-control-label for=#{lang}>#{lang}
+        <label for="technologies">Technology stack
+        <div .row>
+            $forall langColumn <- lang6Columns
+               <div .col-sm-2>
+                 $forall lang <- langColumn
+                   <div .custom-control.custom-checkbox>
+                      <input .custom-control-input id=#{lang} name=#{lang} type="checkbox">
+                      <label .custom-control-label for=#{lang}>#{lang}
+        <div .row>
         <div .row>
         <div .row>
           <div .col-sm-4>
