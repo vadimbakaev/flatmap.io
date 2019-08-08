@@ -18,7 +18,8 @@ var markers = #{toJSONList companies}.map(company => {
                         linkedin: company.socials.linkedin,
                         github: company.socials.github,
                         industry: company.industry,
-                        isRemote: company.remote
+                        isRemote: company.remote,
+                        stack: company.stack
                     },
                     geometry: {
                         type: "Point",
@@ -93,10 +94,17 @@ function createPopUp(currentFeature) {
   if (popUps[0]) popUps[0].remove();
 
 
-  let prop = currentFeature.properties;
-  let github = prop.github;
-  let linkedin = prop.linkedin;
-  let isRemote = prop.isRemote;
+    let prop = currentFeature.properties;
+    let github = prop.github;
+    let linkedin = prop.linkedin;
+    let isRemote = prop.isRemote;
+    var stack = prop.stack.replace(/["[\]]/g, "").split(",");
+    var badges = "";
+
+    for (var i = 0; i < stack.length; i++) {
+        badges += '<a href="/search?lang=' + stack[i] + '"><span class="badge badge-success">' + stack[i] + '</span></a> '
+    }
+
 
   var popup = new mapboxgl.Popup({ closeOnClick: false })
     .setLngLat(currentFeature.geometry.coordinates)
@@ -113,6 +121,10 @@ function createPopUp(currentFeature) {
             + '<div class="company-type">'
             + (isRemote ? 'remote friendly <i class="fas fa-home"></i>' : '')
             + '</div>'
+            + '</div>'
+            + 'Technology stack'
+            + '<div class="bs-components">'
+            + badges
             + '</div>'
             + '<i class="fas fa-industry"></i> ' + prop.industry
             + '</div>'

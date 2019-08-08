@@ -120,10 +120,11 @@ instance Yesod App
               , menuItemRoute = HomeR
               , menuItemAccessCallback = True
               }
-          , NavbarLeft $
+          ,
+            NavbarLeft $
             MenuItem
-              { menuItemLabel = "Haskell"
-              , menuItemRoute = HaskellR
+              { menuItemLabel = "Elm"
+              , menuItemRoute = ElmR
               , menuItemAccessCallback = True
               }
           , NavbarLeft $
@@ -134,8 +135,8 @@ instance Yesod App
               }
           , NavbarLeft $
             MenuItem
-              { menuItemLabel = "Elm"
-              , menuItemRoute = ElmR
+              { menuItemLabel = "Haskell"
+              , menuItemRoute = HaskellR
               , menuItemAccessCallback = True
               }
           , NavbarRight $
