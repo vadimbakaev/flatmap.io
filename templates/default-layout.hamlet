@@ -7,9 +7,13 @@
       <span .navbar-toggler-icon>
     <div #navbar.collapse.navbar-collapse>
       <ul .navbar-nav.mr-auto.navbar-left>
-        $forall MenuItem label route _ <- navbarLeftFilteredMenuItems
-                    <li .nav-item :Just route == mcurrentRoute:.active>
-                        <a href="@{route}" .nav-link>#{label}
+        <li .nav-item.dropdown :Just HomeR == mcurrentRoute:.active>
+          <a .nav-lin.dropdown-toggle href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#{fromMaybe "All" langMaybe}
+          <div .dropdown-menu aria-lable="navbarDropdown">
+            <a .dropdown-item href="/">All
+              $forall item <- searchItems
+                    <a .dropdown-item href="/search?lang=#{item}">#{item}
+
       <ul .navbar-nav.navbar-right>
         $forall MenuItem label route _ <- navbarRightFilteredMenuItems
                     <li .nav-item :Just route == mcurrentRoute:.active>

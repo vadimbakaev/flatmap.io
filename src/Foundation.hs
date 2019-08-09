@@ -21,6 +21,7 @@ import Text.Jasmine (minifym)
 import Yesod.Auth.Dummy
 
 import qualified Data.CaseInsensitive as CI
+import qualified Data.List as L (concatMap, nub, sort)
 import qualified Data.Text.Encoding as TE
 import Yesod.Auth.OpenId (IdentifierType(Claimed), authOpenId)
 import Yesod.Core.Types (Logger)
@@ -71,6 +72,9 @@ type DB a
    = forall (m :: * -> *). (MonadIO m) =>
                              ReaderT MongoContext m a
 
+getCompanies :: DB [Entity Company]
+getCompanies = selectList [] []
+
 -- Please see the documentation for the Yesod typeclass. There are a number
 -- of settings which can be configured by overriding methods here.
 instance Yesod App
@@ -111,35 +115,14 @@ instance Yesod App
   defaultLayout :: Widget -> Handler Html
   defaultLayout widget = do
     master <- getYesod
+    langMaybe <- lookupGetParam "lang"
     mcurrentRoute <- getCurrentRoute
+    companies <- runDB getCompanies
+    let searchItems =
+          L.sort $ L.nub $ L.concatMap (companyStack . entityVal) companies
         -- Define the menu items of the header.
     let menuItems =
-          [ NavbarLeft $
-            MenuItem
-              { menuItemLabel = "All"
-              , menuItemRoute = HomeR
-              , menuItemAccessCallback = True
-              }
-          ,
-            NavbarLeft $
-            MenuItem
-              { menuItemLabel = "Elm"
-              , menuItemRoute = ElmR
-              , menuItemAccessCallback = True
-              }
-          , NavbarLeft $
-            MenuItem
-              { menuItemLabel = "PureScript"
-              , menuItemRoute = PureScriptR
-              , menuItemAccessCallback = True
-              }
-          , NavbarLeft $
-            MenuItem
-              { menuItemLabel = "Haskell"
-              , menuItemRoute = HaskellR
-              , menuItemAccessCallback = True
-              }
-          , NavbarRight $
+          [ NavbarRight $
             MenuItem
               { menuItemLabel = "Contacts"
               , menuItemRoute = ContactsR
@@ -152,10 +135,7 @@ instance Yesod App
               , menuItemAccessCallback = True
               }
           ]
-    let navbarLeftMenuItems = [x | NavbarLeft x <- menuItems]
     let navbarRightMenuItems = [x | NavbarRight x <- menuItems]
-    let navbarLeftFilteredMenuItems =
-          [x | x <- navbarLeftMenuItems, menuItemAccessCallback x]
     let navbarRightFilteredMenuItems =
           [x | x <- navbarRightMenuItems, menuItemAccessCallback x]
         -- We break up the default layout into two components:
