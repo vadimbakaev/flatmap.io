@@ -9,9 +9,9 @@
       <ul .navbar-nav.mr-auto.navbar-left>
         <li .nav-item.dropdown :Just HomeR == mcurrentRoute:.active>
           <a .nav-lin.dropdown-toggle href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#{fromMaybe "All" langMaybe}
-          <div .dropdown-menu aria-lable="navbarDropdown">
+          <div .dropdown-menu aria-labelledby="navbarDropdown">
             <a .dropdown-item href="/">All
-              $forall item <- searchItems
+            $forall item <- searchItems
                     <a .dropdown-item href="/search?lang=#{item}">#{item}
 
       <ul .navbar-nav.navbar-right>

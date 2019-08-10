@@ -26,22 +26,37 @@ let mongoSettings = mkPersistSettings (ConT ''MongoContext)
       $(persistFileWith upperCaseSettings "config/models")
 
 langs :: [Text]
-langs = sort $
+langs =
   [ "Agda"
-  , "Closure"
+  , "C#"
+  , "Clojure"
   , "Coq"
+  , "Cpp"
+  , "D"
+  , "Dart"
   , "Elixir"
   , "Elm"
   , "Erlang"
   , "F#"
+  , "Groovy"
   , "Haskell"
   , "Idris"
+  , "Java"
+  , "JavaScript"
+  , "Julia"
   , "Kotlin"
+  , "Nim"
   , "OCaml"
+  , "PHP"
+  , "Perl"
   , "PureScript"
+  , "Python"
+  , "R"
   , "Racket"
+  , "Ruby"
   , "Rust"
   , "Scala"
+  , "TypeScript"
   ]
 
 industries :: [Text]

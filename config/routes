@@ -12,6 +12,3 @@
 /add      AddCompanyR GET POST
 
 /search SearchR GET
-/elm ElmR GET
-/haskell HaskellR GET
-/purescript PureScriptR GET
