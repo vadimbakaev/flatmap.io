@@ -81,11 +81,11 @@ map.on("load", function() {
 });
 
 function flyToPoint(currentFeature) {
-    let nextZoom = Math.max(map.getZoom(), Math.min(10, Math.max(5, map.getZoom() + 0.3)));
-  map.flyTo({
-    center: currentFeature.geometry.coordinates,
+    let nextZoom = Math.max(map.getZoom(), Math.min(10, Math.max(5.5, map.getZoom())));
+    map.flyTo({
+      center: currentFeature.geometry.coordinates,
       zoom: nextZoom
-  })
+    })
 }
 
 function createPopUp(currentFeature) {

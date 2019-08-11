@@ -34,15 +34,6 @@ getSearchR = do
     setTitle $ toHtml $ mconcat ["Discover ", lang, " opportunity"]
     $(widgetFile "homepage")
 
-getHaskellR :: Handler Html
-getHaskellR = searchForR "Haskell"
-
-getPureScriptR :: Handler Html
-getPureScriptR = searchForR "PureScript"
-
-getElmR :: Handler Html
-getElmR = searchForR "Elm"
-
 searchForR :: Text -> Handler Html
 searchForR lang = redirect (SearchR, [("lang", lang)])
 
