@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7ce85ec2eca9271adf20d65774749789b6520a5aabbe94972994a7c1b539bb00
+-- hash: efcc7c56da874e1aae7b6b34d210d4cf870dee338ba80505962ec9dcfd0315b7
 
 name:           h-map
 version:        0.0.0
@@ -75,7 +75,8 @@ library
     , warp >=3.0 && <3.3
     , yaml >=0.11 && <0.12
     , yesod >=1.6 && <1.7
-    , yesod-auth >=1.6 && <1.7
+    , yesod-auth >=1.6.7 && <1.7
+    , yesod-auth-oauth2
     , yesod-core >=1.6 && <1.7
     , yesod-form >=1.6 && <1.7
     , yesod-static >=1.6 && <1.7
@@ -133,7 +134,8 @@ executable h-map
     , warp >=3.0 && <3.3
     , yaml >=0.11 && <0.12
     , yesod >=1.6 && <1.7
-    , yesod-auth >=1.6 && <1.7
+    , yesod-auth >=1.6.7 && <1.7
+    , yesod-auth-oauth2
     , yesod-core >=1.6 && <1.7
     , yesod-form >=1.6 && <1.7
     , yesod-static >=1.6 && <1.7
@@ -194,7 +196,8 @@ test-suite h-map-test
     , warp >=3.0 && <3.3
     , yaml >=0.11 && <0.12
     , yesod >=1.6 && <1.7
-    , yesod-auth >=1.6 && <1.7
+    , yesod-auth >=1.6.7 && <1.7
+    , yesod-auth-oauth2
     , yesod-core >=1.6 && <1.7
     , yesod-form >=1.6 && <1.7
     , yesod-static >=1.6 && <1.7

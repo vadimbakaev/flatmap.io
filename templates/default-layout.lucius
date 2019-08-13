@@ -3,7 +3,7 @@
   border-color: #8f4e8b;
 }
 
-main > .container {
+main {
   padding-top: 6em;
 }
 

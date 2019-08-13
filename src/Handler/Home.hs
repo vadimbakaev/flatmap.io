@@ -4,6 +4,7 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE QuasiQuotes #-}
 
 module Handler.Home where
 
@@ -33,6 +34,21 @@ getSearchR = do
     aDomId <- newIdent
     setTitle $ toHtml $ mconcat ["Discover ", lang, " opportunity"]
     $(widgetFile "homepage")
+
+getAdminR :: Handler Html
+getAdminR = do
+  maid <- maybeAuthId
+  defaultLayout
+    [whamlet|
+            <div .container>
+              <p>Your current auth ID: #{show maid}
+              $maybe _ <- maid
+                  <p>
+                      <a href=@{AuthR LogoutR}>Logout
+              $nothing
+                  <p>
+                      <a href=@{AuthR LoginR}>Go to the login page
+        |]
 
 searchForR :: Text -> Handler Html
 searchForR lang = redirect (SearchR, [("lang", lang)])
