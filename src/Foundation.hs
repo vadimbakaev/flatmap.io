@@ -17,13 +17,11 @@ import Import.NoFoundation
 import Text.Hamlet (hamletFile)
 import Text.Jasmine (minifym)
 
--- Used only when in "auth-dummy-login" setting is enabled.
-import Yesod.Auth.Dummy
+import Yesod.Auth.OAuth2.Google
 
 import qualified Data.CaseInsensitive as CI
 import qualified Data.List as L (concatMap, nub, sort)
 import qualified Data.Text.Encoding as TE
-import Yesod.Auth.OpenId (IdentifierType(Claimed), authOpenId)
 import Yesod.Core.Types (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
 import Yesod.Default.Util (addStaticContentExternal)
@@ -38,6 +36,8 @@ data App =
     , appLogger :: Logger
     , appMapboxAccessToken :: Text
     , appMapQuestKey :: Text
+    , appOAuth2ClientId :: Text
+    , appOAuth2ClientSecret :: Text
     }
 
 data MenuItem =
@@ -230,10 +230,12 @@ instance YesodAuth App where
           insert User {userIdent = credsIdent creds, userPassword = Nothing}
     -- You can add other plugins like Google Email, email or OAuth here
   authPlugins :: App -> [AuthPlugin App]
-  authPlugins app = [authOpenId Claimed []] ++ extraAuthPlugins
-        -- Enable authDummy login if enabled.
-    where
-      extraAuthPlugins = [authDummy | appAuthDummyLogin $ appSettings app]
+  authPlugins app =
+    [ oauth2GoogleScoped
+        ["email", "profile"]
+        (appOAuth2ClientId app)
+        (appOAuth2ClientSecret app)
+    ]
 
 instance YesodAuthPersist App
 

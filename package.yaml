@@ -6,7 +6,8 @@ dependencies:
 - base >=4.9.1.0 && <5
 - yesod >=1.6 && <1.7
 - yesod-core >=1.6 && <1.7
-- yesod-auth >=1.6 && <1.7
+- yesod-auth >=1.6.7 && <1.7
+- yesod-auth-oauth2
 - yesod-static >=1.6 && <1.7
 - yesod-form >=1.6 && <1.7
 - classy-prelude >=1.5 && <1.6
@@ -44,6 +45,7 @@ dependencies:
 - wai
 - foreign-store
 - split
+- unordered-containers
 
 # The library contains all of our application code. The executable
 # defined below is just a thin wrapper.

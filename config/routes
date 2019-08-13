@@ -7,6 +7,9 @@
 /robots.txt RobotsR GET
 /marker.png MarkerR GET
 
+/auth AuthR Auth getAuth
+/admin AdminR GET
+
 / HomeR GET
 /contacts ContactsR GET
 /add      AddCompanyR GET POST

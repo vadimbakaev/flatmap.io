@@ -40,6 +40,7 @@ packages:
 extra-deps:
   - http-api-data-0.3.10@sha256:13e1ed2514ec7a857454f472604fc6bf9616d908d2de7202c2507e413029c907,3695
   - persistent-mongoDB-2.8.0@sha256:a0770471893179d3153156bbfbf452883acdd84f95c2e8acc00540f8fa4d5275,1919
+  - yesod-auth-1.6.7@sha256:57f681a1a0ce633ce4761bcaa0d6b186631ebc5eac9dbc108acb52353da2d3ee,3037
 # Override default flag values for local packages and extra-deps
 # flags: {}
 
