@@ -5,8 +5,10 @@ jobs:
       - image: fpco/stack-build:lts
       - image: circleci/mongo:3.6
     environment:
-      MAPBOX_ACCESS_TOKEN: someCode
-      MAPQUEST_KEY: someKey
+      MAPBOX_ACCESS_TOKEN: stubForTest
+      MAPQUEST_KEY: stubForTest
+      GOOGLE_CLIENT_ID: stubForTest
+      GOOGLE_SECRET: stubForTest
     steps:
       - checkout
       - restore_cache:
