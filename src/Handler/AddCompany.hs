@@ -7,9 +7,10 @@
 
 module Handler.AddCompany where
 
-import Import
-import Data.Text as T (replace)
 import qualified Data.List.Split as LS (chunksOf)
+import Data.Text as T (replace)
+import Import
+import Network.HTTP.Simple
 
 spamProtection :: Int
 spamProtection = 150
@@ -25,19 +26,26 @@ getAddCompanyR =
 
 postAddCompanyR :: Handler Html
 postAddCompanyR = do
+  App {..} <- getYesod
   newCompany <-
     runInputPost $
     NewCompany <$> ireq textField "companyName" <*> ireq textField "website" <*>
     ireq textField "industry" <*>
     ((\address -> Office address (Coordinate 0 0)) <$> ireq textField "address") <*>
-    (Socials <$>
-     (extractGithub <$> ireq textField "github") <*> (extractLinkedin <$> ireq textField "linkedin")) <*>
+    (Socials <$> (extractGithub <$> ireq textField "github") <*>
+     (extractLinkedin <$> ireq textField "linkedin")) <*>
     ireq checkBoxField "startup" <*>
     ireq checkBoxField "remote" <*>
     ((\ms -> [lang | (Just True, lang) <- ms `zip` langs]) <$>
      traverse (iopt checkBoxField) langs)
   total <- runDB $ count ([] :: [Filter NewCompany])
-  when (total < spamProtection) $ void $ runDB $ insert newCompany
+  newCoordinate <-
+    liftIO $
+    resolveCoordinate
+      appMapQuestKey
+      (officeAddress $ newCompanyOffice newCompany)
+  let companyToSave = updateCoordinate newCoordinate newCompany
+  when (total < spamProtection) $ void $ runDB $ insert companyToSave
   defaultLayout $ do
     setTitle $
       toHtml $ mconcat ["Thank you for added ", newCompanyName newCompany]
@@ -50,4 +58,32 @@ extractGithub :: Text -> Text
 extractGithub = replaceBackslash . T.replace "https://github.com/" ""
 
 extractLinkedin :: Text -> Text
-extractLinkedin = replaceBackslash . T.replace "https://www.linkedin.com/company/" ""
+extractLinkedin =
+  replaceBackslash . T.replace "https://www.linkedin.com/company/" ""
+
+resolveCoordinate :: Text -> Text -> IO Coordinate
+resolveCoordinate key address = do
+  initRequest <-
+    parseRequest $
+    unpack $
+    mconcat
+      [ "http://www.mapquestapi.com/geocoding/v1/address?maxResults=1"
+      , "&key="
+      , key
+      , "&location="
+      , address
+      ]
+  response <- httpJSON initRequest
+  pure $ toCoordinate (getResponseBody response :: GeoResponse)
+
+toCoordinate :: GeoResponse -> Coordinate
+toCoordinate (GeoResponse (ResultResponse [LocationResponse (CoordinateResponse lat lng)]:_)) =
+  Coordinate lat lng
+toCoordinate _ = Coordinate 0 0
+
+updateCoordinate :: Coordinate -> NewCompany -> NewCompany
+updateCoordinate coordinate newCompany =
+  newCompany
+    { newCompanyOffice =
+        (newCompanyOffice newCompany) {officeCoordinate = coordinate}
+    }

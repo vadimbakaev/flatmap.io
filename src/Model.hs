@@ -25,6 +25,39 @@ let mongoSettings = mkPersistSettings (ConT ''MongoContext)
       [mkPersist mongoSettings]
       $(persistFileWith upperCaseSettings "config/models")
 
+instance FromJSON GeoResponse
+
+instance FromJSON ResultResponse
+
+instance FromJSON LocationResponse
+
+instance FromJSON CoordinateResponse
+
+newtype GeoResponse =
+  GeoResponse
+    { results :: [ResultResponse]
+    }
+  deriving (Eq, Show, Generic)
+
+newtype ResultResponse =
+  ResultResponse
+    { locations :: [LocationResponse]
+    }
+  deriving (Eq, Show, Generic)
+
+newtype LocationResponse =
+  LocationResponse
+    { latLng :: CoordinateResponse
+    }
+  deriving (Eq, Show, Generic)
+
+data CoordinateResponse =
+  CoordinateResponse
+    { lat :: !Double
+    , lng :: !Double
+    }
+  deriving (Eq, Show, Generic)
+
 langs :: [Text]
 langs =
   [ "Agda"

@@ -37,6 +37,7 @@ data App =
     , appHttpManager :: Manager
     , appLogger :: Logger
     , appMapboxAccessToken :: Text
+    , appMapQuestKey :: Text
     }
 
 data MenuItem =
