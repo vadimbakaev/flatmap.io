@@ -6,6 +6,7 @@ jobs:
       - image: circleci/mongo:3.6
     environment:
       MAPBOX_ACCESS_TOKEN: someCode
+      MAPQUEST_KEY: someKey
     steps:
       - checkout
       - restore_cache:

@@ -49,12 +49,12 @@ import Network.Wai.Middleware.RequestLogger
 import System.Environment
 import System.Log.FastLogger (defaultBufSize, newStdoutLoggerSet, toLogStr)
 
+import Handler.AddCompany
 -- Import all relevant handler modules here.
 -- Don't forget to add new modules to your cabal file!
 import Handler.Common
-import Handler.Home
 import Handler.Contacts
-import Handler.AddCompany
+import Handler.Home
 
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the
@@ -78,6 +78,7 @@ makeFoundation appSettings
        else static)
       (appStaticDir appSettings)
   appMapboxAccessToken <- pack <$> getEnv "MAPBOX_ACCESS_TOKEN"
+  appMapQuestKey <- pack <$> getEnv "MAPQUEST_KEY"
     -- Create the database connection pool
   appConnPool <- createPoolConfig $ appDatabaseConf appSettings
   return $ App {..}
