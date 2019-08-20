@@ -28,7 +28,7 @@ let mongoSettings = mkPersistSettings (ConT ''MongoContext)
 langs :: [Text]
 langs =
   [ "Agda"
-  , "C#"
+  , "Csharp"
   , "Clojure"
   , "Coq"
   , "Cpp"
@@ -37,7 +37,7 @@ langs =
   , "Elixir"
   , "Elm"
   , "Erlang"
-  , "F#"
+  , "Fsharp"
   , "Groovy"
   , "Haskell"
   , "Idris"
