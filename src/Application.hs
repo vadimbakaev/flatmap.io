@@ -50,8 +50,6 @@ import System.Environment
 import System.Log.FastLogger (defaultBufSize, newStdoutLoggerSet, toLogStr)
 
 import Handler.AddCompany
--- Import all relevant handler modules here.
--- Don't forget to add new modules to your cabal file!
 import Handler.Common
 import Handler.Contacts
 import Handler.Home

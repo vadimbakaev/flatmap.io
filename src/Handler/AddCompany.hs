@@ -27,25 +27,21 @@ getAddCompanyR =
 postAddCompanyR :: Handler Html
 postAddCompanyR = do
   App {..} <- getYesod
+  address <- runInputPost $ ireq textField "address"
+  coordinate <- liftIO $ safe $ resolveCoordinate appMapQuestKey address
   newCompany <-
     runInputPost $
     NewCompany <$> ireq textField "companyName" <*> ireq textField "website" <*>
     ireq textField "industry" <*>
-    ((\address -> Office address (Coordinate 0 0)) <$> ireq textField "address") <*>
+    pure (Office address coordinate) <*>
     (Socials <$> (extractGithub <$> ireq textField "github") <*>
      (extractLinkedin <$> ireq textField "linkedin")) <*>
     ireq checkBoxField "startup" <*>
     ireq checkBoxField "remote" <*>
-    ((\ms -> [lang | (Just True, lang) <- ms `zip` langs]) <$>
+    ((\checks -> [lang | (Just True, lang) <- checks `zip` langs]) <$>
      traverse (iopt checkBoxField) langs)
   total <- runDB $ count ([] :: [Filter NewCompany])
-  newCoordinate <-
-    liftIO $
-    resolveCoordinate
-      appMapQuestKey
-      (officeAddress $ newCompanyOffice newCompany)
-  let companyToSave = updateCoordinate newCoordinate newCompany
-  when (total < spamProtection) $ void $ runDB $ insert companyToSave
+  when (total < spamProtection) $ void $ runDB $ insert newCompany
   defaultLayout $ do
     setTitle $
       toHtml $ mconcat ["Thank you for added ", newCompanyName newCompany]
@@ -67,23 +63,23 @@ resolveCoordinate key address = do
     parseRequest $
     unpack $
     mconcat
-      [ "http://www.mapquestapi.com/geocoding/v1/address?maxResults=1"
+      [ "https://www.mapquestapi.com/geocoding/v1/address?maxResults=1"
       , "&key="
       , key
       , "&location="
       , address
       ]
   response <- httpJSON initRequest
-  pure $ toCoordinate (getResponseBody response :: GeoResponse)
+  pure $ toCoordinate $ getResponseBody response
+
+safe :: IO Coordinate -> IO Coordinate
+safe io = do
+  result <- try io :: IO (Either SomeException Coordinate)
+  case result of
+    Left ex -> const (Coordinate 0 0) <$> print ex
+    Right val -> pure val
 
 toCoordinate :: GeoResponse -> Coordinate
 toCoordinate (GeoResponse (ResultResponse [LocationResponse (CoordinateResponse lat lng)]:_)) =
   Coordinate lat lng
 toCoordinate _ = Coordinate 0 0
-
-updateCoordinate :: Coordinate -> NewCompany -> NewCompany
-updateCoordinate coordinate newCompany =
-  newCompany
-    { newCompanyOffice =
-        (newCompanyOffice newCompany) {officeCoordinate = coordinate}
-    }
