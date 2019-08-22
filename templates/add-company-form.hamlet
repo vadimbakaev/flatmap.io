@@ -1,6 +1,6 @@
 <div .container>
   <div .py-3.text-center>
-    <h4>Add a new company to flatmap
+    <h4>Add a new company to flatmap.io
   <div .row>
     <div .col-md-12.order-md-l>
       <form .need-validation method=post action=@{AddCompanyR}>
@@ -15,6 +15,7 @@
               <option value="">Choose...
               $forall industry <- industries
                 <option value=#{industry}>#{industry}
+            <small .form-text.text-muted id="industry">You can find industry on the company LinkedIn page.
         <div .row>
           <div .col-sm-8>
             <label for="address">Operative office address
@@ -28,7 +29,7 @@
             <input id="linkedin" name="linkedin" .form-control type="text" maxlength="80" placeholder="https://www.linkedin.com/company/myCompany/" value="" required="true">
           <div .col-sm-4>
             <label for="github">Github
-            <input id="github" name="github" .form-control type="text" maxlength="80" placeholder="https://github.com/myCompany/" value="" required="true">
+            <input id="github" name="github" .form-control type="text" maxlength="80" placeholder="https://github.com/myCompany" value="" required="true">
         <label for="project">Company type
         <div .custom-control.custom-checkbox>
             <input .custom-control-input id="startup" name="startup" type="checkbox">
@@ -39,7 +40,7 @@
         <hr .mb-4>
         <label for="technologies">Technology stack
         <div .row>
-            $forall langColumn <- lang6Columns
+            $forall langColumn <- (LS.chunksOf 5 langs)
                <div .col-sm-2>
                  $forall lang <- langColumn
                    <div .custom-control.custom-checkbox>

@@ -15,9 +15,6 @@ import Network.HTTP.Simple
 spamProtection :: Int
 spamProtection = 150
 
-lang6Columns :: [[Text]]
-lang6Columns = LS.chunksOf 5 langs
-
 getAddCompanyR :: Handler Html
 getAddCompanyR =
   defaultLayout $ do
