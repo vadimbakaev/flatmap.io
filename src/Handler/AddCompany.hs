@@ -60,8 +60,7 @@ resolveCoordinate key address = do
     parseRequest $
     unpack $
     mconcat
-      [ "https://www.mapquestapi.com/geocoding/v1/address?maxResults=1"
-      , "&key="
+      [ "https://www.mapquestapi.com/geocoding/v1/address?maxResults=1&key="
       , key
       , "&location="
       , address
@@ -71,8 +70,8 @@ resolveCoordinate key address = do
 
 safe :: IO Coordinate -> IO Coordinate
 safe io = do
-  result <- try io :: IO (Either SomeException Coordinate)
-  case result of
+  result <- try io
+  case result :: Either SomeException Coordinate of
     Left ex -> const (Coordinate 0 0) <$> print ex
     Right val -> pure val
 

@@ -1,4 +1,4 @@
 <div .container>
   <div .py-4.text-center>
-    <h4>Thank you for added #{newCompanyName newCompany}!
-    Your request in verification. Usually, it takes less than 48 hours.
+    <h4>Thank you for adding #{newCompanyName newCompany}!
+    Your request is being verified. It usually takes less than 48 hours.
