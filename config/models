@@ -3,7 +3,8 @@
 
 User
     ident Text
-    password Text Maybe
+    name Text
+    email Text
     UniqueUser ident
     deriving Typeable
 Email
