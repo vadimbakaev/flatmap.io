@@ -52,4 +52,5 @@ NewCompany
     startup Bool
     remote Bool
     stack [Text]
+    createdAt UTCTime
     deriving Eq Show Read

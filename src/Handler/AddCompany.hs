@@ -26,6 +26,7 @@ postAddCompanyR = do
   App {..} <- getYesod
   address <- runInputPost $ ireq textField "address"
   coordinate <- liftIO $ safe $ resolveCoordinate appMapQuestKey address
+  createdAt <- liftIO getCurrentTime
   newCompany <-
     runInputPost $
     NewCompany <$> ireq textField "companyName" <*> ireq textField "website" <*>
@@ -36,7 +37,8 @@ postAddCompanyR = do
     ireq checkBoxField "startup" <*>
     ireq checkBoxField "remote" <*>
     ((\checks -> [lang | (Just True, lang) <- checks `zip` langs]) <$>
-     traverse (iopt checkBoxField) langs)
+     traverse (iopt checkBoxField) langs) <*>
+    pure createdAt
   total <- runDB $ count ([] :: [Filter NewCompany])
   when (total < spamProtection) $ void $ runDB $ insert newCompany
   defaultLayout $ do
