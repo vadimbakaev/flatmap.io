@@ -17,6 +17,7 @@ import Import.NoFoundation
 import Text.Hamlet (hamletFile)
 import Text.Jasmine (minifym)
 
+import Yesod.Auth.OAuth2 (getUserResponseJSON)
 import Yesod.Auth.OAuth2.Google
 
 import qualified Data.CaseInsensitive as CI
@@ -116,7 +117,8 @@ instance Yesod App
   defaultLayout :: Widget -> Handler Html
   defaultLayout widget = do
     master <- getYesod
-    langMaybe <- lookupGetParam "lang"
+    muser <- maybeAuthPair
+    mlang <- lookupGetParam "lang"
     mcurrentRoute <- getCurrentRoute
     companies <- runDB getCompanies
     let searchItems =
@@ -134,6 +136,18 @@ instance Yesod App
               { menuItemLabel = "Add Company"
               , menuItemRoute = AddCompanyR
               , menuItemAccessCallback = True
+              }
+          , NavbarRight $
+            MenuItem
+              { menuItemLabel = "Login"
+              , menuItemRoute = AuthR LoginR
+              , menuItemAccessCallback = isNothing muser
+              }
+          , NavbarRight $
+            MenuItem
+              { menuItemLabel = "Logout"
+              , menuItemRoute = AuthR LogoutR
+              , menuItemAccessCallback = isJust muser
               }
           ]
     let navbarRightMenuItems = [x | NavbarRight x <- menuItems]
@@ -223,11 +237,20 @@ instance YesodAuth App where
     liftHandler $
     runDB $ do
       x <- getBy $ UniqueUser $ credsIdent creds
+      let (uname, uemail) =
+            case getUserResponseJSON creds of
+              Right user -> (name user, email user)
+              _ -> ("notFound", "notFound")
       case x of
         Just (Entity uid _) -> return $ Authenticated uid
         Nothing ->
           Authenticated <$>
-          insert User {userIdent = credsIdent creds, userPassword = Nothing}
+          insert
+            User
+              { userIdent = credsIdent creds
+              , userName = uname
+              , userEmail = uemail
+              }
     -- You can add other plugins like Google Email, email or OAuth here
   authPlugins :: App -> [AuthPlugin App]
   authPlugins app =

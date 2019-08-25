@@ -25,6 +25,7 @@ let mongoSettings = mkPersistSettings (ConT ''MongoContext)
       [mkPersist mongoSettings]
       $(persistFileWith upperCaseSettings "config/models")
 
+-- Mapquest
 instance FromJSON GeoResponse
 
 instance FromJSON ResultResponse
@@ -55,6 +56,16 @@ data CoordinateResponse =
   CoordinateResponse
     { lat :: !Double
     , lng :: !Double
+    }
+  deriving (Eq, Show, Generic)
+
+-- GoogleAuth
+instance FromJSON GoogleUserResponse
+
+data GoogleUserResponse =
+  GoogleUserResponse
+    { name :: Text
+    , email :: Text
     }
   deriving (Eq, Show, Generic)
 
