@@ -21,6 +21,7 @@ import Yesod.Auth.OAuth2 (getUserResponseJSON)
 import Yesod.Auth.OAuth2.Google
 
 import qualified Data.CaseInsensitive as CI
+import Data.Either (fromRight)
 import qualified Data.List as L (concatMap, nub, sort)
 import qualified Data.Text.Encoding as TE
 import Yesod.Core.Types (Logger)
@@ -236,12 +237,13 @@ instance YesodAuth App where
   authenticate creds =
     liftHandler $
     runDB $ do
-      x <- getBy $ UniqueUser $ credsIdent creds
+      muserEntity <- getBy $ UniqueUser $ credsIdent creds
       let (uname, uemail) =
-            case getUserResponseJSON creds of
-              Right user -> (name user, email user)
-              _ -> ("notFound", "notFound")
-      case x of
+            toTuple $ fromRight defaultResponse (getUserResponseJSON creds)
+            where
+              toTuple (GoogleUserResponse x y) = (x, y)
+              defaultResponse = GoogleUserResponse "" ""
+      case muserEntity of
         Just (Entity uid _) -> return $ Authenticated uid
         Nothing ->
           Authenticated <$>
