@@ -70,7 +70,8 @@ createUser :: Text -> YesodExample App (Entity User)
 createUser ident = runDB $ do
     user <- insertEntity User
         { userIdent = ident
-        , userPassword = Nothing
+        , userName = "Alan"
+        , userEmail = "alan@email.com"
         }
     _ <- insert Email
         { emailEmail = ident
