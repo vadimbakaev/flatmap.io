@@ -9,6 +9,8 @@ jobs:
       MAPQUEST_KEY: stubForTest
       GOOGLE_CLIENT_ID: stubForTest
       GOOGLE_SECRET: stubForTest
+      GITHUB_CLIENT_ID: stubForTest
+      GITHUB_SECRET: stubForTest
     steps:
       - checkout
       - restore_cache:
