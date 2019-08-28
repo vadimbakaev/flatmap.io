@@ -238,11 +238,10 @@ instance YesodAuth App where
     liftHandler $
     runDB $ do
       muserEntity <- getBy $ UniqueUser $ credsIdent creds
-      let (uname, uemail) =
-            toTuple $ fromRight defaultResponse (getUserResponseJSON creds)
-            where
-              toTuple (GoogleUserResponse x y) = (x, y)
-              defaultResponse = GoogleUserResponse "" ""
+      let defaultResponse = GoogleUserResponse "" ""
+          toTuple (GoogleUserResponse x y) = (x, y)
+          gResponse = getUserResponseJSON creds
+          (uname, uemail) = toTuple $ fromRight defaultResponse gResponse
       case muserEntity of
         Just (Entity uid _) -> return $ Authenticated uid
         Nothing ->
