@@ -8,7 +8,6 @@
 /marker.png MarkerR GET
 
 /auth AuthR Auth getAuth
-/admin AdminR GET
 
 / HomeR GET
 /contacts ContactsR GET
