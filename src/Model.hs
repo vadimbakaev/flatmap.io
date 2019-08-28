@@ -59,13 +59,13 @@ data CoordinateResponse =
     }
   deriving (Eq, Show, Generic)
 
--- GoogleAuth
-instance FromJSON GoogleUserResponse
+-- GitHubAuth
+instance FromJSON GitHubUserResponse
 
-data GoogleUserResponse =
-  GoogleUserResponse
+data GitHubUserResponse =
+  GitHubUserResponse
     { name :: Text
-    , email :: Text
+    , email :: Maybe Text
     }
   deriving (Eq, Show, Generic)
 

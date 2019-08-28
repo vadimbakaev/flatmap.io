@@ -18,7 +18,7 @@ import Text.Hamlet (hamletFile)
 import Text.Jasmine (minifym)
 
 import Yesod.Auth.OAuth2 (getUserResponseJSON)
-import Yesod.Auth.OAuth2.Google
+import Yesod.Auth.OAuth2.GitHub
 
 import qualified Data.CaseInsensitive as CI
 import Data.Either (fromRight)
@@ -238,10 +238,11 @@ instance YesodAuth App where
     liftHandler $
     runDB $ do
       muserEntity <- getBy $ UniqueUser $ credsIdent creds
-      let defaultResponse = GoogleUserResponse "" ""
-          toTuple (GoogleUserResponse x y) = (x, y)
+      _ <- print creds
+      let defaultResponse = GitHubUserResponse "" Nothing
+          toTuple (GitHubUserResponse x y) = (x, y)
           gResponse = getUserResponseJSON creds
-          (uname, uemail) = toTuple $ fromRight defaultResponse gResponse
+          (uname, memail) = toTuple $ fromRight defaultResponse gResponse
       case muserEntity of
         Just (Entity uid _) -> return $ Authenticated uid
         Nothing ->
@@ -250,13 +251,13 @@ instance YesodAuth App where
             User
               { userIdent = credsIdent creds
               , userName = uname
-              , userEmail = uemail
+              , userEmail = fromMaybe "" memail
               }
     -- You can add other plugins like Google Email, email or OAuth here
   authPlugins :: App -> [AuthPlugin App]
   authPlugins app =
-    [ oauth2GoogleScoped
-        ["email", "profile"]
+    [ oauth2GitHubScoped
+        ["user"]
         (appOAuth2ClientId app)
         (appOAuth2ClientSecret app)
     ]
