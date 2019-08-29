@@ -19,7 +19,6 @@ import Text.Jasmine (minifym)
 
 import Yesod.Auth.OAuth2 (getUserResponseJSON)
 import Yesod.Auth.OAuth2.GitHub
-
 import qualified Data.CaseInsensitive as CI
 import Data.Either (fromRight)
 import qualified Data.List as L (concatMap, nub, sort)
@@ -140,8 +139,8 @@ instance Yesod App
               }
           , NavbarRight $
             MenuItem
-              { menuItemLabel = "Login"
-              , menuItemRoute = AuthR LoginR
+              { menuItemLabel = "Login via GitHub"
+              , menuItemRoute = AuthR $ PluginR "github" ["forward"]
               , menuItemAccessCallback = isNothing muser
               }
           , NavbarRight $
