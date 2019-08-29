@@ -15,9 +15,12 @@
                     <a .dropdown-item href="/search?lang=#{item}">#{item}
 
       <ul .navbar-nav.navbar-right>
-        $forall MenuItem label route _ <- navbarRightFilteredMenuItems
+        $forall MenuItem label route _ button micon <- navbarRightFilteredMenuItems
                     <li .nav-item :Just route == mcurrentRoute:.active>
-                        <a href="@{route}" .nav-link>#{label}
+                        <a href="@{route}" :not button:.nav-link  :button:.btn :button:.btn-primary :button:.btn-md>#{label}
+                          $maybe icon <- micon
+                            <i class="#{icon}">
+
 <!-- Page Contents -->
 <main>
   ^{widget}
