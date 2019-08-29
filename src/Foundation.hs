@@ -46,6 +46,8 @@ data MenuItem =
     { menuItemLabel :: Text
     , menuItemRoute :: Route App
     , menuItemAccessCallback :: Bool
+    , menuItemButton :: Bool
+    , menuItemIcon :: Maybe Text
     }
 
 data MenuTypes
@@ -130,24 +132,32 @@ instance Yesod App
               { menuItemLabel = "Contacts"
               , menuItemRoute = ContactsR
               , menuItemAccessCallback = True
+              , menuItemButton = False
+              , menuItemIcon = Nothing
               }
           , NavbarRight $
             MenuItem
               { menuItemLabel = "Add Company"
               , menuItemRoute = AddCompanyR
               , menuItemAccessCallback = True
+              , menuItemButton = False
+              , menuItemIcon = Nothing
               }
           , NavbarRight $
             MenuItem
-              { menuItemLabel = "Login via GitHub"
+              { menuItemLabel = "Login "
               , menuItemRoute = AuthR $ PluginR "github" ["forward"]
               , menuItemAccessCallback = isNothing muser
+              , menuItemButton = True
+              , menuItemIcon = Just "fab fa-github"
               }
           , NavbarRight $
             MenuItem
               { menuItemLabel = "Logout"
               , menuItemRoute = AuthR LogoutR
               , menuItemAccessCallback = isJust muser
+              , menuItemButton = False
+              , menuItemIcon = Nothing
               }
           ]
     let navbarRightMenuItems = [x | NavbarRight x <- menuItems]
