@@ -5,10 +5,15 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE RankNTypes #-}
 
 module Handler.Home where
 
 import Data.Aeson
+import Data.Geospatial.Internal.BasicTypes
+import Data.Geospatial.Internal.GeoFeature
+import Data.Geospatial.Internal.GeoFeatureCollection
+import Data.Geospatial.Internal.Geometry
 import Import
 
 -- The majority of the code you will write in Yesod lives in these handler
@@ -16,7 +21,7 @@ import Import
 -- inclined, or create a single monolithic file.
 getHomeR :: Handler Html
 getHomeR = do
-  companies <- runDB getAllCompanies
+  companies <- runDB $ getAllCompanies Nothing
   defaultLayout $ do
     App {..} <- getYesod
     aDomId <- newIdent
@@ -25,18 +30,39 @@ getHomeR = do
 
 getSearchR :: Handler Html
 getSearchR = do
-  langMaybe <- lookupGetParam "lang"
-  let lang = fromMaybe "" langMaybe
-  allCompanies <- runDB getAllCompanies
-  let companies = filter (elem lang . companyStack . entityVal) allCompanies
+  mlang <- lookupGetParam "lang"
+  companies <- runDB $ getAllCompanies mlang
   defaultLayout $ do
     App {..} <- getYesod
     aDomId <- newIdent
-    setTitle $ toHtml $ mconcat ["Discover ", lang, " opportunity"]
+    setTitle $
+      toHtml $ mconcat ["Discover ", fromMaybe "new" mlang, " opportunity"]
     $(widgetFile "homepage")
 
 searchForR :: Text -> Handler Html
 searchForR lang = redirect (SearchR, [("lang", lang)])
 
-getAllCompanies :: DB [Entity Company]
-getAllCompanies = selectList [] []
+getAllCompanies :: Maybe Text -> DB [Entity Company]
+getAllCompanies (Just lang) = do
+  companies <- selectList [] []
+  pure $ filter (elem lang . companyStack . entityVal) companies
+getAllCompanies _ = selectList [] []
+
+toGeo :: [Entity Company] -> GeoFeatureCollection Company
+toGeo companies =
+  GeoFeatureCollection Nothing (fromList $ map toGeoFeature companies)
+
+toGeoFeature :: Entity Company -> GeoFeature Company
+toGeoFeature company =
+  GeoFeature
+    { _bbox = Nothing
+    , _geometry =
+        Point $
+        GeoPoint $
+        GeoPointXY $
+        PointXY
+          (coordinateLat $ officeCoordinate $ companyOffice $ entityVal company)
+          (coordinateLon $ officeCoordinate $ companyOffice $ entityVal company)
+    , _properties = entityVal company
+    , _featureId = Nothing
+    }
