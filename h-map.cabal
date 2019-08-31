@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: efcc7c56da874e1aae7b6b34d210d4cf870dee338ba80505962ec9dcfd0315b7
+-- hash: 2f8d6641f37d7ab707a3f84451802285a2396887e5b9abb9ae672180a19455d1
 
 name:           h-map
 version:        0.0.0
@@ -52,6 +52,7 @@ library
     , fast-logger >=2.2 && <2.5
     , file-embed
     , foreign-store
+    , geojson >=3.0.4 && <4
     , hjsmin >=0.1 && <0.3
     , http-client-tls >=0.3 && <0.4
     , http-conduit >=2.3 && <2.4
@@ -110,6 +111,7 @@ executable h-map
     , fast-logger >=2.2 && <2.5
     , file-embed
     , foreign-store
+    , geojson >=3.0.4 && <4
     , h-map
     , hjsmin >=0.1 && <0.3
     , http-client-tls >=0.3 && <0.4
@@ -170,6 +172,7 @@ test-suite h-map-test
     , fast-logger >=2.2 && <2.5
     , file-embed
     , foreign-store
+    , geojson >=3.0.4 && <4
     , h-map
     , hjsmin >=0.1 && <0.3
     , hspec >=2.0.0

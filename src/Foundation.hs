@@ -17,12 +17,12 @@ import Import.NoFoundation
 import Text.Hamlet (hamletFile)
 import Text.Jasmine (minifym)
 
-import Yesod.Auth.OAuth2 (getUserResponseJSON)
-import Yesod.Auth.OAuth2.GitHub
 import qualified Data.CaseInsensitive as CI
 import Data.Either (fromRight)
 import qualified Data.List as L (concatMap, nub, sort)
 import qualified Data.Text.Encoding as TE
+import Yesod.Auth.OAuth2 (getUserResponseJSON)
+import Yesod.Auth.OAuth2.GitHub
 import Yesod.Core.Types (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
 import Yesod.Default.Util (addStaticContentExternal)
