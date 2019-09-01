@@ -21,7 +21,7 @@ import Import
 -- inclined, or create a single monolithic file.
 getHomeR :: Handler Html
 getHomeR = do
-  companies <- runDB $ getAllCompanies Nothing
+  companies <- toGeo <$> runDB (getAllCompanies Nothing)
   defaultLayout $ do
     App {..} <- getYesod
     aDomId <- newIdent
@@ -31,7 +31,7 @@ getHomeR = do
 getSearchR :: Handler Html
 getSearchR = do
   mlang <- lookupGetParam "lang"
-  companies <- runDB $ getAllCompanies mlang
+  companies <- toGeo <$> runDB (getAllCompanies mlang)
   defaultLayout $ do
     App {..} <- getYesod
     aDomId <- newIdent
@@ -48,11 +48,11 @@ getAllCompanies (Just lang) = do
   pure $ filter (elem lang . companyStack . entityVal) companies
 getAllCompanies _ = selectList [] []
 
-toGeo :: [Entity Company] -> GeoFeatureCollection Company
+toGeo :: [Entity Company] -> GeoFeatureCollection (Entity Company)
 toGeo companies =
   GeoFeatureCollection Nothing (fromList $ map toGeoFeature companies)
 
-toGeoFeature :: Entity Company -> GeoFeature Company
+toGeoFeature :: Entity Company -> GeoFeature (Entity Company)
 toGeoFeature company =
   GeoFeature
     { _bbox = Nothing
@@ -61,8 +61,8 @@ toGeoFeature company =
         GeoPoint $
         GeoPointXY $
         PointXY
-          (coordinateLat $ officeCoordinate $ companyOffice $ entityVal company)
           (coordinateLon $ officeCoordinate $ companyOffice $ entityVal company)
-    , _properties = entityVal company
+          (coordinateLat $ officeCoordinate $ companyOffice $ entityVal company)
+    , _properties = company
     , _featureId = Nothing
     }
