@@ -8,30 +8,6 @@ var map = new mapboxgl.Map({
     style: 'mapbox://styles/mapbox/dark-v10'
 });
 
-var markers = #{toJSONList companies}.map(company => {
-
-                return {
-                    type: "Feature",
-                    properties: {
-                        title: company.name,
-                        website: company.website,
-                        linkedin: company.socials.linkedin,
-                        github: company.socials.github,
-                        industry: company.industry,
-                        isRemote: company.remote,
-                        stack: company.stack
-                    },
-                    geometry: {
-                        type: "Point",
-                        coordinates: [
-                            company.office.coordinate.lon,
-                            company.office.coordinate.lat
-                        ]
-                    }
-                }
-
-});
-
 map.on("load", function() {
     /* Image: An image is loaded and added to the map. */
     map.loadImage('@{MarkerR}', function(error, image) {
@@ -44,10 +20,7 @@ map.on("load", function() {
             /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
             source: {
                 type: "geojson",
-                data: {
-                    type: 'FeatureCollection',
-                    features: markers
-                }
+                data: #{toJSON companies}
             },
             layout: {
                 "icon-image": "custom-marker",
@@ -95,9 +68,13 @@ function createPopUp(currentFeature) {
 
 
     let prop = currentFeature.properties;
-    let github = prop.github;
-    let linkedin = prop.linkedin;
+    let name = prop.name;
+    let website = prop.website;
+    let socials = JSON.parse(prop.socials);
+    let github = socials.github;
+    let linkedin = socials.linkedin;
     let isRemote = prop.isRemote;
+    let industry = prop.industry;
     var stack = prop.stack.replace(/["[\]]/g, "").split(",");
     var badges = "";
 
@@ -111,7 +88,7 @@ function createPopUp(currentFeature) {
     .setMaxWidth(290)
     .setHTML(
         '<div class="in-window">'
-            +'<h4><a href="' + prop.website + '" target="_blank" rel="noopener">' + prop.title + '</a> </h4>'
+            +'<h4><a href="' + website + '" target="_blank" rel="noopener">' + name + '</a> </h4>'
             + '<div class="separator"></div>'
             + '<div class="company-info">'
             + '<div class="company-links">'
@@ -126,7 +103,7 @@ function createPopUp(currentFeature) {
             + '<div class="bs-components">'
             + badges
             + '</div>'
-            + '<i class="fas fa-industry"></i> ' + prop.industry
+            + '<i class="fas fa-industry"></i> ' + industry
             + '</div>'
             )
     .addTo(map);
