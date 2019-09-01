@@ -20,13 +20,7 @@ import Import
 -- functions. You can spread them across multiple files if you are so
 -- inclined, or create a single monolithic file.
 getHomeR :: Handler Html
-getHomeR = do
-  companies <- toGeo <$> runDB (getAllCompanies Nothing)
-  defaultLayout $ do
-    App {..} <- getYesod
-    aDomId <- newIdent
-    setTitle "Discover new opportunity"
-    $(widgetFile "homepage")
+getHomeR = getSearchR
 
 getSearchR :: Handler Html
 getSearchR = do
