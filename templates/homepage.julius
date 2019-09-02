@@ -75,12 +75,12 @@ function createPopUp(currentFeature) {
     let linkedin = socials.linkedin;
     let isRemote = prop.isRemote;
     let industry = prop.industry;
-    var stack = prop.stack.replace(/["[\]]/g, "").split(",");
+    let stack = JSON.parse(prop.stack);
     var badges = "";
 
-    for (var i = 0; i < stack.length; i++) {
-        badges += '<a href="/search?lang=' + stack[i] + '"><span class="badge badge-success">' + stack[i] + '</span></a> '
-    }
+    stack.forEach(lang =>
+      badges += `<a href="/search?lang=${lang}"><span class="badge badge-success">${lang}</span></a> `
+    );
 
 
   var popup = new mapboxgl.Popup({ closeOnClick: false })
