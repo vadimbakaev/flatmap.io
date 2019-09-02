@@ -46,3 +46,9 @@ h2##{aDomId} {
     grid-column-start: 3;
     grid-column-end: 4;
 }
+
+.company-like {
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+}
