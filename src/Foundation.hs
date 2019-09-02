@@ -133,7 +133,7 @@ instance Yesod App
               , menuItemRoute = ContactsR
               , menuItemAccessCallback = True
               , menuItemButton = False
-              , menuItemIcon = Nothing
+              , menuItemIcon = Just "fa fa-users"
               }
           , NavbarRight $
             MenuItem
@@ -141,11 +141,11 @@ instance Yesod App
               , menuItemRoute = AddCompanyR
               , menuItemAccessCallback = True
               , menuItemButton = False
-              , menuItemIcon = Nothing
+              , menuItemIcon = Just "fa fa-plus-square"
               }
           , NavbarRight $
             MenuItem
-              { menuItemLabel = "Login "
+              { menuItemLabel = "Login"
               , menuItemRoute = AuthR $ PluginR "github" ["forward"]
               , menuItemAccessCallback = isNothing muser
               , menuItemButton = True
@@ -157,7 +157,7 @@ instance Yesod App
               , menuItemRoute = AuthR LogoutR
               , menuItemAccessCallback = isJust muser
               , menuItemButton = False
-              , menuItemIcon = Nothing
+              , menuItemIcon = Just "fas fa-sign-out-alt"
               }
           ]
     let navbarRightMenuItems = [x | NavbarRight x <- menuItems]

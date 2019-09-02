@@ -17,9 +17,10 @@
       <ul .navbar-nav.navbar-right>
         $forall MenuItem label route _ button micon <- navbarRightFilteredMenuItems
                     <li .nav-item :Just route == mcurrentRoute:.active>
-                        <a href="@{route}" :not button:.nav-link  :button:.btn :button:.btn-primary :button:.btn-md>#{label}
+                        <a href="@{route}" :not button:.nav-link  :button:.btn :button:.btn-primary :button:.btn-md>
                           $maybe icon <- micon
                             <i class="#{icon}">
+                          #{label}
 
 <!-- Page Contents -->
 <main>
