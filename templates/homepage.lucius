@@ -47,8 +47,13 @@ h2##{aDomId} {
     grid-column-end: 4;
 }
 
-.company-like {
+.company-bookmark {
     position: absolute;
     right: 1em;
     bottom: 1em;
+    color: #18BC9C;
+}
+
+.company-bookmark:hover {
+    cursor: pointer;
 }
