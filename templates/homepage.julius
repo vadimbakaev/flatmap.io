@@ -61,6 +61,10 @@ function flyToPoint(currentFeature) {
     })
 }
 
+function addToWishlist() {
+    $("#bookmark").toggleClass("fas far");
+}
+
 function createPopUp(currentFeature) {
   var popUps = document.getElementsByClassName('mapboxgl-popup');
   // Check if there is already a popup on the map and if so, remove it
@@ -81,7 +85,6 @@ function createPopUp(currentFeature) {
     stack.forEach(lang =>
       badges += `<a href="/search?lang=${lang}"><span class="badge badge-success">${lang}</span></a> `
     );
-
 
   var popup = new mapboxgl.Popup({ closeOnClick: false })
     .setLngLat(currentFeature.geometry.coordinates)
@@ -104,7 +107,9 @@ function createPopUp(currentFeature) {
             + badges
             + '</div>'
             + '<i class="fas fa-industry"></i> ' + industry
-            + '<i class="fas fa-bookmark company-like"></i>'
+            + '<span onclick="addToWishlist()">'
+            + '<i id="bookmark" class="far fa-bookmark company-bookmark"></i>'
+            + '</span>'
             + '</div>'
             )
     .addTo(map);
