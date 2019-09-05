@@ -25,6 +25,25 @@ let mongoSettings = mkPersistSettings (ConT ''MongoContext)
       [mkPersist mongoSettings]
       $(persistFileWith upperCaseSettings "config/models")
 
+-- Protocol
+-- Req
+newtype WishlistRequest =
+  WishlistRequest
+    { item :: Text
+    }
+  deriving (Eq, Show, Generic)
+
+instance FromJSON WishlistRequest
+
+-- Res
+newtype WishlistResponse =
+  WishlistResponse
+    { items :: [Text]
+    }
+  deriving (Eq, Show, Generic)
+
+instance ToJSON WishlistResponse
+
 -- Mapquest
 instance FromJSON GeoResponse
 

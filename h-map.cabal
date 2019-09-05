@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2f8d6641f37d7ab707a3f84451802285a2396887e5b9abb9ae672180a19455d1
+-- hash: 51881b09a2d19927b12e6b838b3aaa140b4f2274269be810af737b6e242a7dcb
 
 name:           h-map
 version:        0.0.0
@@ -28,6 +28,7 @@ library
       Handler.Common
       Handler.Contacts
       Handler.Home
+      Handler.Wishlist
       Import
       Import.NoFoundation
       Model
