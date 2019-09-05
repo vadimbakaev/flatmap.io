@@ -62,7 +62,14 @@ function flyToPoint(currentFeature) {
 }
 
 function addToWishlist() {
-    $("#bookmark").toggleClass("fas far");
+    let bookmark = $("#bookmark");
+    $.post(
+        "/wishlist",
+        JSON.stringify({item : bookmark.attr("value")}),
+        function(data, status) {
+         bookmark.toggleClass("fas far");
+        }
+    );
 }
 
 function createPopUp(currentFeature) {
@@ -72,6 +79,7 @@ function createPopUp(currentFeature) {
 
 
     let prop = currentFeature.properties;
+    let id = prop.id;
     let name = prop.name;
     let website = prop.website;
     let socials = JSON.parse(prop.socials);
@@ -107,9 +115,11 @@ function createPopUp(currentFeature) {
             + badges
             + '</div>'
             + '<i class="fas fa-industry"></i> ' + industry
-            + '<span onclick="addToWishlist()">'
-            + '<i id="bookmark" class="far fa-bookmark company-bookmark"></i>'
-            + '</span>'
+            + (#{isJust muser} ?
+              '<span onclick="addToWishlist()" >'
+               + '  <i id="bookmark" class="far fa-bookmark company-bookmark" value="' + id +'"></i>'
+               + '</span>' : ''
+              )
             + '</div>'
             )
     .addTo(map);

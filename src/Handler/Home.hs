@@ -27,6 +27,8 @@ getSearchR = do
   mlang <- lookupGetParam "lang"
   companies <- toGeo <$> runDB (getAllCompanies mlang)
   defaultLayout $ do
+    muser <- maybeAuth
+    addScriptRemote "https://code.jquery.com/jquery-3.4.1.min.js"
     App {..} <- getYesod
     aDomId <- newIdent
     setTitle $
