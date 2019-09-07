@@ -64,7 +64,7 @@ dropAllCollections = allCollections >>= return . filter (not . isSystemCollectio
       where
         isSystemCollection = isPrefixOf "system."
 
--- | Create a user.  The dummy email entry helps to confirm that foreign-key
+-- | Create a user.  The dummy bookmark entry helps to confirm that foreign-key
 -- checking is switched off in wipeDB for those database backends which need it.
 createUser :: Text -> YesodExample App (Entity User)
 createUser ident = runDB $ do
@@ -73,9 +73,8 @@ createUser ident = runDB $ do
         , userName = "Alan"
         , userEmail = "alan@email.com"
         }
-    _ <- insert Email
-        { emailEmail = ident
-        , emailUserId = Just $ entityKey user
-        , emailVerkey = Nothing
+    _ <- insert Bookmarks
+        { bookmarksUserId = entityKey user
+        , bookmarksItems = []
         }
     return user
