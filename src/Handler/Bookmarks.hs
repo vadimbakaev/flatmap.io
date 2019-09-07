@@ -29,6 +29,9 @@ retrieveBookmarks :: UserId -> DB (Maybe (Entity Bookmarks))
 retrieveBookmarks userId = selectFirst [BookmarksUserId ==. userId] []
 
 removeOrAdd :: Eq a => a -> [a] -> [a]
-removeOrAdd x xs
-  | x `elem` xs = [x' | x' <- xs, x' /= x]
-  | otherwise = x : xs
+removeOrAdd x = go
+  where
+    go [] = [x]
+    go (y:ys)
+      | x == y = ys
+      | otherwise = y : go ys
