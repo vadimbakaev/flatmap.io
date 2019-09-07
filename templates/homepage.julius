@@ -67,7 +67,8 @@ function addToWishlist() {
         "/bookmarks",
         JSON.stringify({item : bookmark.attr("value")}),
         function(data, status) {
-         bookmark.toggleClass("fas far");
+            window.localStorage.setItem('items', data.items);
+            bookmark.toggleClass("fas far");
         }
     );
 }
@@ -76,7 +77,7 @@ function createPopUp(currentFeature) {
   var popUps = document.getElementsByClassName('mapboxgl-popup');
   // Check if there is already a popup on the map and if so, remove it
   if (popUps[0]) popUps[0].remove();
-
+    let items = window.localStorage.getItem("items");
 
     let prop = currentFeature.properties;
     let id = prop.id;
@@ -88,6 +89,7 @@ function createPopUp(currentFeature) {
     let isRemote = prop.isRemote;
     let industry = prop.industry;
     let stack = JSON.parse(prop.stack);
+    let bookmarkLabel = items != null && items.includes(id) ? "fas" : "far";
     var badges = "";
 
     stack.forEach(lang =>
@@ -117,7 +119,7 @@ function createPopUp(currentFeature) {
             + '<i class="fas fa-industry"></i> ' + industry
             + (#{isJust muser} ?
               '<span onclick="addToWishlist()" >'
-               + '  <i id="bookmark" class="far fa-bookmark company-bookmark" value="' + id +'"></i>'
+               + '  <i id="bookmark" class="' + bookmarkLabel + ' fa-heart company-bookmark" value="' + id +'"></i>'
                + '</span>' : ''
               )
             + '</div>'
