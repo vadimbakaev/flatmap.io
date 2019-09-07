@@ -64,7 +64,7 @@ function flyToPoint(currentFeature) {
 function addToWishlist() {
     let bookmark = $("#bookmark");
     $.post(
-        "/wishlist",
+        "/bookmarks",
         JSON.stringify({item : bookmark.attr("value")}),
         function(data, status) {
          bookmark.toggleClass("fas far");
