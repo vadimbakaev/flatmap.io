@@ -14,7 +14,7 @@ postBookmarksR = do
   case muser of
     Nothing -> sendResponseStatus status407 ()
     Just (Entity userId _) -> do
-      mbookmarks <- runDB $ retrieveBookmarks userId
+      mbookmarks <- runDB $ selectFirst [BookmarksUserId ==. userId] []
       case mbookmarks of
         Nothing -> do
           runDB $ insert_ $ Bookmarks userId newItems
@@ -24,9 +24,6 @@ postBookmarksR = do
           runDB $ update bookmarksId [BookmarksItems =. newItems]
           returnJson $ WishlistResponse newItems
           where newItems = removeOrAdd itemToAdd savedItems
-
-retrieveBookmarks :: UserId -> DB (Maybe (Entity Bookmarks))
-retrieveBookmarks userId = selectFirst [BookmarksUserId ==. userId] []
 
 removeOrAdd :: Eq a => a -> [a] -> [a]
 removeOrAdd x = go
