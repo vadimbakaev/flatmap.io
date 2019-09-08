@@ -1,0 +1,59 @@
+h2##{aDomId} {
+    color: #990
+}
+
+#main {
+    margin: 0;
+    padding: 0;
+}
+
+#mapid {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}
+
+.in-window {
+    min-width: 240px;
+    padding: 0 0 0 0;
+}
+
+.separator {
+    margin: 1px;
+    border-bottom: 1px solid #ddd;
+}
+
+.mapboxgl-popup-content {
+    border-radius: 4px !important;
+    padding: 10px !important;
+}
+
+.company-info {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: grid;
+}
+
+.company-links {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.company-type {
+    margin-left: 1em;
+    text-align: right;
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+.company-bookmark {
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+    color: #18BC9C;
+}
+
+.company-bookmark:hover {
+    cursor: pointer;
+}

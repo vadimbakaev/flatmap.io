@@ -13,7 +13,7 @@ User
    
 Bookmarks
     userId UserId
-    items [Text]
+    items [CompanyId]
     deriving Eq Show
 
 Company json

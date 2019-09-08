@@ -29,7 +29,7 @@ let mongoSettings = mkPersistSettings (ConT ''MongoContext)
 -- Req
 newtype WishlistRequest =
   WishlistRequest
-    { item :: Text
+    { item :: CompanyId
     }
   deriving (Eq, Show, Generic)
 
@@ -38,7 +38,7 @@ instance FromJSON WishlistRequest
 -- Res
 newtype WishlistResponse =
   WishlistResponse
-    { items :: [Text]
+    { items :: [CompanyId]
     }
   deriving (Eq, Show, Generic)
 
