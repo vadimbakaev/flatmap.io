@@ -18,7 +18,6 @@ import Text.Hamlet (hamletFile)
 import Text.Jasmine (minifym)
 
 import qualified Data.CaseInsensitive as CI
-import Data.Either (fromRight)
 import qualified Data.List as L (concatMap, nub, sort)
 import qualified Data.Text.Encoding as TE
 import Yesod.Auth.OAuth2 (getUserResponseJSON)
@@ -258,11 +257,12 @@ instance YesodAuth App where
       case muserEntity of
         Just (Entity uid _) -> return $ Authenticated uid
         Nothing -> do
-          id <- insert User { userIdent = credsIdent creds }
-          _ <- case getUserResponseJSON creds of
-            Left error -> print error
-            Right gitHubUser -> insert_ $ GitHub id gitHubUser
-          return $ Authenticated id
+          userId <- insert User {userIdent = credsIdent creds}
+          _ <-
+            case getUserResponseJSON creds of
+              Left errorMsg -> print errorMsg
+              Right gitHubUser -> insert_ $ GitHub userId gitHubUser
+          return $ Authenticated userId
     -- You can add other plugins like Google Email, email or OAuth here
   authPlugins :: App -> [AuthPlugin App]
   authPlugins app =
