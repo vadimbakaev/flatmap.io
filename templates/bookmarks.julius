@@ -61,15 +61,15 @@ function flyToPoint(currentFeature) {
     })
 }
 
-function addToWishlist() {
+function remove() {
     let bookmark = $("#bookmark");
     $.post(
         "/bookmarks",
         JSON.stringify({item : bookmark.attr("value")}),
         function(data, status) {
             if(status === 'success') {
-              window.localStorage.setItem('items', data.items);
-              bookmark.toggleClass("fas far");
+                window.localStorage.setItem('items', data.items);
+                location.reload();
             }
         }
     );
@@ -120,7 +120,7 @@ function createPopUp(currentFeature) {
             + '</div>'
             + '<i class="fas fa-industry"></i> ' + industry
             + (#{isLogged} ?
-              '<span onclick="addToWishlist()" >'
+              '<span data-toggle="modal" data-target="#removeModal">'
                + '  <i id="bookmark" class="' + bookmarkLabel + ' fa-heart company-bookmark" value="' + id +'"></i>'
                + '</span>' : ''
               )
