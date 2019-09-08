@@ -4,12 +4,46 @@
 
 User
     ident Text
-    name Text
-    email Text
     UniqueUser ident
-    deriving Typeable
-    deriving Eq
-    deriving Show
+    deriving Typeable Eq Show
+
+GitHub
+   userId UserId
+   value GitHubUserResponse
+   deriving Eq Show
+
+GitHubUserResponse json
+   login Text
+   node_id Text Maybe
+   avatar_url Text Maybe
+   gravatar_id Text Maybe
+   url Text Maybe
+   html_url Text Maybe
+   followers_url Text Maybe
+   following_url Text Maybe
+   gists_url Text Maybe
+   starred_url Text Maybe
+   subscriptions_url Text Maybe
+   organizations_url Text Maybe
+   repos_url Text Maybe
+   events_url Text Maybe
+   received_events_url Text Maybe
+   type Text Maybe
+   site_admin Bool
+   name Text Maybe
+   company Text Maybe
+   blog Text Maybe
+   location Text Maybe
+   email Text Maybe
+   hireable Bool
+   bio Text Maybe
+   public_repos Int
+   public_gists Int
+   followers Int
+   following Int
+   created_at UTCTime
+   updated_at UTCTime
+   deriving Generic Eq Show Read
    
 Bookmarks
     userId UserId
