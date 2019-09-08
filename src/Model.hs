@@ -78,16 +78,6 @@ data CoordinateResponse =
     }
   deriving (Eq, Show, Generic)
 
--- GitHubAuth
-instance FromJSON GitHubUserResponse
-
-data GitHubUserResponse =
-  GitHubUserResponse
-    { name :: Text
-    , email :: Maybe Text
-    }
-  deriving (Eq, Show, Generic)
-
 langs :: [Text]
 langs =
   [ "Agda"

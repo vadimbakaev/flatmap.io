@@ -255,21 +255,14 @@ instance YesodAuth App where
     liftHandler $
     runDB $ do
       muserEntity <- getBy $ UniqueUser $ credsIdent creds
-      _ <- print creds
-      let defaultResponse = GitHubUserResponse "" Nothing
-          toTuple (GitHubUserResponse x y) = (x, y)
-          gResponse = getUserResponseJSON creds
-          (uname, memail) = toTuple $ fromRight defaultResponse gResponse
       case muserEntity of
         Just (Entity uid _) -> return $ Authenticated uid
-        Nothing ->
-          Authenticated <$>
-          insert
-            User
-              { userIdent = credsIdent creds
-              , userName = uname
-              , userEmail = fromMaybe "" memail
-              }
+        Nothing -> do
+          id <- insert User { userIdent = credsIdent creds }
+          _ <- case getUserResponseJSON creds of
+            Left error -> print error
+            Right gitHubUser -> insert_ $ GitHub id gitHubUser
+          return $ Authenticated id
     -- You can add other plugins like Google Email, email or OAuth here
   authPlugins :: App -> [AuthPlugin App]
   authPlugins app =
