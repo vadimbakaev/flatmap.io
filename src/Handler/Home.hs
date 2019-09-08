@@ -28,6 +28,7 @@ getSearchR = do
   companies <- toGeo <$> runDB (getAllCompanies mlang)
   defaultLayout $ do
     muser <- maybeAuth
+    let isLogged = isJust muser
     addScriptRemote "https://code.jquery.com/jquery-3.4.1.min.js"
     App {..} <- getYesod
     aDomId <- newIdent

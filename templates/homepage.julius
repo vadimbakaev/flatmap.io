@@ -1,3 +1,14 @@
+(function init() {
+    if(#{isLogged}) {
+        $.get(
+            "/bookmarks",
+            function(data, status) {
+                if(status == 'success') window.localStorage.setItem('items', data.items);
+            }
+        );
+    }
+})();
+
 mapboxgl.accessToken = #{appMapboxAccessToken};
 
 var map = new mapboxgl.Map({
@@ -67,8 +78,10 @@ function addToWishlist() {
         "/bookmarks",
         JSON.stringify({item : bookmark.attr("value")}),
         function(data, status) {
-            window.localStorage.setItem('items', data.items);
-            bookmark.toggleClass("fas far");
+            if(status === 'success') {
+              window.localStorage.setItem('items', data.items);
+              bookmark.toggleClass("fas far");
+            }
         }
     );
 }
@@ -117,7 +130,7 @@ function createPopUp(currentFeature) {
             + badges
             + '</div>'
             + '<i class="fas fa-industry"></i> ' + industry
-            + (#{isJust muser} ?
+            + (#{isLogged} ?
               '<span onclick="addToWishlist()" >'
                + '  <i id="bookmark" class="' + bookmarkLabel + ' fa-heart company-bookmark" value="' + id +'"></i>'
                + '</span>' : ''

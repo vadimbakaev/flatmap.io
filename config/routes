@@ -15,4 +15,4 @@
 
 /search SearchR GET
 
-/bookmarks BookmarksR POST
+/bookmarks BookmarksR GET POST

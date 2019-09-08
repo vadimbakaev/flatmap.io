@@ -7,6 +7,15 @@ module Handler.Bookmarks where
 
 import Import
 
+getBookmarksR :: Handler Value
+getBookmarksR = do
+  muser <- maybeAuth
+  case muser of
+    Nothing -> sendResponseStatus status407 ()
+    Just (Entity userId _) -> do
+      mbookmarks <- runDB $ selectFirst [BookmarksUserId ==. userId] []
+      returnJson $ WishlistResponse (maybe [] (bookmarksItems . entityVal) mbookmarks)
+
 postBookmarksR :: Handler Value
 postBookmarksR = do
   WishlistRequest itemToAdd <- requireInsecureJsonBody
