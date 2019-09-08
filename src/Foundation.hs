@@ -129,11 +129,11 @@ instance Yesod App
     let menuItems =
           [ NavbarRight $
             MenuItem
-              { menuItemLabel = "Contacts"
-              , menuItemRoute = ContactsR
-              , menuItemAccessCallback = True
+              { menuItemLabel = "Saved"
+              , menuItemRoute = BookmarksR
+              , menuItemAccessCallback = isJust muser
               , menuItemButton = False
-              , menuItemIcon = Just "fa fa-users"
+              , menuItemIcon = Just "fa fa-heart"
               }
           , NavbarRight $
             MenuItem
@@ -142,6 +142,14 @@ instance Yesod App
               , menuItemAccessCallback = True
               , menuItemButton = False
               , menuItemIcon = Just "fa fa-plus-square"
+              }
+          , NavbarRight $
+            MenuItem
+              { menuItemLabel = "Contacts"
+              , menuItemRoute = ContactsR
+              , menuItemAccessCallback = True
+              , menuItemButton = False
+              , menuItemIcon = Just "fa fa-users"
               }
           , NavbarRight $
             MenuItem

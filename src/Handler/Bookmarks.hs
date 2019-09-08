@@ -2,19 +2,38 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE RecordWildCards #-}
 
 module Handler.Bookmarks where
 
+import Handler.Home (toGeo)
 import Import
 
-getBookmarksR :: Handler Value
+getBookmarksR :: Handler TypedContent
 getBookmarksR = do
   muser <- maybeAuth
   case muser of
     Nothing -> sendResponseStatus status407 ()
     Just (Entity userId _) -> do
       mbookmarks <- runDB $ selectFirst [BookmarksUserId ==. userId] []
-      returnJson $ WishlistResponse (maybe [] (bookmarksItems . entityVal) mbookmarks)
+      let savedIds = maybe [] (bookmarksItems . entityVal) mbookmarks
+      savedCompanies <- runDB $ getAllCompanies savedIds
+      selectRep $ do
+        provideRep $
+          defaultLayout $ do
+            let companies = toGeo savedCompanies
+            let isLogged = isJust muser
+            addScriptRemote "https://code.jquery.com/jquery-3.4.1.min.js"
+            App {..} <- getYesod
+            aDomId <- newIdent
+            setTitle "Saved companies"
+            $(widgetFile "bookmarks")
+        provideJson $ WishlistResponse savedIds
+
+getAllCompanies :: [CompanyId] -> DB [Entity Company]
+getAllCompanies ids = selectList [CompanyId <-. ids] []
 
 postBookmarksR :: Handler Value
 postBookmarksR = do
