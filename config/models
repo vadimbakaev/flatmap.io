@@ -2,8 +2,34 @@
 -- Syntax for this file here: https://github.com/yesodweb/persistent/blob/master/docs/Persistent-entity-syntax.md
 -- Adding "json" causes ToJSON and FromJSON instances to be derived.
 
+-- Protocol
+
+WishlistRequest json
+   item CompanyId
+
+WishlistResponse json
+   items [CompanyId]
+
+-- Dependecy
+-- Mapquest
+
+GeoResponse json
+  results [ResultResponse]
+
+ResultResponse json
+  locations [LocationResponse]
+
+LocationResponse json
+  latLng CoordinateResponse
+
+CoordinateResponse json
+  lat Double
+  lng Double
+
+-- DB
 User
     ident Text
+    isAdmin Bool
     UniqueUser ident
     deriving Typeable Eq Show
 
@@ -86,4 +112,5 @@ NewCompany
     remote Bool
     stack [Text]
     createdAt UTCTime
+    addedBy UserId Maybe
     deriving Eq Show Read

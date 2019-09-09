@@ -15,7 +15,7 @@ h2##{aDomId} {
 }
 
 .in-window {
-    min-width: 240px;
+    min-width: 280px;
     padding: 0 0 0 0;
 }
 

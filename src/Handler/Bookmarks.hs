@@ -19,12 +19,11 @@ getBookmarksR = do
     Just (Entity userId _) -> do
       mbookmarks <- runDB $ selectFirst [BookmarksUserId ==. userId] []
       let savedIds = maybe [] (bookmarksItems . entityVal) mbookmarks
-      savedCompanies <- runDB $ getAllCompanies savedIds
+      savedCompanies <- runDB $ selectList [CompanyId <-. savedIds] []
       selectRep $ do
         provideRep $
           defaultLayout $ do
             let companies = toGeo savedCompanies
-            let isLogged = isJust muser
             addScriptRemote "https://code.jquery.com/jquery-3.4.1.min.js"
             App {..} <- getYesod
             aDomId <- newIdent
@@ -32,26 +31,24 @@ getBookmarksR = do
             $(widgetFile "bookmarks")
         provideJson $ WishlistResponse savedIds
 
-getAllCompanies :: [CompanyId] -> DB [Entity Company]
-getAllCompanies ids = selectList [CompanyId <-. ids] []
-
 postBookmarksR :: Handler Value
 postBookmarksR = do
   WishlistRequest itemToAdd <- requireInsecureJsonBody
   muser <- maybeAuth
   case muser of
     Nothing -> sendResponseStatus status407 ()
-    Just (Entity userId _) -> do
-      mbookmarks <- runDB $ selectFirst [BookmarksUserId ==. userId] []
-      case mbookmarks of
-        Nothing -> do
-          runDB $ insert_ $ Bookmarks userId newItems
-          returnJson $ WishlistResponse newItems
-          where newItems = [itemToAdd]
-        Just (Entity bookmarksId (Bookmarks _ savedItems)) -> do
-          runDB $ update bookmarksId [BookmarksItems =. newItems]
-          returnJson $ WishlistResponse newItems
-          where newItems = removeOrAdd itemToAdd savedItems
+    Just (Entity userId _) ->
+      runDB $ do
+        mbookmarks <- selectFirst [BookmarksUserId ==. userId] []
+        case mbookmarks of
+          Nothing -> do
+            insert_ $ Bookmarks userId newItems
+            returnJson $ WishlistResponse newItems
+            where newItems = [itemToAdd]
+          Just (Entity bookmarksId (Bookmarks _ savedItems)) -> do
+            update bookmarksId [BookmarksItems =. newItems]
+            returnJson $ WishlistResponse newItems
+            where newItems = removeOrAdd itemToAdd savedItems
 
 removeOrAdd :: Eq a => a -> [a] -> [a]
 removeOrAdd x = go

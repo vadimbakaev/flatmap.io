@@ -76,7 +76,7 @@ dropAllCollections =
 createUser :: Text -> YesodExample App (Entity User)
 createUser ident =
   runDB $ do
-    user <- insertEntity User {userIdent = ident}
+    user <- insertEntity User {userIdent = ident, userIsAdmin = False}
     _ <-
       insert Bookmarks {bookmarksUserId = entityKey user, bookmarksItems = []}
     return user

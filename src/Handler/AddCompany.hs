@@ -24,6 +24,7 @@ getAddCompanyR =
 postAddCompanyR :: Handler Html
 postAddCompanyR = do
   App {..} <- getYesod
+  muserId <- (entityKey <$>) <$> maybeAuth
   address <- runInputPost $ ireq textField "address"
   coordinate <- liftIO $ safe $ resolveCoordinate appMapQuestKey address
   createdAt <- liftIO getCurrentTime
@@ -38,7 +39,8 @@ postAddCompanyR = do
     ireq checkBoxField "remote" <*>
     ((\checks -> [lang | (Just True, lang) <- checks `zip` langs]) <$>
      traverse (iopt checkBoxField) langs) <*>
-    pure createdAt
+    pure createdAt <*>
+    pure muserId
   total <- runDB $ count ([] :: [Filter NewCompany])
   when (total < spamProtection) $ void $ runDB $ insert newCompany
   defaultLayout $ do

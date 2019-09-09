@@ -257,7 +257,7 @@ instance YesodAuth App where
       case muserEntity of
         Just (Entity uid _) -> return $ Authenticated uid
         Nothing -> do
-          userId <- insert User {userIdent = credsIdent creds}
+          userId <- insert User {userIdent = credsIdent creds, userIsAdmin = False}
           _ <-
             case getUserResponseJSON creds of
               Left errorMsg -> print errorMsg
