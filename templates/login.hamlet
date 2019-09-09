@@ -1,3 +1,0 @@
-<div .login-options>
-    <h3>Login using
-    <a href=@{AuthR (oauth2Url "google")} .button .google>

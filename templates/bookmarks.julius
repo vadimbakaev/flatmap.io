@@ -119,9 +119,7 @@ function createPopUp(currentFeature) {
             + badges
             + '</div>'
             + '<i class="fas fa-industry"></i> ' + industry
-            + '<span data-toggle="modal" data-target="#removeModal">'
-            + '  <i id="bookmark" class="' + bookmarkLabel + ' fa-heart company-bookmark" value="' + id +'"></i>'
-            + '</span>'
+            + '<i id="bookmark" class="' + bookmarkLabel + ' fa-heart company-bookmark" value="' + id +'" data-toggle="modal" data-target="#removeModal"></i>'
             + '</div>'
             )
     .addTo(map);
