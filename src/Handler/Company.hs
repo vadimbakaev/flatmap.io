@@ -5,7 +5,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE RecordWildCards #-}
 
-module Handler.AddCompany where
+module Handler.Company where
 
 import qualified Data.List.Split as LS (chunksOf)
 import Data.Text as T (replace)
@@ -15,14 +15,14 @@ import Network.HTTP.Simple
 spamProtection :: Int
 spamProtection = 150
 
-getAddCompanyR :: Handler Html
-getAddCompanyR =
+getCompanyR :: Handler Html
+getCompanyR =
   defaultLayout $ do
     setTitle "Add Company"
     $(widgetFile "add-company-form")
 
-postAddCompanyR :: Handler Html
-postAddCompanyR = do
+postCompanyR :: Handler Html
+postCompanyR = do
   App {..} <- getYesod
   muserId <- (entityKey <$>) <$> maybeAuth
   address <- runInputPost $ ireq textField "address"

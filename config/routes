@@ -11,7 +11,7 @@
 
 / HomeR GET
 /contacts ContactsR GET
-/add      AddCompanyR GET POST
+/company  CompanyR GET POST
 
 /search SearchR GET
 

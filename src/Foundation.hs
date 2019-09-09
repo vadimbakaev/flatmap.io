@@ -8,6 +8,7 @@
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE InstanceSigs #-}
 {-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE RecordWildCards #-}
 
 module Foundation where
 
@@ -137,7 +138,7 @@ instance Yesod App
           , NavbarRight $
             MenuItem
               { menuItemLabel = "Add Company"
-              , menuItemRoute = AddCompanyR
+              , menuItemRoute = CompanyR
               , menuItemAccessCallback = True
               , menuItemButton = False
               , menuItemIcon = Just "fa fa-plus-square"
@@ -257,7 +258,8 @@ instance YesodAuth App where
       case muserEntity of
         Just (Entity uid _) -> return $ Authenticated uid
         Nothing -> do
-          userId <- insert User {userIdent = credsIdent creds, userIsAdmin = False}
+          userId <-
+            insert User {userIdent = credsIdent creds, userIsAdmin = False}
           _ <-
             case getUserResponseJSON creds of
               Left errorMsg -> print errorMsg
@@ -265,12 +267,8 @@ instance YesodAuth App where
           return $ Authenticated userId
     -- You can add other plugins like Google Email, email or OAuth here
   authPlugins :: App -> [AuthPlugin App]
-  authPlugins app =
-    [ oauth2GitHubScoped
-        ["user"]
-        (appOAuth2ClientId app)
-        (appOAuth2ClientSecret app)
-    ]
+  authPlugins App {..} =
+    [oauth2GitHubScoped ["user"] appOAuth2ClientId appOAuth2ClientSecret]
 
 instance YesodAuthPersist App
 

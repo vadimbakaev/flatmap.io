@@ -3,7 +3,7 @@
     <h4>Add a new company to flatmap.io
   <div .row>
     <div .col-md-12.order-md-l>
-      <form .need-validation method=post action=@{AddCompanyR}>
+      <form .need-validation method=post action=@{CompanyR}>
         <div .row>
           <div .col-sm-4>
             <label for="companyName">Company name
