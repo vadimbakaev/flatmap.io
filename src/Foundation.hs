@@ -84,7 +84,7 @@ getCompanies = selectList [] []
 instance Yesod App
     -- Controls the base of generated URLs. For more information on modifying,
     -- see: https://github.com/yesodweb/yesod/wiki/Overriding-approot
-                                                                    where
+                                                                      where
   approot :: Approot App
   approot =
     ApprootRequest $ \app req ->
@@ -255,11 +255,25 @@ instance YesodAuth App where
     liftHandler $
     runDB $ do
       muserEntity <- getBy $ UniqueUser $ credsIdent creds
+      createdAt <- liftIO getCurrentTime
       case muserEntity of
-        Just (Entity uid _) -> return $ Authenticated uid
+        Just (Entity uid _) -> do
+          n <- count [GitHubUserId ==. uid]
+          case n of
+            0 ->
+              case getUserResponseJSON creds of
+                Left errorMsg -> print errorMsg
+                Right gitHubUser -> insert_ $ GitHub uid gitHubUser
+            _ -> pure ()
+          return $ Authenticated uid
         Nothing -> do
           userId <-
-            insert User {userIdent = credsIdent creds, userIsAdmin = False}
+            insert
+              User
+                { userIdent = credsIdent creds
+                , userIsAdmin = False
+                , userCreatedAt = createdAt
+                }
           _ <-
             case getUserResponseJSON creds of
               Left errorMsg -> print errorMsg

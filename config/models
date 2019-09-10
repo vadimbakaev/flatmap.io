@@ -30,6 +30,7 @@ CoordinateResponse json
 User
     ident Text
     isAdmin Bool
+    createdAt UTCTime
     UniqueUser ident
     deriving Typeable Eq Show
 
@@ -39,7 +40,7 @@ GitHub
    deriving Eq Show
 
 GitHubUserResponse json
-   login Text
+   login Text Maybe
    node_id Text Maybe
    avatar_url Text Maybe
    gravatar_id Text Maybe
@@ -55,20 +56,20 @@ GitHubUserResponse json
    events_url Text Maybe
    received_events_url Text Maybe
    type Text Maybe
-   site_admin Bool
+   site_admin Bool Maybe
    name Text Maybe
    company Text Maybe
    blog Text Maybe
    location Text Maybe
    email Text Maybe
-   hireable Bool
-   bio Text Maybe
-   public_repos Int
-   public_gists Int
-   followers Int
-   following Int
-   created_at UTCTime
-   updated_at UTCTime
+   hireable Bool Maybe
+   bio Text Maybe Maybe
+   public_repos Int Maybe
+   public_gists Int Maybe
+   followers Int Maybe
+   following Int Maybe
+   created_at UTCTime Maybe
+   updated_at UTCTime Maybe
    deriving Generic Eq Show Read
    
 Bookmarks

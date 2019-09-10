@@ -76,7 +76,8 @@ dropAllCollections =
 createUser :: Text -> YesodExample App (Entity User)
 createUser ident =
   runDB $ do
-    user <- insertEntity User {userIdent = ident, userIsAdmin = False}
+    now <- liftIO getCurrentTime
+    user <- insertEntity User {userIdent = ident, userIsAdmin = False, userCreatedAt = now}
     _ <-
       insert Bookmarks {bookmarksUserId = entityKey user, bookmarksItems = []}
     return user
