@@ -24,7 +24,7 @@ getCompanyR =
 postCompanyR :: Handler Html
 postCompanyR = do
   App {..} <- getYesod
-  muserId <- (entityKey <$>) <$> maybeAuth
+  muserId <- fmap entityKey <$> maybeAuth
   address <- runInputPost $ ireq textField "address"
   coordinate <- liftIO $ safe $ resolveCoordinate appMapQuestKey address
   createdAt <- liftIO getCurrentTime
