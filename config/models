@@ -104,7 +104,7 @@ Socials json
     twitter Text Maybe
     deriving Eq Show Read
 
-NewCompany
+NewCompany json
     name Text
     website Text
     industry Text

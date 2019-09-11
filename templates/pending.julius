@@ -1,0 +1,126 @@
+mapboxgl.accessToken = #{appMapboxAccessToken};
+
+var map = new mapboxgl.Map({
+    container: 'mapid',
+    center: [5, 35],
+    minZoom: 2,
+    zoom: 2,
+    style: 'mapbox://styles/mapbox/dark-v10'
+});
+
+map.on("load", function() {
+    /* Image: An image is loaded and added to the map. */
+    map.loadImage('@{MarkerR}', function(error, image) {
+        if (error) throw error;
+        map.addImage("custom-marker", image);
+        /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+        map.addLayer({
+            id: "locations",
+            type: "symbol",
+            /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+            source: {
+                type: "geojson",
+                data: #{toJSON companies}
+            },
+            layout: {
+                "icon-image": "custom-marker",
+                "icon-allow-overlap": true
+            }
+        });
+
+    });
+
+    // Add an event listener for when a user clicks on the map
+    map.on('click', function(e) {
+    // Query all the rendered points in the view
+    var features = map.queryRenderedFeatures(e.point, { layers: ['locations'] });
+    if (features.length) {
+      var clickedPoint = features[0];
+      // 1. Fly to the point
+      flyToPoint(clickedPoint);
+      // 2. Close all other popups and display popup for clicked store
+      createPopUp(clickedPoint);
+     }
+    });
+
+    map.on('mousemove', function (e) {
+      var features = map.queryRenderedFeatures(e.point, {layers: ['locations']});
+      if(features.length) {
+          map.getCanvas().style.cursor = features.length ? 'pointer' : '';
+      } else {
+          map.getCanvas().style.cursor = features.length ? 'grab' : '';
+      }
+    });
+});
+
+function flyToPoint(currentFeature) {
+    let nextZoom = Math.max(map.getZoom(), Math.min(10, Math.max(5.5, map.getZoom())));
+    map.flyTo({
+      center: currentFeature.geometry.coordinates,
+      zoom: nextZoom
+    })
+}
+
+function remove() {
+    let bookmark = $("#bookmark");
+    $.post(
+        "/bookmarks",
+        JSON.stringify({item : bookmark.attr("value")}),
+        function(data, status) {
+            if(status === 'success') {
+                window.localStorage.setItem('items', data.items);
+                location.reload();
+            }
+        }
+    );
+}
+
+function createPopUp(currentFeature) {
+  var popUps = document.getElementsByClassName('mapboxgl-popup');
+  // Check if there is already a popup on the map and if so, remove it
+  if (popUps[0]) popUps[0].remove();
+    let items = window.localStorage.getItem("items");
+
+    let prop = currentFeature.properties;
+    let id = prop.id;
+    let name = prop.name;
+    let website = prop.website;
+    let socials = JSON.parse(prop.socials);
+    let github = socials.github;
+    let linkedin = socials.linkedin;
+    let isRemote = prop.remote;
+    let industry = prop.industry;
+    let stack = JSON.parse(prop.stack);
+    let bookmarkLabel = items != null && items.includes(id) ? "fas" : "far";
+    var badges = "";
+
+    stack.forEach(lang =>
+      badges += `<span class="badge badge-primary">${lang}</span> `
+    );
+
+  var popup = new mapboxgl.Popup({ closeOnClick: false })
+    .setLngLat(currentFeature.geometry.coordinates)
+    .setMaxWidth(360)
+    .setHTML(
+        '<div class="in-window">'
+            +'<h5><img src="http://s2.googleusercontent.com/s2/favicons?domain_url=' + website + '"> <a href="' + website + '" target="_blank" rel="noopener">' + name + '</a> </h5>'
+            + '<div class="separator"></div>'
+            + '<div class="company-info">'
+            + '<div class="company-links">'
+            + ('null' != github ? '<i class="fab fa-github"></i> <a href="https://github.com/' + github + '" target="_blank" rel="noopener">' + github + '</a> </br>' : '')
+            + ('null' != linkedin ? '<i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/company/' + linkedin + '/about" target="_blank" rel="noopener">' + linkedin + '</a></br>' : '')
+            + '</div>'
+            + '<div class="company-type">'
+            + (isRemote ? 'remote friendly <i class="fas fa-home"></i>' : '')
+            + '</div>'
+            + '</div>'
+            + 'Technology stack'
+            + '<div class="bs-components">'
+            + badges
+            + '</div>'
+            + '<i class="fas fa-industry"></i> ' + industry
+//            + '<i id="bookmark" class="' + bookmarkLabel + ' fa-heart company-bookmark" value="' + id +'" data-toggle="modal" data-target="#removeModal"></i>'
+            + '</div>'
+            )
+    .addTo(map);
+}

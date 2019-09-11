@@ -16,3 +16,5 @@
 /search SearchR GET
 
 /bookmarks BookmarksR GET POST
+
+/pendings PendingR GET

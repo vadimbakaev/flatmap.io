@@ -119,7 +119,7 @@ instance Yesod App
   defaultLayout :: Widget -> Handler Html
   defaultLayout widget = do
     master <- getYesod
-    muser <- maybeAuthPair
+    muser <- maybeAuth
     mlang <- lookupGetParam "lang"
     mcurrentRoute <- getCurrentRoute
     companies <- runDB getCompanies
@@ -128,6 +128,14 @@ instance Yesod App
         -- Define the menu items of the header.
     let menuItems =
           [ NavbarRight $
+            MenuItem
+              { menuItemLabel = "Pendings"
+              , menuItemRoute = PendingR
+              , menuItemAccessCallback = Just True == (userIsAdmin . entityVal <$> muser)
+              , menuItemButton = False
+              , menuItemIcon = Just "fas fa-user-check"
+              }
+          , NavbarRight $
             MenuItem
               { menuItemLabel = "Saved"
               , menuItemRoute = BookmarksR
