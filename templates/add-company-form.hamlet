@@ -30,6 +30,10 @@
           <div .col-sm-4>
             <label for="github">Github
             <input id="github" name="github" .form-control type="text" maxlength="80" placeholder="https://github.com/myCompany" value="" required="true">
+        <div .row>
+          <div .col-sm-4>
+            <label for="twitter">Twitter (Optional)
+            <input id="twitter" name="twitter" .form-control type="text" maxlength="80" placeholder="https://twitter.com/myCompany" value="">
         <label for="project">Company type
         <div .custom-control.custom-checkbox>
             <input .custom-control-input id="startup" name="startup" type="checkbox">

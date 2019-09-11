@@ -34,7 +34,8 @@ postCompanyR = do
     ireq textField "industry" <*>
     pure (Office address coordinate) <*>
     (Socials <$> (extractGithub <$> ireq textField "github") <*>
-     (extractLinkedin <$> ireq textField "linkedin")) <*>
+     (extractLinkedin <$> ireq textField "linkedin") <*>
+     (fmap extractTwitter <$> iopt textField "twitter")) <*>
     ireq checkBoxField "startup" <*>
     ireq checkBoxField "remote" <*>
     ((\checks -> [lang | (Just True, lang) <- checks `zip` langs]) <$>
@@ -57,6 +58,9 @@ extractGithub = replaceBackslash . T.replace "https://github.com/" ""
 extractLinkedin :: Text -> Text
 extractLinkedin =
   replaceBackslash . T.replace "https://www.linkedin.com/company/" ""
+
+extractTwitter :: Text -> Text
+extractTwitter = replaceBackslash . T.replace "https://twitter.com/" ""
 
 resolveCoordinate :: Text -> Text -> IO Coordinate
 resolveCoordinate key address = do

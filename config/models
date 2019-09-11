@@ -101,6 +101,7 @@ Office json
 Socials json
     github Text
     linkedin Text
+    twitter Text Maybe
     deriving Eq Show Read
 
 NewCompany
