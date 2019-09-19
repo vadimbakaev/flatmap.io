@@ -1,12 +1,12 @@
 <div #mapid>
-  <div #removeModal .modal.fade role="dialog">
+  <div #promoteModal .modal.fade role="dialog">
     <div .modal-dialog>
       <div .modal-content>
         <div .modal-header>
           <button .close type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;
         <div .modal-body>
-          <p>Are you sure you want to remove this comapny?
+          <p>Are you sure you want to promote this comapny?
         <div .modal-footer>
-          <button .btn.btn-primary type="button" data-dismiss="modal" onclick="remove()">Yes, remove
+          <button .btn.btn-primary type="button" data-dismiss="modal" onclick="promote()">Yes, promote
           <button .btn.btn-secondary type="button" data-dismiss="modal">Close

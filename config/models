@@ -3,7 +3,9 @@
 -- Adding "json" causes ToJSON and FromJSON instances to be derived.
 
 -- Protocol
-
+PromoteNewCompanyRequest json
+   item NewCompanyId
+  
 WishlistRequest json
    item CompanyId
 
@@ -81,11 +83,11 @@ Company json
     name Text
     website Text
     industry Text
-    types [Text]
     office Office
     socials Socials
     stack [Text]
     remote Bool
+    addedBy UserId Maybe
     deriving Eq Show Read
 
 Coordinate json

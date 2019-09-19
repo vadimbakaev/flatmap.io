@@ -61,14 +61,13 @@ function flyToPoint(currentFeature) {
     })
 }
 
-function remove() {
-    let bookmark = $("#bookmark");
+function promote() {
+    let promote = $('#promote');
     $.post(
-        "/bookmarks",
-        JSON.stringify({item : bookmark.attr("value")}),
+        "/pendings",
+        JSON.stringify({item : promote.attr("value")}),
         function(data, status) {
             if(status === 'success') {
-                window.localStorage.setItem('items', data.items);
                 location.reload();
             }
         }
@@ -92,7 +91,7 @@ function createPopUp(currentFeature) {
     let isRemote = prop.remote;
     let industry = prop.industry;
     let stack = JSON.parse(prop.stack);
-    let bookmarkLabel = items != null && items.includes(id) ? "fas" : "far";
+    let promotionLabel = items != null && items.includes(id) ? "fas" : "far";
     var badges = "";
 
     stack.forEach(lang =>
@@ -121,7 +120,7 @@ function createPopUp(currentFeature) {
             + badges
             + '</div>'
             + '<i class="fas fa-industry"></i> ' + industry
-//            + '<i id="bookmark" class="' + bookmarkLabel + ' fa-heart company-bookmark" value="' + id +'" data-toggle="modal" data-target="#removeModal"></i>'
+            + '<i id="promote" class="' + promotionLabel + ' fa-check-square company-bookmark" value="' + id +'" data-toggle="modal" data-target="#promoteModal"></i>'
             + '</div>'
             )
     .addTo(map);

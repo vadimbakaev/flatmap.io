@@ -17,4 +17,4 @@
 
 /bookmarks BookmarksR GET POST
 
-/pendings PendingR GET
+/pendings PendingR GET POST

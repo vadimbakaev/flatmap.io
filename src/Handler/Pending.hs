@@ -34,6 +34,14 @@ getPendingR = do
             $(widgetFile "pending")
         else redirect HomeR
 
+postPendingR :: Handler Value
+postPendingR = do
+  PromoteNewCompanyRequest nId <- requireInsecureJsonBody
+  newCompany <- runDB $ get404 nId
+  _ <- runDB $ insertKey (toCompanyKey nId) (toCompany newCompany)
+  _ <- runDB $ delete nId
+  sendResponseStatus status200 ()
+
 toGeo :: [Entity NewCompany] -> GeoFeatureCollection (Entity NewCompany)
 toGeo companies =
   GeoFeatureCollection Nothing (fromList $ map toGeoFeature companies)
@@ -54,3 +62,10 @@ toGeoFeature company =
     , _properties = company
     , _featureId = Nothing
     }
+
+toCompany :: NewCompany -> Company
+toCompany (NewCompany companyName companyWebsite companyIndustry companyOffice companySocials companyStartup companyRemote companyStack companyCreatedAt companyAddedBy) =
+  Company {..}
+
+toCompanyKey :: Key NewCompany -> Key Company
+toCompanyKey (NewCompanyKey key) = CompanyKey key
