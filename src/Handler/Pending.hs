@@ -36,11 +36,21 @@ getPendingR = do
 
 postPendingR :: Handler Value
 postPendingR = do
-  PromoteNewCompanyRequest nId <- requireInsecureJsonBody
-  newCompany <- runDB $ get404 nId
-  _ <- runDB $ insertKey (toCompanyKey nId) (toCompany newCompany)
-  _ <- runDB $ delete nId
-  sendResponseStatus status200 ()
+  muser <- maybeAuth
+  case muser of
+    Nothing -> sendResponseStatus status401 ()
+    Just (Entity _ user) ->
+      if userIsAdmin user
+        then do
+          PromoteNewCompanyRequest nId <- requireInsecureJsonBody
+          newCompany <- runDB $ get404 nId
+          _ <-
+            runDB $ do
+              _ <- insertKey (toCompanyKey nId) (toCompany newCompany)
+              _ <- delete nId
+              pure ()
+          sendResponseStatus status200 ()
+        else sendResponseStatus status403 ()
 
 toGeo :: [Entity NewCompany] -> GeoFeatureCollection (Entity NewCompany)
 toGeo companies =
