@@ -108,7 +108,7 @@ function createPopUp(currentFeature) {
             + '<div class="company-info">'
             + '<div class="company-links">'
             + (!!github ? '<i class="fab fa-github"></i> <a href="https://github.com/' + github + '" target="_blank" rel="noopener">' + github + '</a> </br>' : '')
-            + (!!linkedin ? '<i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/company/' + linkedin + '/about" target="_blank" rel="noopener">' + linkedin + '</a></br>' : '')
+            + (!!linkedin ? '<i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/company/' + linkedin + '/" target="_blank" rel="noopener">' + linkedin + '</a></br>' : '')
             + (!!twitter ? '<i class="fab fa-twitter"></i> <a href="https://twitter.com/' + twitter + '" target="_blank" rel="noopener">' + twitter + '</a> </br>' : '')
             + '</div>'
             + '<div class="company-type">'
