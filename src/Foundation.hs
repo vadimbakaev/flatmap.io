@@ -84,7 +84,7 @@ getCompanies = selectList [] []
 instance Yesod App
     -- Controls the base of generated URLs. For more information on modifying,
     -- see: https://github.com/yesodweb/yesod/wiki/Overriding-approot
-                                                                  where
+                                                                where
   approot :: Approot App
   approot =
     ApprootRequest $ \app req ->

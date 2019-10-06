@@ -86,7 +86,9 @@ Company json
     office Office
     socials Socials
     stack [Text]
+    startup Bool
     remote Bool
+    createdAt UTCTime
     addedBy UserId Maybe
     deriving Eq Show Read
 
