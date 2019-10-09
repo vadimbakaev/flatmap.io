@@ -25,7 +25,10 @@ getHomeR = getSearchR
 getSearchR :: Handler Html
 getSearchR = do
   mlang <- lookupGetParam "lang"
-  companies <- toGeo <$> runDB (getAllCompanies mlang)
+  mremote <- lookupGetParam "remote"
+  mindustry <- lookupGetParam "industry"
+  companies <-
+    toGeo <$> runDB (getAllCompanies mlang (mremote >>= readMay) mindustry)
   defaultLayout $ do
     muser <- maybeAuth
     let isLogged = isJust muser
@@ -39,11 +42,15 @@ getSearchR = do
 searchForR :: Text -> Handler Html
 searchForR lang = redirect (SearchR, [("lang", lang)])
 
-getAllCompanies :: Maybe Text -> DB [Entity Company]
-getAllCompanies (Just lang) = do
-  companies <- selectList [] []
+getAllCompanies :: Maybe Text -> Maybe Bool -> Maybe Text -> DB [Entity Company]
+getAllCompanies (Just lang) mremote mindustry = do
+  companies <- getAllCompanies Nothing mremote mindustry
   pure $ filter (elem lang . companyStack . entityVal) companies
-getAllCompanies _ = selectList [] []
+getAllCompanies _ mremote mindustry =
+  selectList
+    (catMaybes
+       [(CompanyRemote ==.) <$> mremote, (CompanyIndustry ==.) <$> mindustry])
+    []
 
 toGeo :: [Entity Company] -> GeoFeatureCollection (Entity Company)
 toGeo companies =
