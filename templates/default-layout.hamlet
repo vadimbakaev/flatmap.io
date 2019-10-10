@@ -7,12 +7,13 @@
       <span .navbar-toggler-icon>
     <div #navbar.collapse.navbar-collapse>
       <ul .navbar-nav.mr-auto.navbar-left>
-        <li .nav-item.dropdown :Just HomeR == mcurrentRoute:.active>
-          <a .nav-lin.dropdown-toggle href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#{fromMaybe "All" mlang}
-          <div .dropdown-menu aria-labelledby="navbarDropdown">
-            <a .dropdown-item href="/">All
-            $forall item <- searchItems
-                    <a .dropdown-item href="/search?lang=#{item}">#{item}
+        <form .form-inline action=@{SearchR} method="GET">
+          <div .form-group>
+            <label for="langSelector">
+            <select .form-control.form-control-sm id="lang" name="lang" onchange="this.form.submit()">
+                    <option :Nothing == mlang:.selected="selected">All
+              $forall item <- searchItems
+                    <option :Just item == mlang:selected="selected">#{item}
 
       <ul .navbar-nav.navbar-right>
         $forall MenuItem label route _ button micon <- navbarRightFilteredMenuItems

@@ -9,6 +9,7 @@
 
 module Handler.Home where
 
+import Control.Monad (mfilter)
 import Data.Aeson
 import Data.Geospatial.Internal.BasicTypes
 import Data.Geospatial.Internal.GeoFeature
@@ -24,7 +25,8 @@ getHomeR = getSearchR
 
 getSearchR :: Handler Html
 getSearchR = do
-  mlang <- lookupGetParam "lang"
+  mlangValue <- lookupGetParam "lang"
+  let mlang = mfilter (/= "All") mlangValue
   mremote <- lookupGetParam "remote"
   mindustry <- lookupGetParam "industry"
   companies <-
