@@ -84,7 +84,7 @@ getCompanies = selectList [] []
 instance Yesod App
     -- Controls the base of generated URLs. For more information on modifying,
     -- see: https://github.com/yesodweb/yesod/wiki/Overriding-approot
-                                                                where
+                                                                      where
   approot :: Approot App
   approot =
     ApprootRequest $ \app req ->
@@ -121,17 +121,22 @@ instance Yesod App
     master <- getYesod
     muser <- maybeAuth
     mlang <- lookupGetParam "lang"
+    mindustry <- lookupGetParam "industry"
+    mremote <- lookupGetParam "remote"
     mcurrentRoute <- getCurrentRoute
     companies <- runDB getCompanies
-    let searchItems =
+    let languagesSelector =
           L.sort $ L.nub $ L.concatMap (companyStack . entityVal) companies
+    let industriesSelector =
+          L.sort $ L.nub $ (companyIndustry . entityVal) <$> companies
         -- Define the menu items of the header.
     let menuItems =
           [ NavbarRight $
             MenuItem
               { menuItemLabel = "Pendings"
               , menuItemRoute = PendingR
-              , menuItemAccessCallback = Just True == (userIsAdmin . entityVal <$> muser)
+              , menuItemAccessCallback =
+                  Just True == (userIsAdmin . entityVal <$> muser)
               , menuItemButton = False
               , menuItemIcon = Just "fas fa-user-check"
               }

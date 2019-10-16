@@ -25,12 +25,10 @@ getHomeR = getSearchR
 
 getSearchR :: Handler Html
 getSearchR = do
-  mlangValue <- lookupGetParam "lang"
-  let mlang = mfilter (/= "All") mlangValue
-  mremote <- lookupGetParam "remote"
-  mindustry <- lookupGetParam "industry"
-  companies <-
-    toGeo <$> runDB (getAllCompanies mlang (mremote >>= readMay) mindustry)
+  mlang <- mfilter (/= "All languages") <$> lookupGetParam "lang"
+  mremote <- fmap (== "on") <$> lookupGetParam "remote"
+  mindustry <- mfilter (/= "All industries") <$> lookupGetParam "industry"
+  companies <- toGeo <$> runDB (getAllCompanies mlang mremote mindustry)
   defaultLayout $ do
     muser <- maybeAuth
     let isLogged = isJust muser
