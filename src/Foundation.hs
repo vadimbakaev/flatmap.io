@@ -128,7 +128,7 @@ instance Yesod App
     let languagesSelector =
           L.sort $ L.nub $ L.concatMap (companyStack . entityVal) companies
     let industriesSelector =
-          L.sort $ L.nub $ (companyIndustry . entityVal) <$> companies
+          L.sort $ L.nub $ companyIndustry . entityVal <$> companies
         -- Define the menu items of the header.
     let menuItems =
           [ NavbarRight $

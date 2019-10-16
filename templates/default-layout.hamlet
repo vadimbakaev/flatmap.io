@@ -8,21 +8,24 @@
     <div #navbar.collapse.navbar-collapse>
       <ul .navbar-nav.mr-auto.navbar-left>
         <form .form-inline action=@{SearchR} method="GET">
-          <div .form-group.navbar-nav.nav-link>
-            <label for="langSelector">
-            <select .form-control.form-control-sm id="langFiler" name="lang" onchange="this.form.submit()">
+          <li .nav-item>
+            <div .form-group.navbar-nav.nav-link>
+              <label for="langSelector">
+              <select .form-control.form-control-sm id="langFiler" name="lang" onchange="this.form.submit()">
                     <option :Nothing == mlang:.selected="selected">All languages
-              $forall item <- languagesSelector
+                $forall item <- languagesSelector
                     <option :Just item == mlang:selected="selected">#{item}
-          <div .form-group.navbar-nav.nav-link>
-            <label for="industrySelector">
-            <select .form-control.form-control-sm id="industryFilter" name="industry" onchange="this.form.submit()">
+          <li .nav-item>
+            <div .form-group.navbar-nav.nav-link>
+              <label for="industrySelector">
+              <select .form-control.form-control-sm id="industryFilter" name="industry" onchange="this.form.submit()">
                     <option :Nothing == mindustry:.selected="selected">All industries
-              $forall item <- industriesSelector
+                $forall item <- industriesSelector
                     <option :Just item == mindustry:selected="selected">#{item}
-          <div .form-group.navbar-nav.navbar-item>
-            <input .form-check-input.form-control-sm id="remoteFilter" name="remote" type="checkbox" onchange="this.form.submit()" :Just "on" == mremote:checked=true>
-            <label for="remoteSelector" .text-light>remote
+          <li .nav-item>
+            <div .custom-control.custom-checkbox>
+              <input .custom-control-input id="remoteFilter" name="remote" type="checkbox" onchange="this.form.submit()" :Just "on" == mremote:checked=true>
+              <label for="remoteFilter" .custom-control-label.text-light>remote
 
       <ul .navbar-nav.navbar-right>
         $forall MenuItem label route _ button micon <- navbarRightFilteredMenuItems
