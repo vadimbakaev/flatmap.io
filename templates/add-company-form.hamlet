@@ -25,12 +25,12 @@
             <label for="website">Website
             <input id="website" name="website" .form-control type="text" maxlength="80" placeholder="https://www.mycompany.com/" value="" required="true">
           <div .col-sm-4>
-            <label for="linkedin">LinkedIn
-            <input id="linkedin" name="linkedin" .form-control type="text" maxlength="80" placeholder="https://www.linkedin.com/company/myCompany/" value="" required="true">
-          <div .col-sm-4>
             <label for="github">Github
             <input id="github" name="github" .form-control type="text" maxlength="80" placeholder="https://github.com/myCompany" value="" required="true">
         <div .row>
+          <div .col-sm-4>
+            <label for="linkedin">LinkedIn (Optional)
+            <input id="linkedin" name="linkedin" .form-control type="text" maxlength="80" placeholder="https://www.linkedin.com/company/myCompany/" value="">
           <div .col-sm-4>
             <label for="twitter">Twitter (Optional)
             <input id="twitter" name="twitter" .form-control type="text" maxlength="80" placeholder="https://twitter.com/myCompany" value="">

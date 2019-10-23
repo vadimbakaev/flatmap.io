@@ -51,7 +51,7 @@ postCompanyR = do
     ireq textField "industry" <*>
     pure (Office address coordinate) <*>
     (Socials <$> (extractGithub <$> ireq textField "github") <*>
-     (extractLinkedin <$> ireq textField "linkedin") <*>
+     (fmap extractLinkedin <$> iopt textField "linkedin") <*>
      (fmap extractTwitter <$> iopt textField "twitter")) <*>
     ireq checkBoxField "startup" <*>
     ireq checkBoxField "remote" <*>
