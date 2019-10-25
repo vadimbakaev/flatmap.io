@@ -127,7 +127,7 @@ instance Yesod App
   yesodMiddleware handler = do
     addHeader
       "Content-Security-Policy"
-      "default-src * data: blob: ; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google-analytics.com stackpath.bootstrapcdn.com cdnjs.cloudflare.com code.jquery.com api.tiles.mapbox.com kit.fontawesome.com data: blob: ; style-src 'self' 'unsafe-inline' fonts.googleapis.com stackpath.bootstrapcdn.com cdnjs.cloudflare.com kit-free.fontawesome.com api.tiles.mapbox.com; font-src 'self' data: fonts.gstatic.com kit-free.fontawesome.com; img-src 'self' data: blob: s2.googleusercontent.com www.google-analytics.com; connect-src 'self' https://*.tiles.mapbox.com https://api.mapbox.com https://events.mapbox.com https://www.google-analytics.com"
+      "default-src * data: blob: ; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google-analytics.com stackpath.bootstrapcdn.com cdnjs.cloudflare.com code.jquery.com api.tiles.mapbox.com kit.fontawesome.com data: blob: ; style-src 'self' 'unsafe-inline' fonts.googleapis.com stackpath.bootstrapcdn.com cdnjs.cloudflare.com kit-free.fontawesome.com api.tiles.mapbox.com; font-src 'self' data: fonts.gstatic.com kit-free.fontawesome.com; img-src 'self' data: https://s2.googleusercontent.com blob: https://2.googleusercontent.com www.google-analytics.com; connect-src 'self' https://*.tiles.mapbox.com https://api.mapbox.com https://events.mapbox.com https://www.google-analytics.com"
     addHeader "X-Frame-Options" "deny"
     addHeader "X-Content-Type-Options" "nosniff"
     addHeader "Referrer-Policy" "origin"

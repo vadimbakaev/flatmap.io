@@ -103,7 +103,7 @@ function createPopUp(currentFeature) {
     .setMaxWidth(360)
     .setHTML(
         '<div class="in-window">'
-            +'<h5><img src="http://s2.googleusercontent.com/s2/favicons?domain_url=' + website + '"> <a href="' + website + '" target="_blank" rel="noopener">' + name + '</a> </h5>'
+            +'<h5><img src="https://s2.googleusercontent.com/s2/favicons?domain_url=' + website + '"> <a href="' + website + '" target="_blank" rel="noopener">' + name + '</a> </h5>'
             + '<div class="separator"></div>'
             + '<div class="company-info">'
             + '<div class="company-links">'
