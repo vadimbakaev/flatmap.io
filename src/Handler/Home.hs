@@ -26,12 +26,14 @@
 
 module Handler.Home where
 
-import Control.Monad (mfilter)
+import Control.Monad (join, mfilter)
 import Data.Aeson
+import Data.Bifunctor (bimap)
 import Data.Geospatial.Internal.BasicTypes
 import Data.Geospatial.Internal.GeoFeature
 import Data.Geospatial.Internal.GeoFeatureCollection
 import Data.Geospatial.Internal.Geometry
+import Data.Time.Clock
 import Import
 
 -- The majority of the code you will write in Yesod lives in these handler
@@ -45,7 +47,13 @@ getSearchR = do
   mlang <- mfilter (/= "All languages") <$> lookupGetParam "lang"
   mremote <- fmap (== "on") <$> lookupGetParam "remote"
   mindustry <- mfilter (/= "All industries") <$> lookupGetParam "industry"
-  companies <- toGeo <$> runDB (getAllCompanies mlang mremote mindustry)
+  now <- liftIO getCurrentTime
+  (companies, newCompanies) <-
+    join bimap toGeo .
+    partition
+      (((7 * 24 * 60 * 60 :: NominalDiffTime) <) .
+       diffUTCTime now . companyCreatedAt . entityVal) <$>
+    runDB (getAllCompanies mlang mremote mindustry)
   defaultLayout $ do
     muser <- maybeAuth
     let isLogged = isJust muser

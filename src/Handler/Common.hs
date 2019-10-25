@@ -41,3 +41,9 @@ getMarkerR = do
   cacheSeconds $ 60 * 60 * 24 * 30
   return $
     TypedContent "image/x-icon" $ toContent $(embedFile "config/marker.png")
+
+getNewMarkerR :: Handler TypedContent
+getNewMarkerR = do
+  cacheSeconds $ 60 * 60 * 24 * 30
+  return $
+    TypedContent "image/x-icon" $ toContent $(embedFile "config/marker-new.png")
