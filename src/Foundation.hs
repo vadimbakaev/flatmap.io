@@ -132,6 +132,7 @@ instance Yesod App
     addHeader "X-Content-Type-Options" "nosniff"
     addHeader "Referrer-Policy" "origin"
     addHeader "Feature-Policy" "geolocation 'self'"
+    addHeader "Strict-Transport-Security" "max-age=31536000; includeSubDomains"
     defaultYesodMiddleware handler
   defaultLayout :: Widget -> Handler Html
   defaultLayout widget = do
