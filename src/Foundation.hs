@@ -130,7 +130,7 @@ instance Yesod App
       "default-src * data: blob: ; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google-analytics.com stackpath.bootstrapcdn.com cdnjs.cloudflare.com code.jquery.com api.tiles.mapbox.com kit.fontawesome.com data: blob: ; style-src 'self' 'unsafe-inline' fonts.googleapis.com stackpath.bootstrapcdn.com cdnjs.cloudflare.com kit-free.fontawesome.com api.tiles.mapbox.com; font-src 'self' data: fonts.gstatic.com kit-free.fontawesome.com; img-src 'self' data: https://s2.googleusercontent.com blob: https://2.googleusercontent.com www.google-analytics.com; connect-src 'self' https://*.tiles.mapbox.com https://api.mapbox.com https://events.mapbox.com https://www.google-analytics.com"
     addHeader "X-Frame-Options" "deny"
     addHeader "X-Content-Type-Options" "nosniff"
-    addHeader "Referrer-Policy" "origin"
+    addHeader "Referrer-Policy" "no-referrer"
     addHeader "Feature-Policy" "geolocation 'self'"
     addHeader "Strict-Transport-Security" "max-age=31536000; includeSubDomains"
     defaultYesodMiddleware handler
