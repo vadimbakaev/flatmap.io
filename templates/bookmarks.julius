@@ -27,13 +27,30 @@ map.on("load", function() {
                 "icon-allow-overlap": true
             }
         });
-
     });
 
+    map.loadImage('@{NewMarkerR}', function(error, image) {
+        if (error) throw error;
+        map.addImage("new-marker", image);
+        /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+        map.addLayer({
+            id: "new-locations",
+            type: "symbol",
+            /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+            source: {
+                type: "geojson",
+                data: #{toJSON newCompanies}
+            },
+            layout: {
+                "icon-image": "new-marker",
+                "icon-allow-overlap": true
+            }
+        });
+    });
     // Add an event listener for when a user clicks on the map
     map.on('click', function(e) {
     // Query all the rendered points in the view
-    var features = map.queryRenderedFeatures(e.point, { layers: ['locations'] });
+    var features = map.queryRenderedFeatures(e.point, { layers: ['locations', 'new-locations'] });
     if (features.length) {
       var clickedPoint = features[0];
       // 1. Fly to the point
@@ -44,7 +61,7 @@ map.on("load", function() {
     });
 
     map.on('mousemove', function (e) {
-      var features = map.queryRenderedFeatures(e.point, {layers: ['locations']});
+      var features = map.queryRenderedFeatures(e.point, {layers: ['locations', 'new-locations']});
       if(features.length) {
           map.getCanvas().style.cursor = features.length ? 'pointer' : '';
       } else {

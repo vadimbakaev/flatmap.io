@@ -29,8 +29,8 @@ module Handler.Home where
 import Control.Monad (join, mfilter)
 import Data.Aeson
 import Data.Bifunctor (bimap)
-import Data.Time.Clock
 import Import
+import Util.Company (recentlyAdded)
 import Util.Geo (toGeo)
 
 -- The majority of the code you will write in Yesod lives in these handler
@@ -46,10 +46,7 @@ getSearchR = do
   mindustry <- mfilter (/= "All industries") <$> lookupGetParam "industry"
   now <- liftIO getCurrentTime
   (companies, newCompanies) <-
-    join bimap toGeo .
-    partition
-      (((7 * 24 * 60 * 60 :: NominalDiffTime) <) .
-       diffUTCTime now . companyCreatedAt . entityVal) <$>
+    join bimap toGeo . partition (recentlyAdded now) <$>
     runDB (getAllCompanies mlang mremote mindustry)
   defaultLayout $ do
     muser <- maybeAuth

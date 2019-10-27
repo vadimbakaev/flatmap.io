@@ -25,7 +25,9 @@
 
 module Handler.Bookmarks where
 
+import Data.Bifunctor (bimap)
 import Import
+import Util.Company (recentlyAdded)
 import Util.Geo (toGeo)
 
 getBookmarksR :: Handler TypedContent
@@ -40,7 +42,10 @@ getBookmarksR = do
       selectRep $ do
         provideRep $
           defaultLayout $ do
-            let companies = toGeo savedCompanies
+            now <- liftIO getCurrentTime
+            let (companies, newCompanies) =
+                  bimap toGeo toGeo $
+                  partition (recentlyAdded now) savedCompanies
             addScriptRemote "https://code.jquery.com/jquery-3.4.1.min.js"
             App {..} <- getYesod
             aDomId <- newIdent
