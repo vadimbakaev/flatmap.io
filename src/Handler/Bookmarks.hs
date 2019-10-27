@@ -25,8 +25,8 @@
 
 module Handler.Bookmarks where
 
-import Handler.Home (toGeo)
 import Import
+import Util.Geo (toGeo)
 
 getBookmarksR :: Handler TypedContent
 getBookmarksR = do

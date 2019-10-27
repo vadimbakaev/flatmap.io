@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 10c28f8f06b9c476fbd288961a3dddef0a63fbeb02e0deaaa1eba3e3bd83a9bc
+-- hash: 57aa5edafb0a8a1d55d3b1a2fe7e4c8ebe8ad41b0c0a8002ee91c0acd8ad03bf
 
 name:           h-map
 version:        0.0.0
@@ -37,6 +37,7 @@ library
       Model
       Settings
       Settings.StaticFiles
+      Util.Geo
   other-modules:
       Paths_h_map
   hs-source-dirs:
