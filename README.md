@@ -38,16 +38,7 @@ stack install hindent
 
 ## How to run
 
-Run MongoDB first time:
-
-```
-docker run --name mongo -d -p 27017:27017 mongo --noauth --bind_ip=0.0.0.0
-```
-Next time just run:
-
-```
-docker run mongo
-```
+Expose MongoDB on localhost with default port 27017
 
 Start a development server with:
 
