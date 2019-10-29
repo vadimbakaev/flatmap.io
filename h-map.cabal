@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a70c26b38955a59667cf045b9fedd86676e1ffc9afd5b66c9f5a87d5cec5ccd0
+-- hash: 7b0f430c1c2d38cf2c7b4bbbb69610bda51781e8877b53327a8f54210f2b7c5d
 
 name:           h-map
-version:        0.0.0
+version:        0.0.1
 license:        AGPL-3
 license-file:   LICENSE
 build-type:     Simple
