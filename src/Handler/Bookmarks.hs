@@ -26,6 +26,7 @@
 module Handler.Bookmarks where
 
 import Data.Bifunctor (bimap)
+import Database (getBookmarks, getCompaniesByIds, updateBookmarksItems)
 import Import
 import Util.Company (recentlyAdded)
 import Util.Geo (toGeo)
@@ -36,9 +37,9 @@ getBookmarksR = do
   case muser of
     Nothing -> sendResponseStatus status407 ()
     Just (Entity userId _) -> do
-      mbookmarks <- runDB $ selectFirst [BookmarksUserId ==. userId] []
+      mbookmarks <- runDB $ getBookmarks userId
       let savedIds = maybe [] (bookmarksItems . entityVal) mbookmarks
-      savedCompanies <- runDB $ selectList [CompanyId <-. savedIds] []
+      savedCompanies <- runDB $ getCompaniesByIds savedIds
       selectRep $ do
         provideRep $
           defaultLayout $ do
@@ -61,14 +62,14 @@ postBookmarksR = do
     Nothing -> sendResponseStatus status407 ()
     Just (Entity userId _) ->
       runDB $ do
-        mbookmarks <- selectFirst [BookmarksUserId ==. userId] []
+        mbookmarks <- getBookmarks userId
         case mbookmarks of
           Nothing -> do
             insert_ $ Bookmarks userId newItems
             returnJson $ WishlistResponse newItems
             where newItems = [itemToAdd]
           Just (Entity bookmarksId (Bookmarks _ savedItems)) -> do
-            update bookmarksId [BookmarksItems =. newItems]
+            updateBookmarksItems bookmarksId newItems
             returnJson $ WishlistResponse newItems
             where newItems = removeOrAdd itemToAdd savedItems
 

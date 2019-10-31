@@ -30,6 +30,7 @@ import Data.Geospatial.Internal.BasicTypes
 import Data.Geospatial.Internal.GeoFeature
 import Data.Geospatial.Internal.GeoFeatureCollection
 import Data.Geospatial.Internal.Geometry
+import Database (getNewCompanies, promoteNewCompany)
 
 import Import
 
@@ -41,7 +42,7 @@ getPendingR = do
     Just (Entity _ user) ->
       if userIsAdmin user
         then do
-          newCompanies <- runDB $ selectList [] []
+          newCompanies <- runDB getNewCompanies
           defaultLayout $ do
             let companies = toGeo newCompanies
             addScriptRemote "https://code.jquery.com/jquery-3.4.1.min.js"
@@ -61,11 +62,7 @@ postPendingR = do
         then do
           PromoteNewCompanyRequest nId <- requireInsecureJsonBody
           newCompany <- runDB $ get404 nId
-          _ <-
-            runDB $ do
-              _ <- insertKey (toCompanyKey nId) (toCompany newCompany)
-              _ <- delete nId
-              pure ()
+          _ <- runDB $ promoteNewCompany nId newCompany
           sendResponseStatus status200 ()
         else sendResponseStatus status403 ()
 
@@ -89,10 +86,3 @@ toGeoFeature company =
     , _properties = company
     , _featureId = Nothing
     }
-
-toCompany :: NewCompany -> Company
-toCompany (NewCompany companyName companyWebsite companyIndustry companyOffice companySocials companyStartup companyRemote companyStack companyCreatedAt companyAddedBy) =
-  Company {..}
-
-toCompanyKey :: Key NewCompany -> Key Company
-toCompanyKey (NewCompanyKey key) = CompanyKey key
