@@ -26,6 +26,7 @@ module Handler.Company where
 
 import qualified Data.List.Split as LS (chunksOf)
 import Data.Text as T (replace)
+import Database (totalNewCompanies)
 import Import
 import Network.HTTP.Simple
 
@@ -59,7 +60,7 @@ postCompanyR = do
      traverse (iopt checkBoxField) langs) <*>
     pure createdAt <*>
     pure muserId
-  total <- runDB $ count ([] :: [Filter NewCompany])
+  total <- runDB totalNewCompanies
   when (total < spamProtection) $ void $ runDB $ insert newCompany
   defaultLayout $ do
     setTitle $

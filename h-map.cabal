@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7b0f430c1c2d38cf2c7b4bbbb69610bda51781e8877b53327a8f54210f2b7c5d
+-- hash: 6094145999e8d045d0ddb81c065064e9e7d2366229807f14dd0b682a3879c544
 
 name:           h-map
 version:        0.0.1
@@ -25,6 +25,7 @@ flag library-only
 library
   exposed-modules:
       Application
+      Database
       Foundation
       Handler.Bookmarks
       Handler.Common

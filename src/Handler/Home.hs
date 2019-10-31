@@ -29,6 +29,7 @@ module Handler.Home where
 import Control.Monad (join, mfilter)
 import Data.Aeson
 import Data.Bifunctor (bimap)
+import Database (getAllCompanies)
 import Import
 import Util.Company (recentlyAdded)
 import Util.Geo (toGeo)
@@ -60,13 +61,3 @@ getSearchR = do
 
 searchForR :: Text -> Handler Html
 searchForR lang = redirect (SearchR, [("lang", lang)])
-
-getAllCompanies :: Maybe Text -> Maybe Bool -> Maybe Text -> DB [Entity Company]
-getAllCompanies (Just lang) mremote mindustry = do
-  companies <- getAllCompanies Nothing mremote mindustry
-  pure $ filter (elem lang . companyStack . entityVal) companies
-getAllCompanies _ mremote mindustry =
-  selectList
-    (catMaybes
-       [(CompanyRemote ==.) <$> mremote, (CompanyIndustry ==.) <$> mindustry])
-    []
