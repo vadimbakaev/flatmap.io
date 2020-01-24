@@ -1,6 +1,6 @@
 # [flatmap.io](http://www.flatmap.io)
 
-The rigth place to find rigth IT company.
+The right place to find right IT company.
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![CircleCI](https://circleci.com/gh/vadimbakaev/flatmap.io/tree/master.svg?style=svg&circle-token=bbb1dac62e12142d3ce4d5d3bec7f3f3ac192768)](https://circleci.com/gh/vadimbakaev/flatmap.io/tree/master)
