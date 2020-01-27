@@ -103,7 +103,9 @@ Office json
     deriving Eq Show Read
 
 Socials json
-    github Text
+    github Text Maybe
+    gitlab Text Maybe
+    bitbucket Text Maybe
     linkedin Text Maybe
     twitter Text Maybe
     deriving Eq Show Read

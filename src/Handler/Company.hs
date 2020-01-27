@@ -51,7 +51,8 @@ postCompanyR = do
     NewCompany <$> ireq textField "companyName" <*> ireq textField "website" <*>
     ireq textField "industry" <*>
     pure (Office address coordinate) <*>
-    (Socials <$> (extractGithub <$> ireq textField "github") <*>
+    (Socials <$> iopt textField "github" <*> iopt textField "gitlab" <*>
+     iopt textField "bitbucket" <*>
      (fmap extractLinkedin <$> iopt textField "linkedin") <*>
      (fmap extractTwitter <$> iopt textField "twitter")) <*>
     ireq checkBoxField "startup" <*>
@@ -69,9 +70,6 @@ postCompanyR = do
 
 replaceBackslash :: Text -> Text
 replaceBackslash = T.replace "/" ""
-
-extractGithub :: Text -> Text
-extractGithub = replaceBackslash . T.replace "https://github.com/" ""
 
 extractLinkedin :: Text -> Text
 extractLinkedin =
@@ -98,7 +96,7 @@ safe :: IO Coordinate -> IO Coordinate
 safe io = do
   result <- try io
   case result :: Either SomeException Coordinate of
-    Left ex -> const (Coordinate 0 0) <$> print ex
+    Left ex -> Coordinate 0 0 <$ print ex
     Right val -> pure val
 
 toCoordinate :: GeoResponse -> Coordinate

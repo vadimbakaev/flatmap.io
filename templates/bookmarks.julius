@@ -104,6 +104,8 @@ function createPopUp(currentFeature) {
     let website = prop.website;
     let socials = JSON.parse(prop.socials);
     let github = socials.github;
+    let gitlab = socials.gitlab;
+    let bitbucket = socials.bitbucket;
     let linkedin = socials.linkedin;
     let twitter = socials.twitter;
     let isRemote = prop.remote;
@@ -126,6 +128,8 @@ function createPopUp(currentFeature) {
             + '<div class="company-info">'
             + '<div class="company-links">'
             + (!!github ? '<i class="fab fa-github"></i> <a href="https://github.com/' + github + '" target="_blank" rel="noopener">' + github + '</a> </br>' : '')
+            + (!!gitlab ? '<i class="fab fa-gitlab"></i> <a href="https://gitlab.com/' + gitlab + '" target="_blank" rel="noopener">' + gitlab + '</a> </br>' : '')
+            + (!!bitbucket ? '<i class="fab fa-bitbucket"></i> <a href="https://bitbucket.org/' + bitbucket + '" target="_blank" rel="noopener">' + bitbucket + '</a> </br>' : '')
             + (!!linkedin ? '<i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/company/' + linkedin + '" target="_blank" rel="noopener">' + linkedin + '</a></br>' : '')
             + (!!twitter ? '<i class="fab fa-twitter"></i> <a href="https://twitter.com/' + twitter + '" target="_blank" rel="noopener">' + twitter + '</a> </br>' : '')
             + '</div>'
