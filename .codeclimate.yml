@@ -1,3 +1,9 @@
 plugins:
   hlint:
     enabled: true
+  haml-lint:
+    enabled: true
+  fixme:
+    enabled: true
+  markdownlint:
+    enabled: true
