@@ -4,9 +4,9 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6094145999e8d045d0ddb81c065064e9e7d2366229807f14dd0b682a3879c544
+-- hash: a8f6b5071913086ee38236b316b3e646c2e76f618500623142229ec88098d70b
 
-name:           h-map
+name:           flatmap-io
 version:        0.0.1
 license:        AGPL-3
 license-file:   LICENSE
@@ -41,7 +41,7 @@ library
       Util.Company
       Util.Geo
   other-modules:
-      Paths_h_map
+      Paths_flatmap_io
   hs-source-dirs:
       src
   build-depends:
@@ -95,11 +95,11 @@ library
     ghc-options: -Wall -fwarn-tabs -O2
   default-language: Haskell2010
 
-executable h-map
+executable flatmap-io
   main-is: main.hs
   other-modules:
       DevelMain
-      Paths_h_map
+      Paths_flatmap_io
   hs-source-dirs:
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
@@ -117,9 +117,9 @@ executable h-map
     , directory >=1.1 && <1.4
     , fast-logger >=2.2 && <2.5
     , file-embed
+    , flatmap-io
     , foreign-store
     , geojson >=3.0.4 && <4
-    , h-map
     , hjsmin >=0.1 && <0.3
     , http-client-tls >=0.3 && <0.4
     , http-conduit >=2.3 && <2.4
@@ -152,7 +152,7 @@ executable h-map
     buildable: False
   default-language: Haskell2010
 
-test-suite h-map-test
+test-suite flatmap-io-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
@@ -160,7 +160,7 @@ test-suite h-map-test
       Handler.ContactsSpec
       Handler.HomeSpec
       TestImport
-      Paths_h_map
+      Paths_flatmap_io
   hs-source-dirs:
       test
   ghc-options: -Wall
@@ -178,9 +178,9 @@ test-suite h-map-test
     , directory >=1.1 && <1.4
     , fast-logger >=2.2 && <2.5
     , file-embed
+    , flatmap-io
     , foreign-store
     , geojson >=3.0.4 && <4
-    , h-map
     , hjsmin >=0.1 && <0.3
     , hspec >=2.0.0
     , http-client-tls >=0.3 && <0.4

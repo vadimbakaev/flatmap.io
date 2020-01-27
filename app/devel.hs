@@ -1,5 +1,5 @@
 {-# LANGUAGE PackageImports #-}
-import "h-map" Application (develMain)
+import "flatmap-io" Application (develMain)
 import Prelude (IO)
 
 main :: IO ()

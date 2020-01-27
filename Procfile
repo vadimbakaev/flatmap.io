@@ -1,1 +1,1 @@
-web: h-map
+web: flatmap-io

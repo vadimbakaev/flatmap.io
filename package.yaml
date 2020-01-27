@@ -1,4 +1,4 @@
-name:    h-map
+name:    flatmap-io
 version: "0.0.1"
 
 dependencies:
@@ -68,7 +68,7 @@ library:
 
 # Runnable executable for our application
 executables:
-  h-map:
+  flatmap-io:
     main: main.hs
     source-dirs: app
     ghc-options:
@@ -76,19 +76,19 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - h-map
+    - flatmap-io
     when:
     - condition: flag(library-only)
       buildable: false
 
 # Test suite
 tests:
-  h-map-test:
+  flatmap-io-test:
     main: Spec.hs
     source-dirs: test
     ghc-options: -Wall
     dependencies:
-    - h-map
+    - flatmap-io
     - hspec >=2.0.0
     - yesod-test
     - microlens
