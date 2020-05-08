@@ -47,3 +47,7 @@ getNewMarkerR = do
   cacheSeconds $ 60 * 60 * 24 * 30
   return $
     TypedContent "image/x-icon" $ toContent $(embedFile "config/marker-new.png")
+
+getVerificationR :: Handler TypedContent
+getVerificationR =
+  return $ TypedContent typePlain $ toContent $(embedFile "config/ff9d19da938b496a49f706c4eaa81e54.txt")
