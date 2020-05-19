@@ -5,6 +5,7 @@ The right place to find right IT company.
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![CircleCI](https://circleci.com/gh/vadimbakaev/flatmap.io/tree/master.svg?style=svg&circle-token=bbb1dac62e12142d3ce4d5d3bec7f3f3ac192768)](https://circleci.com/gh/vadimbakaev/flatmap.io/tree/master)
 [![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/vadimbakaev/flatmap-io)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvadimbakaev%2Fflatmap.io.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvadimbakaev%2Fflatmap.io?ref=badge_shield)
 
 
 ### Prerequisites
@@ -72,3 +73,7 @@ stack test --flag h-map:library-only --flag h-map:dev
 * There are several chatrooms you can ask for help:
 	* For IRC, try Freenode#yesod and Freenode#haskell
 	* [Functional Programming Slack](https://fpchat-invite.herokuapp.com/), in the #haskell, #haskell-beginners, or #yesod channels.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvadimbakaev%2Fflatmap.io.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvadimbakaev%2Fflatmap.io?ref=badge_large)
