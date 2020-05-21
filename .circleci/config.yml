@@ -12,6 +12,8 @@ jobs:
       GITHUB_CLIENT_ID: stubForTest
       GITHUB_SECRET: stubForTest
     steps:
+      - run: |
+          curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash
       - checkout
       - restore_cache:
           name: Restore Cached Dependencies
@@ -23,6 +25,20 @@ jobs:
       - run:
           name: Run tests
           command: stack test
+      # run fossa
+      - run:
+          name: Imports fossa-cli
+          command: fossa init
+          working_directory: .
+      - run:
+          name: Analyze the project with fossa-cli and generate a dependency graph
+          command: fossa analyze
+          working_directory: .
+      - run:
+          name: Fossa test
+          command: fossa test
+          working_directory: .
+
       - run:
           name: Install executable
           command: stack install
