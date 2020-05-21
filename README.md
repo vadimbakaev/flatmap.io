@@ -74,7 +74,3 @@ stack test --flag h-map:library-only --flag h-map:dev
 	* For IRC, try Freenode#yesod and Freenode#haskell
 	* [Functional Programming Slack](https://fpchat-invite.herokuapp.com/), in the #haskell, #haskell-beginners, or #yesod channels.
 
-
-## License
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvadimbakaev%2Fflatmap.io.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvadimbakaev%2Fflatmap.io?ref=badge_large)
