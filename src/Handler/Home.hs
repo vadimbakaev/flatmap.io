@@ -40,6 +40,11 @@ import Util.Geo (toGeo)
 getHomeR :: Handler Html
 getHomeR = getSearchR
 
+getCompaniesR :: Handler Value
+getCompaniesR = do
+  companies <- runDB getCompanies
+  returnJson $ toGeo companies
+
 getSearchR :: Handler Html
 getSearchR = do
   mlang <- mfilter (/= "All languages") <$> lookupGetParam "lang"

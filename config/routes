@@ -20,3 +20,6 @@
 /bookmarks BookmarksR GET POST
 
 /pendings PendingR GET POST
+
+-- New endpoints
+/companies  CompaniesR GET
