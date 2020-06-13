@@ -313,7 +313,7 @@ instance YesodAuth App where
     -- You can add other plugins like Google Email, email or OAuth here
   authPlugins :: App -> [AuthPlugin App]
   authPlugins App {..} =
-    [oauth2GitHubScoped ["user"] appOAuth2ClientId appOAuth2ClientSecret]
+    [oauth2GitHubScoped ["user:email"] appOAuth2ClientId appOAuth2ClientSecret]
 
 instance YesodAuthPersist App
 
