@@ -42,6 +42,7 @@ getHomeR = getSearchR
 
 getCompaniesR :: Handler Value
 getCompaniesR = do
+  addHeader "Access-Control-Allow-Origin" "*"
   companies <- runDB getCompanies
   returnJson $ toGeo companies
 
