@@ -105,9 +105,7 @@ instance Yesod App
   approot :: Approot App
   approot =
     ApprootRequest $ \app req ->
-      case appRoot $ appSettings app of
-        Nothing -> getApprootText guessApproot app req
-        Just root -> root
+      fromMaybe (getApprootText guessApproot app req) (appRoot $ appSettings app)
     -- Store session data on the client in encrypted cookies,
     -- default session idle timeout is 120 minutes
   makeSessionBackend :: App -> IO (Maybe SessionBackend)
