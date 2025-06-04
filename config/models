@@ -12,7 +12,7 @@ WishlistRequest json
 WishlistResponse json
    items [CompanyId]
 
--- Dependecy
+-- Dependency
 -- Mapquest
 
 GeoResponse json
