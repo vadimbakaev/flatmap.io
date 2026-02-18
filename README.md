@@ -66,6 +66,31 @@ stack test --flag h-map:library-only --flag h-map:dev
 	* `stack hoogle <function, module or type signature>` to generate a Hoogle database and search for your query
 * The [Yesod cookbook](https://github.com/yesodweb/yesod-cookbook) has sample code for various needs
 
+## API
+
+### GET /companies
+
+Returns all companies as a GeoJSON FeatureCollection. CORS is enabled for this endpoint.
+
+**Response format:**
+
+Each feature in the collection represents a company with:
+- `geometry`: Point with longitude/latitude coordinates
+- `properties`: Company data including:
+  - `name`: Company name
+  - `website`: Company website URL
+  - `industry`: Industry category
+  - `office`: Office details (address and coordinates)
+  - `socials`: Social links (github, gitlab, bitbucket, linkedin, twitter)
+  - `stack`: Array of technologies used
+  - `startup`: Boolean indicating if it's a startup
+  - `remote`: Boolean indicating if remote work is available
+
+**Example request:**
+```bash
+curl http://localhost:3000/companies
+```
+
 ## Getting Help
 
 * Ask questions on [Stack Overflow, using the Yesod or Haskell tags](https://stackoverflow.com/questions/tagged/yesod+haskell)
