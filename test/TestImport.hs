@@ -20,6 +20,7 @@ import Yesod.Auth as X
 import Yesod.Default.Config2 (loadYamlSettings, useEnv)
 import Yesod.Test as X
 
+import Control.Monad.Fail (MonadFail)
 import Control.Monad.Trans.Control (MonadBaseControl)
 import Database.MongoDB.Admin (dropCollection)
 -- Wiping the test database
@@ -64,7 +65,7 @@ withApp =
 wipeDB :: App -> IO ()
 wipeDB app = void $ runDBWithApp app dropAllCollections
 
-dropAllCollections :: (MonadIO m, MonadBaseControl IO m) => Action m [Bool]
+dropAllCollections :: (MonadIO m, MonadBaseControl IO m, MonadFail m) => Action m [Bool]
 dropAllCollections =
   allCollections >>= return . filter (not . isSystemCollection) >>=
   mapM dropCollection

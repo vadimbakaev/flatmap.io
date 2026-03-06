@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.39.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a8f6b5071913086ee38236b316b3e646c2e76f618500623142229ec88098d70b
+-- hash: 299e37b396a3a0a266a88997c7e50e87e99e7965cbb01d5ffdac2b057ec1cd1d
 
 name:           flatmap-io
 version:        0.0.1
@@ -45,55 +45,56 @@ library
   hs-source-dirs:
       src
   build-depends:
-      aeson >=1.4 && <1.5
+      aeson >=2.0
     , base >=4.9.1.0 && <5
-    , bytestring >=0.10 && <0.11
+    , bytestring >=0.10
     , case-insensitive
-    , classy-prelude >=1.5 && <1.6
-    , classy-prelude-conduit >=1.5 && <1.6
-    , classy-prelude-yesod >=1.5 && <1.6
-    , conduit >=1.0 && <2.0
+    , classy-prelude >=1.5
+    , classy-prelude-conduit >=1.5
+    , classy-prelude-yesod >=1.5
+    , conduit >=1.0
     , containers
     , data-default
-    , directory >=1.1 && <1.4
-    , fast-logger >=2.2 && <2.5
+    , directory >=1.1
+    , fast-logger >=2.2
     , file-embed
     , foreign-store
-    , geojson >=3.0.4 && <4
-    , hjsmin >=0.1 && <0.3
-    , http-client-tls >=0.3 && <0.4
-    , http-conduit >=2.3 && <2.4
-    , monad-control >=0.3 && <1.1
-    , monad-logger >=0.3 && <0.4
+    , geojson >=4.0
+    , hjsmin >=0.1
+    , http-client-tls >=0.3
+    , http-conduit >=2.3
+    , http-types
+    , monad-control >=0.3
+    , monad-logger >=0.3
     , mongoDB
-    , persistent >=2.9 && <2.10
-    , persistent-mongoDB >=2.8 && <2.9
-    , persistent-template >=2.5 && <2.9
+    , persistent >=2.9
+    , persistent-mongoDB >=2.8
+    , persistent-template >=2.5
     , safe
-    , shakespeare >=2.0 && <2.1
+    , shakespeare >=2.0
     , split
     , template-haskell
-    , text >=0.11 && <2.0
+    , text >=0.11
     , time
     , unordered-containers
     , vector
     , wai
-    , wai-extra >=3.0 && <3.1
-    , wai-logger >=2.2 && <2.4
-    , warp >=3.0 && <3.3
-    , yaml >=0.11 && <0.12
-    , yesod >=1.6 && <1.7
-    , yesod-auth >=1.6.7 && <1.7
+    , wai-extra >=3.0
+    , wai-logger >=2.2
+    , warp >=3.0
+    , yaml >=0.11
+    , yesod >=1.6
+    , yesod-auth >=1.6
     , yesod-auth-oauth2
-    , yesod-core >=1.6 && <1.7
-    , yesod-form >=1.6 && <1.7
-    , yesod-static >=1.6 && <1.7
+    , yesod-core >=1.6
+    , yesod-form >=1.6
+    , yesod-static >=1.6
+  default-language: Haskell2010
   if (flag(dev)) || (flag(library-only))
     ghc-options: -Wall -fwarn-tabs -O0
     cpp-options: -DDEVELOPMENT
   else
     ghc-options: -Wall -fwarn-tabs -O2
-  default-language: Haskell2010
 
 executable flatmap-io
   main-is: main.hs
@@ -104,53 +105,54 @@ executable flatmap-io
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson >=1.4 && <1.5
+      aeson >=2.0
     , base >=4.9.1.0 && <5
-    , bytestring >=0.10 && <0.11
+    , bytestring >=0.10
     , case-insensitive
-    , classy-prelude >=1.5 && <1.6
-    , classy-prelude-conduit >=1.5 && <1.6
-    , classy-prelude-yesod >=1.5 && <1.6
-    , conduit >=1.0 && <2.0
+    , classy-prelude >=1.5
+    , classy-prelude-conduit >=1.5
+    , classy-prelude-yesod >=1.5
+    , conduit >=1.0
     , containers
     , data-default
-    , directory >=1.1 && <1.4
-    , fast-logger >=2.2 && <2.5
+    , directory >=1.1
+    , fast-logger >=2.2
     , file-embed
     , flatmap-io
     , foreign-store
-    , geojson >=3.0.4 && <4
-    , hjsmin >=0.1 && <0.3
-    , http-client-tls >=0.3 && <0.4
-    , http-conduit >=2.3 && <2.4
-    , monad-control >=0.3 && <1.1
-    , monad-logger >=0.3 && <0.4
+    , geojson >=4.0
+    , hjsmin >=0.1
+    , http-client-tls >=0.3
+    , http-conduit >=2.3
+    , http-types
+    , monad-control >=0.3
+    , monad-logger >=0.3
     , mongoDB
-    , persistent >=2.9 && <2.10
-    , persistent-mongoDB >=2.8 && <2.9
-    , persistent-template >=2.5 && <2.9
+    , persistent >=2.9
+    , persistent-mongoDB >=2.8
+    , persistent-template >=2.5
     , safe
-    , shakespeare >=2.0 && <2.1
+    , shakespeare >=2.0
     , split
     , template-haskell
-    , text >=0.11 && <2.0
+    , text >=0.11
     , time
     , unordered-containers
     , vector
     , wai
-    , wai-extra >=3.0 && <3.1
-    , wai-logger >=2.2 && <2.4
-    , warp >=3.0 && <3.3
-    , yaml >=0.11 && <0.12
-    , yesod >=1.6 && <1.7
-    , yesod-auth >=1.6.7 && <1.7
+    , wai-extra >=3.0
+    , wai-logger >=2.2
+    , warp >=3.0
+    , yaml >=0.11
+    , yesod >=1.6
+    , yesod-auth >=1.6
     , yesod-auth-oauth2
-    , yesod-core >=1.6 && <1.7
-    , yesod-form >=1.6 && <1.7
-    , yesod-static >=1.6 && <1.7
+    , yesod-core >=1.6
+    , yesod-form >=1.6
+    , yesod-static >=1.6
+  default-language: Haskell2010
   if flag(library-only)
     buildable: False
-  default-language: Haskell2010
 
 test-suite flatmap-io-test
   type: exitcode-stdio-1.0
@@ -165,51 +167,52 @@ test-suite flatmap-io-test
       test
   ghc-options: -Wall
   build-depends:
-      aeson >=1.4 && <1.5
+      aeson >=2.0
     , base >=4.9.1.0 && <5
-    , bytestring >=0.10 && <0.11
+    , bytestring >=0.10
     , case-insensitive
-    , classy-prelude >=1.5 && <1.6
-    , classy-prelude-conduit >=1.5 && <1.6
-    , classy-prelude-yesod >=1.5 && <1.6
-    , conduit >=1.0 && <2.0
+    , classy-prelude >=1.5
+    , classy-prelude-conduit >=1.5
+    , classy-prelude-yesod >=1.5
+    , conduit >=1.0
     , containers
     , data-default
-    , directory >=1.1 && <1.4
-    , fast-logger >=2.2 && <2.5
+    , directory >=1.1
+    , fast-logger >=2.2
     , file-embed
     , flatmap-io
     , foreign-store
-    , geojson >=3.0.4 && <4
-    , hjsmin >=0.1 && <0.3
+    , geojson >=4.0
+    , hjsmin >=0.1
     , hspec >=2.0.0
-    , http-client-tls >=0.3 && <0.4
-    , http-conduit >=2.3 && <2.4
+    , http-client-tls >=0.3
+    , http-conduit >=2.3
+    , http-types
     , microlens
-    , monad-control >=0.3 && <1.1
-    , monad-logger >=0.3 && <0.4
+    , monad-control >=0.3
+    , monad-logger >=0.3
     , mongoDB
-    , persistent >=2.9 && <2.10
-    , persistent-mongoDB >=2.8 && <2.9
-    , persistent-template >=2.5 && <2.9
+    , persistent >=2.9
+    , persistent-mongoDB >=2.8
+    , persistent-template >=2.5
     , safe
-    , shakespeare >=2.0 && <2.1
+    , shakespeare >=2.0
     , split
     , template-haskell
-    , text >=0.11 && <2.0
+    , text >=0.11
     , time
     , unordered-containers
     , vector
     , wai
-    , wai-extra >=3.0 && <3.1
-    , wai-logger >=2.2 && <2.4
-    , warp >=3.0 && <3.3
-    , yaml >=0.11 && <0.12
-    , yesod >=1.6 && <1.7
-    , yesod-auth >=1.6.7 && <1.7
+    , wai-extra >=3.0
+    , wai-logger >=2.2
+    , warp >=3.0
+    , yaml >=0.11
+    , yesod >=1.6
+    , yesod-auth >=1.6
     , yesod-auth-oauth2
-    , yesod-core >=1.6 && <1.7
-    , yesod-form >=1.6 && <1.7
-    , yesod-static >=1.6 && <1.7
+    , yesod-core >=1.6
+    , yesod-form >=1.6
+    , yesod-static >=1.6
     , yesod-test
   default-language: Haskell2010

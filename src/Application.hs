@@ -94,10 +94,10 @@ makeFoundation appSettings
        then staticDevel
        else static)
       (appStaticDir appSettings)
-  appMapboxAccessToken <- pack <$> getEnv "MAPBOX_ACCESS_TOKEN"
-  appMapQuestKey <- pack <$> getEnv "MAPQUEST_KEY"
-  appOAuth2ClientId <- pack <$> getEnv "GITHUB_CLIENT_ID"
-  appOAuth2ClientSecret <- pack <$> getEnv "GITHUB_SECRET"
+  appMapboxAccessToken <- pack . fromMaybe "" <$> lookupEnv "MAPBOX_ACCESS_TOKEN"
+  appMapQuestKey <- pack . fromMaybe "" <$> lookupEnv "MAPQUEST_KEY"
+  appOAuth2ClientId <- pack . fromMaybe "" <$> lookupEnv "GITHUB_CLIENT_ID"
+  appOAuth2ClientSecret <- pack . fromMaybe "" <$> lookupEnv "GITHUB_SECRET"
     -- Create the database connection pool
   appConnPool <- createPoolConfig $ appDatabaseConf appSettings
   return $ App {..}
